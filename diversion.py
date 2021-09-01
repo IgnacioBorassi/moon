@@ -40,9 +40,9 @@ inicioCeldaY = 0
 inicioCeldaX = 0
 pos_x =  0
 hola = 10
-mundo = Mundo()
+mundo = Mundo(216, 104)
 
-mundo.getTerreno(i,x)
+
 
 while True:
 
@@ -70,12 +70,12 @@ while True:
     
     for i in range(0, celdasY):
         for x in range(0, celdasX):
-            if miLista[i][x].tipo == "Tierra":
+            if mundo.getTerreno(i,x) == "Tierra":
                 pantalla.blit(pasto_fond, (pos_x, pos_y))
                 
-                if miLista[i][x].mugre == "Arbol":
+                if mundo.getNaturaleza(i, x) == "Arbol":
                     pantalla.blit(arbol_sup, (pos_x, pos_y))
-                elif miLista[i][x].mugre == "Montana":
+                elif mundo.getNaturaleza(i, x) == "Montana":
                     pantalla.blit(montaña_sup, (pos_x, pos_y))
                 
             else:

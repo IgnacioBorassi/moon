@@ -24,6 +24,9 @@ class Celda():
     def getTerreno(self):
         return self.terreno
 
+    def getNaturaleza(self):
+        return self.naturales
+
     def getNum(self):
         return self.numero
 

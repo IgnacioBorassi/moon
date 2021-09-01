@@ -40,7 +40,7 @@ class Mundo():
 
         for i in range(1,(self.cantCeldasY - 1)):
             for x in range(1,(self.cantCeldasX - 1)):
-                if otraLista[i][x].tipo == "Agua":
+                if otraLista[i][x].getTerreno() == "Agua":
                     if otraLista[i-1][x].getTerreno() == "Tierra" and otraLista[i+1][x].getTerreno() == "Tierra" and  otraLista[i][x-1].getTerreno() == "Tierra" and otraLista[i][x+1].getTerreno() == "Tierra":
                         self.coordenadas[i][x].cambiarTerreno("Tierra")
 
@@ -57,6 +57,8 @@ class Mundo():
         self.modificarMundo(self.generarTerreno())
         self.agregarNaturaleza()
 
-    def getTerreno(self, x, y):
+    def getTerreno(self, y, x):
         return self.coordenadas[y][x].getTerreno()
 
+    def getNaturaleza(self, y, x):
+        return self.coordenadas[y][x].getNaturaleza()
