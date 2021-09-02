@@ -1,10 +1,8 @@
 import pygame
 
 class Celda():
-    def __init__(self, terreno, naturales, construccion, propiedad, visual, num):
+    def __init__(self, terreno, propiedad, visual, num):
         self.terreno = terreno
-        self.naturales = naturales
-        self.construccion = construccion
         self.propiedad = propiedad
         self.visual = visual
         self.numero = num
@@ -24,15 +22,14 @@ class Celda():
     def getTerreno(self):
         return self.terreno
 
-    def getNaturaleza(self):
-        return self.naturales
-
     def getNum(self):
         return self.numero
 
     def cambiarTerreno(self, nuevoTerreno):
         self.terreno = nuevoTerreno
 
-    def agregarNat(self, naturaleza):
-        self.naturales = naturaleza
+    def cambiarNaturaleza(self, nuevaNaturaleza):
+        self.terreno.cambiarNaturaleza(nuevaNaturaleza)  
     
+    def getNaturaleza(self):
+        return self.terreno.getNaturaleza()

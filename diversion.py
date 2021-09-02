@@ -1,7 +1,9 @@
 import pygame, sys
 import random
 from mundo import Mundo
-
+from arbol import Arbol
+from tierra import Tierra
+from montana import Montana
 pygame.init()
 
 pantalla = pygame.display.set_mode((1080,520))
@@ -70,12 +72,12 @@ while True:
     
     for i in range(0, celdasY):
         for x in range(0, celdasX):
-            if mundo.getTerreno(i,x) == "Tierra":
+            if type(mundo.getTerreno(i,x)) == Tierra:
                 pantalla.blit(pasto_fond, (pos_x, pos_y))
                 
-                if mundo.getNaturaleza(i, x) == "Arbol":
+                if type(mundo.getNaturaleza(i, x)) == Arbol:
                     pantalla.blit(arbol_sup, (pos_x, pos_y))
-                elif mundo.getNaturaleza(i, x) == "Montana":
+                elif type(mundo.getNaturaleza(i, x)) == Montana:
                     pantalla.blit(montaña_sup, (pos_x, pos_y))
                 
             else:
