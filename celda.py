@@ -33,3 +33,18 @@ class Celda():
     
     def getNaturaleza(self):
         return self.terreno.getNaturaleza()
+
+    def getVisual(self):
+        return self.visual
+    
+    def cambiarVisual(self, nuevoVisual):
+        self.visual = nuevoVisual
+
+    def ponerPelado(self):
+        self.propiedad = "Pelado"
+
+    def sacarPelado(self):
+        self.propiedad = ""
+
+    def getPelado(self):
+        return self.propiedad

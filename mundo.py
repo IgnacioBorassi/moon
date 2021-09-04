@@ -22,9 +22,9 @@ class Mundo():
             for x in range(0, self.cantCeldasX):
                 randomN = int(random.randrange(0,40))
                 if randomN in [0,1,2,3,4,5,6]:
-                    milistaCopada[i].append(Celda(Agua(Aire(), None), "Nadie", "Negro", randomN))
+                    milistaCopada[i].append(Celda(Agua(Aire(), None), "Nadie", False, randomN))
                 else:
-                    milistaCopada[i].append(Celda(Tierra(Aire(), None), "Nadie", "Negro", randomN))
+                    milistaCopada[i].append(Celda(Tierra(Aire(), None), "Nadie", False, randomN))
         
         return milistaCopada
 
@@ -67,3 +67,17 @@ class Mundo():
 
     def getNaturaleza(self, y, x):
         return self.coordenadas[y][x].getNaturaleza()
+
+    def getVisual(self, y, x):
+        return self.coordenadas[y][x].getVisual()
+    
+    def cambiarVisual(self, y, x, nuevoVisual):
+        return self.coordenadas[y][x].cambiarVisual(nuevoVisual)
+    
+    def ponerPelado(self, y, x):
+        return self.coordenadas[y][x].ponerPelado()
+    
+    def sacarPelado(self, y, x):
+        return self.coordenadas[y][x].sacarPelado()
+    def getPelado(self, y, x):
+        return self.coordenadas[y][x].getPelado()

@@ -1,3 +1,6 @@
+from pygame.cursors import tri_right
+from aire import Aire
+from agua import Agua
 import pygame, sys
 import random
 from mundo import Mundo
@@ -21,8 +24,12 @@ escalaY = 40
 celdasX = 216
 celdasY = 104
 
+negro_fond = pygame.image.load('Fotuchas/negro.png').convert_alpha()
+negro_fond = pygame.transform.scale(negro_fond, (escalaX, escalaY))
+
 montaña_sup = pygame.image.load('Fotuchas/montana.png').convert_alpha()
 montaña_sup = pygame.transform.scale(montaña_sup, (escalaX, escalaY))
+
 
 agua_fond = pygame.image.load('Fotuchas/agua.png').convert_alpha()
 agua_fond = pygame.transform.scale(agua_fond, (escalaX, escalaY))
@@ -44,11 +51,15 @@ pos_x =  0
 hola = 10
 mundo = Mundo(216, 104)
 
+visualInicioY = 6
+visualInicioX = 13
 
+mundo.cambiarVisual(visualInicioY, visualInicioX, True)
+mundo.ponerPelado(visualInicioY, visualInicioX)
 
 while True:
 
-    pos_y=inicioCeldaY
+    
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -56,40 +67,171 @@ while True:
             exit()
 
         if event.type == pygame.KEYDOWN:
+            
             if event.key == pygame.K_DOWN:
                 inicioCeldaY -= escalaY
+                if inicioCeldaY < -3640:
+                    inicioCeldaY = -3640
             
+                print("Eje Y Lista: "+str(inicioCeldaY))
+                print("Eje X Lista: "+str(inicioCeldaX))
+            
+            if event.key == pygame.K_s:
+                mundo.sacarPelado(visualInicioY, visualInicioX)
+                visualInicioY +=1
+                if visualInicioY > 101:
+                    visualInicioY = 101
+                if (type(mundo.getTerreno(visualInicioY, visualInicioX)) == Tierra 
+                and type(mundo.getNaturaleza(visualInicioY, visualInicioX)) == Aire):
+                    print(type(mundo.getTerreno(visualInicioY,visualInicioX)))
+                    mundo.ponerPelado(visualInicioY, visualInicioX)
+                    mundo.cambiarVisual(visualInicioY, visualInicioX, True)
+                    mundo.cambiarVisual(visualInicioY, (visualInicioX + 1), True)
+                    mundo.cambiarVisual(visualInicioY, (visualInicioX - 1), True)
+                    mundo.cambiarVisual(visualInicioY + 1, visualInicioX, True)
+                    mundo.cambiarVisual((visualInicioY + 1), (visualInicioX + 1), True)
+                    mundo.cambiarVisual((visualInicioY + 1), (visualInicioX - 1), True)
+                    print("Eje Y Descubridor: " + str(visualInicioY))
+                    print("Eje X Descubridor: " + str(visualInicioX))
+                else:
+                    visualInicioY -= 1
+                    mundo.ponerPelado(visualInicioY, visualInicioX)
+
+
+
             if event.key == pygame.K_UP:
                 inicioCeldaY += escalaY
-            
+                if inicioCeldaY > 0:
+                    inicioCeldaY = 0
+                
+                print("Eje Y Lista: "+str(inicioCeldaY))
+                print("Eje X Lista: "+str(inicioCeldaX))
+
+            if event.key == pygame.K_w:
+                mundo.sacarPelado(visualInicioY, visualInicioX)
+                visualInicioY -=1
+                if visualInicioY < 1:
+                    visualInicioY = 1
+                if (type(mundo.getTerreno(visualInicioY, visualInicioX)) == Tierra 
+                and type(mundo.getNaturaleza(visualInicioY, visualInicioX)) == Aire):
+
+                    mundo.ponerPelado(visualInicioY, visualInicioX)
+                    print(type(mundo.getTerreno(visualInicioY,visualInicioX)))
+
+                    mundo.cambiarVisual(visualInicioY, visualInicioX, True)
+                    mundo.cambiarVisual(visualInicioY, (visualInicioX + 1), True)
+                    mundo.cambiarVisual(visualInicioY, (visualInicioX - 1), True)
+                    mundo.cambiarVisual((visualInicioY - 1), visualInicioX, True)
+                    mundo.cambiarVisual((visualInicioY - 1), (visualInicioX + 1), True)
+                    mundo.cambiarVisual((visualInicioY - 1), (visualInicioX - 1), True)
+                    print("Eje Y Descubridor: " + str(visualInicioY))
+                    print("Eje X Descubridor: " + str(visualInicioX))
+                else:
+                    visualInicioY += 1
+                    mundo.ponerPelado(visualInicioY, visualInicioX)
+
             if event.key == pygame.K_RIGHT:
                 inicioCeldaX -= escalaX
+                if inicioCeldaX < -7560:
+                    inicioCeldaX = -7560
+                
+                print("Eje Y Lista: "+str(inicioCeldaY))
+                print("Eje X Lista: "+str(inicioCeldaX))
+
+            if event.key == pygame.K_d:
+                mundo.sacarPelado(visualInicioY, visualInicioX)
+                visualInicioX +=1
+                if visualInicioX > 213:
+                    visualInicioX = 213
+                if (type(mundo.getTerreno(visualInicioY, visualInicioX)) == Tierra 
+                and type(mundo.getNaturaleza(visualInicioY, visualInicioX)) == Aire):
+
+                    mundo.ponerPelado(visualInicioY, visualInicioX)
+                    print(type(mundo.getTerreno(visualInicioY,visualInicioX)))
+
+                    mundo.cambiarVisual(visualInicioY, visualInicioX, True)
+                    mundo.cambiarVisual((visualInicioY - 1), visualInicioX, True)
+                    mundo.cambiarVisual((visualInicioY + 1), visualInicioX, True)
+                    mundo.cambiarVisual(visualInicioY, (visualInicioX + 1), True)
+                    mundo.cambiarVisual((visualInicioY - 1), visualInicioX + 1, True)
+                    mundo.cambiarVisual((visualInicioY + 1), visualInicioX + 1, True)
+                    print("Eje Y Descubridor: " + str(visualInicioY))
+                    print("Eje X Descubridor: " + str(visualInicioX))
+                else:
+                    visualInicioX -= 1
+                    mundo.ponerPelado(visualInicioY, visualInicioX)
+
 
             if event.key == pygame.K_LEFT:
                 inicioCeldaX += escalaX
+                if inicioCeldaX > 0:
+                    inicioCeldaX = 0
+
+                print("Eje Y Lista: "+str(inicioCeldaY))
+                print("Eje X Lista: "+str(inicioCeldaX))
+
+            if event.key == pygame.K_a:
+                mundo.sacarPelado(visualInicioY, visualInicioX)
+                visualInicioX -=1
+                if visualInicioX < 1:
+                    visualInicioX = 1
+                if (type(mundo.getTerreno(visualInicioY, visualInicioX)) == Tierra 
+                and type(mundo.getNaturaleza(visualInicioY, visualInicioX)) == Aire):
                 
+                    mundo.ponerPelado(visualInicioY, visualInicioX)
+                    print(type(mundo.getTerreno(visualInicioY,visualInicioX)))
+
+                    mundo.cambiarVisual(visualInicioY, visualInicioX, True)
+                    mundo.cambiarVisual((visualInicioY - 1), visualInicioX, True)
+                    mundo.cambiarVisual((visualInicioY + 1), visualInicioX, True)
+                    mundo.cambiarVisual(visualInicioY, (visualInicioX - 1), True)
+                    mundo.cambiarVisual((visualInicioY - 1), visualInicioX - 1, True)
+                    mundo.cambiarVisual((visualInicioY + 1), visualInicioX - 1, True)
+                    print("Eje Y Descubridor: " + str(visualInicioY))
+                    print("Eje X Descubridor: " + str(visualInicioX))
+                else: 
+                    visualInicioX += 1
+                    mundo.ponerPelado(visualInicioY, visualInicioX)
+
+
+    pos_y=inicioCeldaY
     pantalla.blit(fondo_copado, (0, 0))
     
     for i in range(0, celdasY):
         for x in range(0, celdasX):
-            if type(mundo.getTerreno(i,x)) == Tierra:
-                pantalla.blit(pasto_fond, (pos_x, pos_y))
-                
-                if type(mundo.getNaturaleza(i, x)) == Arbol:
-                    pantalla.blit(arbol_sup, (pos_x, pos_y))
-                elif type(mundo.getNaturaleza(i, x)) == Montana:
-                    pantalla.blit(montaña_sup, (pos_x, pos_y))
-                
-            else:
-                pantalla.blit(agua_fond, (pos_x, pos_y))
+            if mundo.getVisual(i,x) == True:
+                if mundo.getPelado(i,x) == "Pelado":
 
+                    if type(mundo.getTerreno(i,x)) == Tierra:
+                        pantalla.blit(pasto_fond, (pos_x, pos_y))
+                        
+                        if type(mundo.getNaturaleza(i, x)) == Arbol:
+                            pantalla.blit(arbol_sup, (pos_x, pos_y))
+
+                        elif type(mundo.getNaturaleza(i, x)) == Montana:
+                            pantalla.blit(montaña_sup, (pos_x, pos_y))
+                        
+                    else:
+                        pantalla.blit(agua_fond, (pos_x, pos_y))
+                    
+                    pantalla.blit(pelado_sup, (pos_x, pos_y))
+                else:
+                    if type(mundo.getTerreno(i,x)) == Tierra:
+                        pantalla.blit(pasto_fond, (pos_x, pos_y))
+                        
+                        if type(mundo.getNaturaleza(i, x)) == Arbol:
+                            pantalla.blit(arbol_sup, (pos_x, pos_y))
+
+                        elif type(mundo.getNaturaleza(i, x)) == Montana:
+                            pantalla.blit(montaña_sup, (pos_x, pos_y))
+                        
+                    else:
+                        pantalla.blit(agua_fond, (pos_x, pos_y))
+            else:
+                pantalla.blit(negro_fond, (pos_x, pos_y))
             pos_x+=escalaX
         pos_x=inicioCeldaX
         pos_y+=escalaY
-
-
-    pantalla.blit(pelado_sup, (520, 240))
-
 
     pygame.display.update()
     fps.tick(60)
