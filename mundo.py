@@ -35,10 +35,13 @@ class Mundo():
         for i in range(1, (self.cantCeldasY - 1)):
             for x in range(1, (self.cantCeldasX - 1)):
                 if type(listacopada[i][x].getTerreno()) == Tierra:
-                    if type(listacopada[i-1][x].getTerreno()) == Agua and type(listacopada[i+1][x].getTerreno()) == Agua:
+                    if (type(listacopada[i-1][x].getTerreno()) == Agua and 
+                    type(listacopada[i+1][x].getTerreno()) == Agua):
+
                         otraLista[i][x].cambiarTerreno(Agua(Aire(), None))
                         
-                    elif type(listacopada[i][x-1].getTerreno()) == Agua and type(listacopada[i][x+1].getTerreno()) == Agua:
+                    elif (type(listacopada[i][x-1].getTerreno()) == Agua and 
+                    type(listacopada[i][x+1].getTerreno()) == Agua):
                         otraLista[i][x].cambiarTerreno(Agua(Aire(), None))
 
         self.coordenadas = otraLista
@@ -46,16 +49,21 @@ class Mundo():
         for i in range(1,(self.cantCeldasY - 1)):
             for x in range(1,(self.cantCeldasX - 1)):
                 if type(otraLista[i][x].getTerreno()) == Agua:
-                    if type(otraLista[i-1][x].getTerreno()) == Tierra and type(otraLista[i+1][x].getTerreno()) == Tierra and type(otraLista[i][x-1].getTerreno()) == Tierra and type(otraLista[i][x+1].getTerreno()) == Tierra:
+                    if (type(otraLista[i-1][x].getTerreno()) == Tierra and type(otraLista[i+1][x].getTerreno()) == Tierra and type(otraLista[i][x-1].getTerreno()) == Tierra and 
+                    type(otraLista[i][x+1].getTerreno()) == Tierra):
                         self.coordenadas[i][x].cambiarTerreno(Tierra(Aire(), None))
 
     def agregarNaturaleza(self):
         
         for i in range(0, self.cantCeldasY):
             for x in range(0, self.cantCeldasX):
-                if type(self.coordenadas[i][x].getTerreno()) == Tierra and self.coordenadas[i][x].getNum() in [9, 10]:
+                if (type(self.coordenadas[i][x].getTerreno()) == Tierra and 
+                self.coordenadas[i][x].getNum() in [9, 10]):
+
                     self.coordenadas[i][x].cambiarNaturaleza(Montana())
-                elif type(self.coordenadas[i][x].getTerreno()) == Tierra  and self.coordenadas[i][x].getNum() in [11, 12, 13, 14, 15, 16, 17]:
+                elif (type(self.coordenadas[i][x].getTerreno()) == Tierra  and 
+                self.coordenadas[i][x].getNum() in [11, 12, 13, 14, 15, 16, 17]):
+
                     self.coordenadas[i][x].cambiarNaturaleza(Arbol())
 
     def crearMundo(self):
