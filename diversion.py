@@ -96,6 +96,7 @@ while True:
             
             
             if event.key == pygame.K_ESCAPE:
+                
                 menu.prenderMenu()
             if menu.getActivo() == False:
                 if event.key == pygame.K_j:
