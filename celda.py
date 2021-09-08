@@ -1,11 +1,12 @@
 import pygame
-
+from marcador import Marcador
 class Celda():
     def __init__(self, terreno, propiedad, visual, num):
         self.terreno = terreno
         self.propiedad = propiedad
         self.visual = visual
         self.numero = num
+        self.marca = Marcador(None)
 
     def construir(self, construccion):
         '''Permite construir algo en la celda'''
@@ -24,6 +25,15 @@ class Celda():
 
     def getNum(self):
         return self.numero
+        
+    def getMarcador(self):
+        return self.marcador.getMarcador()
+    
+    def ponerMarcador(self):
+        self.marcador.ponerMarcador()
+
+    def sacarMarcador(self):
+        self.marcador.sacarMarcador()
 
     def cambiarTerreno(self, nuevoTerreno):
         self.terreno = nuevoTerreno
