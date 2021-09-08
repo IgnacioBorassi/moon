@@ -6,6 +6,7 @@ from arbol import Arbol
 from tierra import Tierra
 from montana import Montana
 from menu import Menu
+from marcador import Marcador
 pygame.init()
 
 pantalla = pygame.display.set_mode((1080,520))
