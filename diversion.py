@@ -2,11 +2,11 @@ from pygame.cursors import tri_right
 from aire import Aire
 from agua import Agua
 import pygame, sys
-import random
 from mundo import Mundo
 from arbol import Arbol
 from tierra import Tierra
 from montana import Montana
+from menu import Menu
 pygame.init()
 
 pantalla = pygame.display.set_mode((1080,520))
@@ -50,7 +50,7 @@ inicioCeldaX = 0
 pos_x =  0
 hola = 10
 mundo = Mundo(216, 104)
-
+menu = Menu()
 visualInicioY = 6
 visualInicioX = 13
 
@@ -59,15 +59,23 @@ mundo.ponerPelado(visualInicioY, visualInicioX)
 
 while True:
 
-    
-
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+        
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if menu.getStartRect().collidepoint(event.pos):
+                menu.apagarMenu()
+            elif menu.getExitRect().collidepoint(event.pos):
+                pygame.quit()
+                exit()
 
         if event.type == pygame.KEYDOWN:
             
+            if event.key == pygame.K_ESCAPE:
+                menu.prenderMenu()
+                
             if event.key == pygame.K_DOWN:
                 inicioCeldaY -= escalaY
                 if inicioCeldaY < -3640:
@@ -193,45 +201,51 @@ while True:
                     visualInicioX += 1
                     mundo.ponerPelado(visualInicioY, visualInicioX)
 
+    if menu.getActivo() == True:
+        pantalla.blit(menu.getFondo(),(0,0))
+        pantalla.blit(menu.getStartSup(), menu.getStartRect())
+        pantalla.blit(menu.getExitSup(), menu.getExitRect())
+        
+    else:    
 
-    pos_y=inicioCeldaY
-    pantalla.blit(fondo_copado, (0, 0))
-    
-    for i in range(0, celdasY):
-        for x in range(0, celdasX):
-            if mundo.getVisual(i,x) == True:
-                if mundo.getPelado(i,x) == "Pelado":
+        pos_y=inicioCeldaY
+        pantalla.blit(fondo_copado, (0, 0))
+        
+        for i in range(0, celdasY):
+            for x in range(0, celdasX):
+                if mundo.getVisual(i,x) == True:
+                    if mundo.getPelado(i,x) == "Pelado":
 
-                    if type(mundo.getTerreno(i,x)) == Tierra:
-                        pantalla.blit(pasto_fond, (pos_x, pos_y))
+                        if type(mundo.getTerreno(i,x)) == Tierra:
+                            pantalla.blit(pasto_fond, (pos_x, pos_y))
+                            
+                            if type(mundo.getNaturaleza(i, x)) == Arbol:
+                                pantalla.blit(arbol_sup, (pos_x, pos_y))
+
+                            elif type(mundo.getNaturaleza(i, x)) == Montana:
+                                pantalla.blit(montaña_sup, (pos_x, pos_y))
+                            
+                        else:
+                            pantalla.blit(agua_fond, (pos_x, pos_y))
                         
-                        if type(mundo.getNaturaleza(i, x)) == Arbol:
-                            pantalla.blit(arbol_sup, (pos_x, pos_y))
-
-                        elif type(mundo.getNaturaleza(i, x)) == Montana:
-                            pantalla.blit(montaña_sup, (pos_x, pos_y))
-                        
+                        pantalla.blit(pelado_sup, (pos_x, pos_y))
                     else:
-                        pantalla.blit(agua_fond, (pos_x, pos_y))
-                    
-                    pantalla.blit(pelado_sup, (pos_x, pos_y))
+                        if type(mundo.getTerreno(i,x)) == Tierra:
+                            pantalla.blit(pasto_fond, (pos_x, pos_y))
+                            
+                            if type(mundo.getNaturaleza(i, x)) == Arbol:
+                                pantalla.blit(arbol_sup, (pos_x, pos_y))
+
+                            elif type(mundo.getNaturaleza(i, x)) == Montana:
+                                pantalla.blit(montaña_sup, (pos_x, pos_y))
+                            
+                        else:
+                            pantalla.blit(agua_fond, (pos_x, pos_y))
                 else:
-                    if type(mundo.getTerreno(i,x)) == Tierra:
-                        pantalla.blit(pasto_fond, (pos_x, pos_y))
-                        
-                        if type(mundo.getNaturaleza(i, x)) == Arbol:
-                            pantalla.blit(arbol_sup, (pos_x, pos_y))
-
-                        elif type(mundo.getNaturaleza(i, x)) == Montana:
-                            pantalla.blit(montaña_sup, (pos_x, pos_y))
-                        
-                    else:
-                        pantalla.blit(agua_fond, (pos_x, pos_y))
-            else:
-                pantalla.blit(negro_fond, (pos_x, pos_y))
-            pos_x+=escalaX
-        pos_x=inicioCeldaX
-        pos_y+=escalaY
+                    pantalla.blit(negro_fond, (pos_x, pos_y))
+                pos_x+=escalaX
+            pos_x=inicioCeldaX
+            pos_y+=escalaY
 
     pygame.display.update()
     fps.tick(60)
