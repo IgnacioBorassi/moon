@@ -6,7 +6,11 @@ from arbol import Arbol
 from tierra import Tierra
 from montana import Montana
 from menu import Menu
+<<<<<<< HEAD
+from persona import Persona
+=======
 from marcador import Marcador
+>>>>>>> 1957675adf06ff9027a245c52f24127357a59c13
 pygame.init()
 
 pantalla = pygame.display.set_mode((1080,520))
@@ -237,8 +241,24 @@ while True:
         for i in range(0, celdasY):
             for x in range(0, celdasX):
                 if mundo.getVisual(i,x) == True:
+<<<<<<< HEAD
+                    if mundo.getPelado(i,x) == True:
+
+                        if type(mundo.getTerreno(i,x)) == Tierra:
+                            pantalla.blit(pasto_fond, (pos_x, pos_y))
+                            
+                            if type(mundo.getNaturaleza(i, x)) == Arbol:
+                                pantalla.blit(arbol_sup, (pos_x, pos_y))
+
+                            elif type(mundo.getNaturaleza(i, x)) == Montana:
+                                pantalla.blit(montaña_sup, (pos_x, pos_y))
+                            
+                        else:
+                            pantalla.blit(agua_fond, (pos_x, pos_y))
+=======
                     if type(mundo.getTerreno(i,x)) == Tierra:
                         pantalla.blit(pasto_fond, (pos_x, pos_y))
+>>>>>>> 1957675adf06ff9027a245c52f24127357a59c13
                         
                         if type(mundo.getNaturaleza(i, x)) == Arbol:
                             pantalla.blit(arbol_sup, (pos_x, pos_y))

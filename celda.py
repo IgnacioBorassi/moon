@@ -1,12 +1,21 @@
 import pygame
+<<<<<<< HEAD
+from persona import Persona
+
+=======
 from marcador import Marcador
+>>>>>>> 1957675adf06ff9027a245c52f24127357a59c13
 class Celda():
     def __init__(self, terreno, propiedad, visual, num):
         self.terreno = terreno
         self.propiedad = propiedad
         self.visual = visual
         self.numero = num
+<<<<<<< HEAD
+        self.persona = Persona(None)
+=======
         self.marca = Marcador(None)
+>>>>>>> 1957675adf06ff9027a245c52f24127357a59c13
 
     def construir(self, construccion):
         '''Permite construir algo en la celda'''
@@ -51,10 +60,10 @@ class Celda():
         self.visual = nuevoVisual
 
     def ponerPelado(self):
-        self.propiedad = "Pelado"
+        self.persona.ponerPelado()
 
     def sacarPelado(self):
-        self.propiedad = ""
+        self.persona.sacarPelado()
 
     def getPelado(self):
-        return self.propiedad
+        return self.persona.getPersona()

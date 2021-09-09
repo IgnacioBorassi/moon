@@ -87,5 +87,7 @@ class Mundo():
     
     def sacarPelado(self, y, x):
         return self.coordenadas[y][x].sacarPelado()
+
+    
     def getPelado(self, y, x):
         return self.coordenadas[y][x].getPelado()
