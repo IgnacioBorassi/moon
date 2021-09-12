@@ -12,9 +12,13 @@ class Mundo():
         self.coordenadas = []
         self.cantCeldasX = cantCeldasX
         self.cantCeldasY = cantCeldasY
+        self.inicioCeldaX = None
+        self.inicioCeldaY = None
         self.crearMundo()
 
     def generarTerreno(self):
+        '''Completa toda la matriz con agua o tierra'''
+
         milistaCopada = []
 
         for i in range(0, self.cantCeldasY):
@@ -29,7 +33,7 @@ class Mundo():
         return milistaCopada
 
     def modificarMundo(self, listacopada):
-
+        '''Modifica pedazos de agua y tierra'''
         otraLista = listacopada
 
         for i in range(1, (self.cantCeldasY - 1)):
@@ -54,7 +58,8 @@ class Mundo():
                         self.coordenadas[i][x].cambiarTerreno(Tierra(Aire(), None))
 
     def agregarNaturaleza(self):
-        
+        '''Genera en las coordenadas, donde haya tierra, una montana o un arbol'''
+
         for i in range(0, self.cantCeldasY):
             for x in range(0, self.cantCeldasX):
                 if (type(self.coordenadas[i][x].getTerreno()) == Tierra and 
@@ -67,6 +72,7 @@ class Mundo():
                     self.coordenadas[i][x].cambiarNaturaleza(Arbol())
 
     def crearMundo(self):
+        '''Crea el mundo'''
         self.modificarMundo(self.generarTerreno())
         self.agregarNaturaleza()
 
@@ -91,3 +97,20 @@ class Mundo():
     
     def getPelado(self, y, x):
         return self.coordenadas[y][x].getPelado()
+
+
+    def zonaInicial(self, y, x):
+        '''Genera la zona donde empieza el personaje'''
+        for i in range(1,6):
+            self.cambiarVisual(y+i, x, True)
+            self.cambiarVisual(y-i, x, True)
+            self.cambiarVisual(y, x+i, True)
+            self.cambiarVisual(y, x-i, True)
+
+            for e in range(1,6):
+                self.cambiarVisual(y+i, x+e, True)
+                self.cambiarVisual(y+i, x-e, True)
+                self.cambiarVisual(y-i, x+e, True)
+                self.cambiarVisual(y-i, x-e, True)
+
+    

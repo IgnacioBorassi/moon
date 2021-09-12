@@ -3,6 +3,7 @@ from persona import Persona
 
 from marcador import Marcador
 class Celda():
+    '''Clase Celda contiene el terreno, el propietario, visual y un numero'''
     def __init__(self, terreno, propiedad, visual, num):
         self.terreno = terreno
         self.propiedad = propiedad
@@ -39,9 +40,11 @@ class Celda():
         self.marcador.sacarMarcador()
 
     def cambiarTerreno(self, nuevoTerreno):
+        '''Cambia el terreno entre tierra y agua'''
         self.terreno = nuevoTerreno
 
     def cambiarNaturaleza(self, nuevaNaturaleza):
+        '''Cambia la celda entre arbol y montana'''
         self.terreno.cambiarNaturaleza(nuevaNaturaleza)  
     
     def getNaturaleza(self):
@@ -51,9 +54,11 @@ class Celda():
         return self.visual
     
     def cambiarVisual(self, nuevoVisual):
+        '''Cambia la celda para poder visualizarla'''
         self.visual = nuevoVisual
 
     def ponerPelado(self):
+
         self.persona.ponerPelado()
 
     def sacarPelado(self):

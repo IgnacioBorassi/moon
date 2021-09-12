@@ -3,6 +3,7 @@ class Persona:
         self.persona = persona
 
     def cambiarPelado(self, persona):
+        '''Cambia el atributo persona'''
         self.persona = persona
     
 

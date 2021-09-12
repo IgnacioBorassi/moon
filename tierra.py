@@ -10,4 +10,5 @@ class Tierra:
         return self.construccion
     
     def cambiarNaturaleza(self, naturaleza):
+        '''Cambia naturaleza entre montana, arbol y aire'''
         self.naturaleza = naturaleza

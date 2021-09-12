@@ -12,12 +12,15 @@ class Menu:
 
     def apagarMenu(self):
         self.activo = False
+
     def prenderMenu(self):
         self.activo = True
+
     def getActivo(self):
         return self.activo
     
     def cargarFondo(self):
+        '''Carga el fondo'''
         self.fondo_menu = pygame.Surface((1080,520))
         self.fondo_menu.fill((173, 255, 47))
     
@@ -25,6 +28,7 @@ class Menu:
         return self.fondo_menu
 
     def cargarBotones(self):
+        '''Carga los botones'''
         self.boton_start_sup = pygame.image.load('Fotuchas/pelado_start.png').convert_alpha()
         self.boton_start_sup = pygame.transform.scale(self.boton_start_sup, (300, 195))
         self.boton_start_rect = self.boton_start_sup.get_rect(topleft =(100,200))
