@@ -10,7 +10,7 @@ class main:
 if __name__ == '__main__':
     import pygame 
     pygame.init()
-    from diversion import Visual
+    from visual import Visual
     
 
     main = main()

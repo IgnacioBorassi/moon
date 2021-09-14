@@ -27,11 +27,11 @@ class Eventos:
 
     def inicioCeldaYOP(self, y):
         '''Calculo para centrar la pantalla'''
-        return (y * -40) + 40*6
+        return (y * - 40) + 40*6
 
     def inicioCeldaXOP(self, x):
         '''Calculo para centrar la pantalla'''
-        return (x * -40) + 40*13
+        return (x * - 40) + 40*13
 
     def getInicioCeldaX(self):
         return self.inicioCeldaX
@@ -71,8 +71,8 @@ class Eventos:
                     self.menu.prenderMenu()
                 if self.menu.getActivo() == False:
                     if event.key == pygame.K_j:
-                        inicioCeldaY = (self.visualInicioY * -40) + 40*6
-                        inicioCeldaX = (self.visualInicioX * -40) + 40*13
+                        self.inicioCeldaY = (self.visualInicioY * -40) + 40*6
+                        self.inicioCeldaX = (self.visualInicioX * -40) + 40*13
 
                     if event.key == pygame.K_DOWN:
                         self.inicioCeldaY -= self.escalaY

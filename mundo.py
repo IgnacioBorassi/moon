@@ -100,17 +100,17 @@ class Mundo():
 
 
     def zonaInicial(self, y, x):
-        '''Genera la zona donde empieza el personaje'''
+        '''Muestra la zona donde empieza el personaje'''
         for i in range(1,6):
-            self.cambiarVisual(y+i, x, True)
-            self.cambiarVisual(y-i, x, True)
-            self.cambiarVisual(y, x+i, True)
-            self.cambiarVisual(y, x-i, True)
+            self.cambiarVisual(y + i, x, True)
+            self.cambiarVisual(y - i, x, True)
+            self.cambiarVisual(y, x + i, True)
+            self.cambiarVisual(y, x - i, True)
 
             for e in range(1,6):
-                self.cambiarVisual(y+i, x+e, True)
-                self.cambiarVisual(y+i, x-e, True)
-                self.cambiarVisual(y-i, x+e, True)
-                self.cambiarVisual(y-i, x-e, True)
-
+                self.cambiarVisual(y + i, x + e, True)
+                self.cambiarVisual(y + i, x - e, True)
+                self.cambiarVisual(y - i, x + e, True)
+                self.cambiarVisual(y - i, x - e, True)
+ 
     
