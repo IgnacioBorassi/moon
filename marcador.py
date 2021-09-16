@@ -1,5 +1,8 @@
 import pygame
+
 class Marcador:
+    '''Proximamente en algun dia'''
+    
     def __init__(self, marcar):
         self.marcar = marcar
     

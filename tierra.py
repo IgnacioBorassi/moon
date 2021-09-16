@@ -1,7 +1,10 @@
 class Tierra:
+    '''Representa la tierra y su construccion'''
+    
     def __init__(self, naturaleza, construccion):
         self.naturaleza = naturaleza
         self.construccion = construccion
+
 
     def getNaturaleza(self):
         return self.naturaleza

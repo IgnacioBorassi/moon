@@ -1,6 +1,9 @@
 class Persona:
+    '''Una persona que en realidad es un pelado'''
+    
     def __init__(self, persona):
         self.persona = persona
+
 
     def cambiarPelado(self, persona):
         '''Cambia el atributo persona'''
