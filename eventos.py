@@ -75,6 +75,11 @@ class Eventos:
                     self.menu.prenderMenu()
 
                 if self.menu.getActivo() == False:
+                    if event.key == pygame.K_1:
+                        if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra 
+                        and type(self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)) == Aire):
+                            self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
+
                     if event.key == pygame.K_j:
                         self.inicioCeldaY = ((self.visualInicioY * - self.escalaY) +
                             self.escalaY * int((self.pantallaY/self.escalaY)/2))
@@ -291,3 +296,21 @@ class Eventos:
 
     def getExitRect(self):
         return self.menu.getExitRect()
+    
+    def getCasa(self, y, x):
+        return self.mundo.getCasa(y, x)
+    
+    def generacionPelado(self, visualInicioY, visualInicioX):
+        while (type(self.getTerreno(visualInicioY, visualInicioX)) != Tierra or 
+            type(self.getNaturaleza(visualInicioY, visualInicioX)) != Aire):
+
+                visualInicioY = self.inicioPeladoY()
+                visualInicioX = self.inicioPeladoX()
+        self.visualInicioX = visualInicioX
+        self.visualInicioY = visualInicioY
+
+    def getvisualInicioX(self):
+        return self.visualInicioX
+    
+    def getVisualInicioY(self):
+        return self.visualInicioY

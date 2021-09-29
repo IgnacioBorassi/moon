@@ -116,8 +116,10 @@ class Mundo():
         return self.coordenadas[y][x].getMarcador()
 
     def getCasa(self, y, x):
-        return self.coordenadas[y][x].getConstruccion()
+        return self.coordenadas[y][x].getCasa()
 
+    def ponerCasa(self, y, x):
+        return self.coordenadas[y][x].ponerCasa()
 
     def zonaInicial(self, y, x):
         '''Muestra la zona donde empieza el personaje'''

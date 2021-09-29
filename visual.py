@@ -36,7 +36,7 @@ class Visual:
         pasto_fond = sprites.getPasto_fond()
         arbol_sup = sprites.getArbol_sup()
         pelado_sup = sprites.getPelado_sup()
-        marcador_sup = sprites.getMarcador_sup()
+        casa_sup = sprites.getCasa_sup()
 
         eventos = Eventos()
         inicioCeldaY = 0
@@ -45,11 +45,9 @@ class Visual:
         visualInicioY = eventos.inicioPeladoY()
         visualInicioX = eventos.inicioPeladoX()
 
-        while (type(eventos.getTerreno(visualInicioY, visualInicioX)) != Tierra or 
-        type(eventos.getNaturaleza(visualInicioY, visualInicioX)) != Aire):
-
-            visualInicioY = eventos.inicioPeladoY()
-            visualInicioX = eventos.inicioPeladoX()
+        eventos.generacionPelado(visualInicioY, visualInicioX)
+        visualInicioX = eventos.getvisualInicioX()
+        visualInicioY = eventos.getVisualInicioY()
 
         eventos.zonaInicial(visualInicioY, visualInicioX)
         eventos.cambiarVisual(visualInicioY, visualInicioX, True)
@@ -81,7 +79,6 @@ class Visual:
                     for x in range(0, celdasX):
                         if eventos.getVisual(i, x) == True:
                             if type(eventos.getTerreno(i, x)) == Tierra:
-                                
                                 pantalla.blit(pasto_fond, (pos_x, pos_y))
                                 
                                 if type(eventos.getNaturaleza(i, x)) == Arbol:
@@ -95,7 +92,8 @@ class Visual:
 
                             if eventos.getPelado(i, x) == True:
                                 pantalla.blit(pelado_sup, (pos_x, pos_y))
-
+                            if eventos.getCasa(i,x) == True:
+                               pantalla.blit(casa_sup, (pos_x, pos_y)) 
                         else:
                             pantalla.blit(negro_fond, (pos_x, pos_y))
                         
