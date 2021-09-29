@@ -49,3 +49,8 @@ class Sprites:
         self.pelado_sup = pygame.image.load('Fotuchas/pelado.png').convert_alpha()
         self.pelado_sup = pygame.transform.scale(self.pelado_sup, (self.escalaX, self.escalaY))
         return self.pelado_sup
+    
+    def getCasa_sup(self):
+        self.casa_sup = pygame.image.load('Fotuchas/casa_sup.png').convert_alpha()
+        self.casa_sup = pygame.transform.scale(self.casa_sup, (self.escalaX, self.escalaY))
+        return self.casa_sup

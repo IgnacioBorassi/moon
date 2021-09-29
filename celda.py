@@ -1,6 +1,7 @@
 import pygame
 from persona import Persona
 from marcador import Marcador
+from casa import Casa
 
 class Celda():
     '''Clase Celda contiene el terreno, el propietario, visual y un numero'''
@@ -12,7 +13,7 @@ class Celda():
         self.numero = num
         self.persona = Persona(None)
         self.marca = Marcador(None)
-    
+        self.casa = Casa(None)
 
     def tomarTerreno(self, propiedad):
         self.propiedad = propiedad
@@ -65,3 +66,9 @@ class Celda():
 
     def getPelado(self):
         return self.persona.getPersona()
+
+    def ponerCasa(self):
+        self.casa.ponerCasa()
+    
+    def getCasa(self):
+        return self.casa.getCasa()
