@@ -45,11 +45,9 @@ class Visual:
         visualInicioY = eventos.inicioPeladoY()
         visualInicioX = eventos.inicioPeladoX()
 
-        while (type(eventos.getTerreno(visualInicioY, visualInicioX)) != Tierra or 
-        type(eventos.getNaturaleza(visualInicioY, visualInicioX)) != Aire):
-
-            visualInicioY = eventos.inicioPeladoY()
-            visualInicioX = eventos.inicioPeladoX()
+        eventos.generacionPelado(visualInicioY, visualInicioX)
+        visualInicioX = eventos.getvisualInicioX()
+        visualInicioY = eventos.getVisualInicioY()
 
         eventos.zonaInicial(visualInicioY, visualInicioX)
         eventos.cambiarVisual(visualInicioY, visualInicioX, True)

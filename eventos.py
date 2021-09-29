@@ -253,3 +253,18 @@ class Eventos:
     
     def getCasa(self, y, x):
         return self.mundo.getCasa(y, x)
+    
+    def generacionPelado(self, visualInicioY, visualInicioX):
+        while (type(self.getTerreno(visualInicioY, visualInicioX)) != Tierra or 
+            type(self.getNaturaleza(visualInicioY, visualInicioX)) != Aire):
+
+                visualInicioY = self.inicioPeladoY()
+                visualInicioX = self.inicioPeladoX()
+        self.visualInicioX = visualInicioX
+        self.visualInicioY = visualInicioY
+
+    def getvisualInicioX(self):
+        return self.visualInicioX
+    
+    def getVisualInicioY(self):
+        return self.visualInicioY
