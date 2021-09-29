@@ -36,6 +36,7 @@ class Visual:
         pasto_fond = sprites.getPasto_fond()
         arbol_sup = sprites.getArbol_sup()
         pelado_sup = sprites.getPelado_sup()
+        marcador_sup = sprites.getMarcador_sup()
 
         eventos = Eventos()
         inicioCeldaY = 0
@@ -53,6 +54,8 @@ class Visual:
         eventos.zonaInicial(visualInicioY, visualInicioX)
         eventos.cambiarVisual(visualInicioY, visualInicioX, True)
         eventos.ponerPelado(visualInicioY, visualInicioX)
+        eventos.ponerMarcador(visualInicioY, visualInicioX)
+
         inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
         inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
 
@@ -95,6 +98,9 @@ class Visual:
 
                         else:
                             pantalla.blit(negro_fond, (pos_x, pos_y))
+                        
+                        if eventos.getMarcador(i, x) == True:
+                            pantalla.blit(marcador_sup, (pos_x, pos_y))
 
                         pos_x+=escalaX
                         

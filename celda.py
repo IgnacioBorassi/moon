@@ -11,7 +11,7 @@ class Celda():
         self.visual = visual
         self.numero = num
         self.persona = Persona(None)
-        self.marca = Marcador(None)
+        self.marcador = Marcador(None)
     
 
     def tomarTerreno(self, propiedad):

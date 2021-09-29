@@ -20,11 +20,16 @@ class Sprites:
         self.negro_fond = pygame.transform.scale(self.negro_fond, (self.escalaX, self.escalaY))
         return self.negro_fond
 
+    def getMarcador_sup(self):
+        self.marcador_sup = pygame.image.load('Fotuchas/marcador_sup.png').convert_alpha()
+        self.marcador_sup = pygame.transform.scale(self.marcador_sup, (self.escalaX, self.escalaY))
+        return self.marcador_sup
 
     def getMontana_sup(self):
         self.montana_sup = pygame.image.load('Fotuchas/montana.png').convert_alpha()
         self.montana_sup = pygame.transform.scale(self.montana_sup, (self.escalaX, self.escalaY))
         return self.montana_sup
+
 
 
     def getAgua_fond(self):

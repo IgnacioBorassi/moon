@@ -3,8 +3,8 @@ import pygame
 class Marcador:
     '''Proximamente en algun dia'''
     
-    def __init__(self, marcar):
-        self.marcar = marcar
+    def __init__(self, marcador):
+        self.marcador = marcador
     
     def cambiarMarcador(self, marcador):
         self.marcador = marcador 
@@ -16,4 +16,4 @@ class Marcador:
         self.cambiarMarcador(False)
 
     def getMarcador(self):
-        return self.marcar
+        return self.marcador

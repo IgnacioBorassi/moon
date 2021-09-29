@@ -21,6 +21,7 @@ class Eventos:
         self.mundo = Mundo(self.celdasX, self.celdasY)
         self.escalaX = 40
         self.escalaY = 40
+        self.seleccion = False
 
 
     def inicioCeldaYOP(self, y):
@@ -81,45 +82,9 @@ class Eventos:
                         self.inicioCeldaX = ((self.visualInicioX * - self.escalaX) +
                             self.escalaX * int((self.pantallaX/self.escalaX)/2))
 
-                    if event.key == pygame.K_DOWN:
-                        self.inicioCeldaY -= self.escalaY
-                        limiteAbajoY = ((self.celdasY * self.escalaY - 
-                        self.escalaY * int(self.pantallaY/self.escalaY)) * -1)
-                        
-                        if self.inicioCeldaY < limiteAbajoY:
-                            self.inicioCeldaY = limiteAbajoY
-                    
-                        print("Eje Y Lista: " + str(self.inicioCeldaY))
-                        print("Eje X Lista: " + str(self.inicioCeldaX))
-                    
-                    if event.key == pygame.K_s:
-                        self.mundo.sacarPelado(self.visualInicioY, self.visualInicioX)
-                        self.visualInicioY += 1
-                        if self.visualInicioY > (self.celdasY - 3):
-                            self.visualInicioY = (self.celdasY - 3)
 
-                        if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra 
-                        and type(self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)) == Aire):
-                            
-                            self.mundo.cambiarVisualY(self.visualInicioY, self.visualInicioX, (1))
 
-                            print("Eje Y Descubridor: " + str(self.visualInicioY))
-                            print("Eje X Descubridor: " + str(self.visualInicioX))
-
-                        else:
-                            self.visualInicioY -= 1
-                            self.mundo.ponerPelado(self.visualInicioY, self.visualInicioX)
-
-                    if event.key == pygame.K_UP:
-                        self.inicioCeldaY += self.escalaY
-
-                        if self.inicioCeldaY > 0:
-                            self.inicioCeldaY = 0
-                        
-                        print("Eje Y Lista: " + str(self.inicioCeldaY))
-                        print("Eje X Lista: " + str(self.inicioCeldaX))
-
-                    if event.key == pygame.K_w:
+                    '''if event.key == pygame.K_w:
                         self.mundo.sacarPelado(self.visualInicioY, self.visualInicioX)
                         self.visualInicioY -= 1
 
@@ -137,17 +102,39 @@ class Eventos:
                         else:
                             self.visualInicioY += 1
                             self.mundo.ponerPelado(self.visualInicioY, self.visualInicioX)
+                    if event.key == pygame.K_a:
+                        self.mundo.sacarPelado(self.visualInicioY, self.visualInicioX)
+                        self.visualInicioX -= 1
+                        if self.visualInicioX < 1:
+                            self.visualInicioX = 1
+                        if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra and 
+                        type(self.mundo.getNaturaleza(self.visualInicioY,self.visualInicioX)) == Aire):
+                            
+                            self.mundo.cambiarVisualX(self.visualInicioY, self.visualInicioX, (-1))
 
-                    if event.key == pygame.K_RIGHT:
-                        self.inicioCeldaX -= self.escalaX
-                        limiteDerechaX = ((self.celdasX * self.escalaX - 
-                        self.escalaX * int(self.pantallaX/self.escalaX)) * -1)
-                        if self.inicioCeldaX < limiteDerechaX:
-                            self.inicioCeldaX = limiteDerechaX
-                        
-                        print("Eje Y Lista: " + str(self.inicioCeldaY))
-                        print("Eje X Lista: " + str(self.inicioCeldaX))
+                            print("Eje Y Descubridor: " + str(self.visualInicioY))
+                            print("Eje X Descubridor: " + str(self.visualInicioX))
 
+                        else: 
+                            self.visualInicioX += 1
+                            self.mundo.ponerPelado(self.visualInicioY, self.visualInicioX)
+                    if event.key == pygame.K_s:
+                        self.mundo.sacarPelado(self.visualInicioY, self.visualInicioX)
+                        self.visualInicioY += 1
+                        if self.visualInicioY > (self.celdasY - 3):
+                            self.visualInicioY = (self.celdasY - 3)
+
+                        if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra 
+                        and type(self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)) == Aire):
+
+                            self.mundo.cambiarVisualY(self.visualInicioY, self.visualInicioX, (1))
+
+                            print("Eje Y Descubridor: " + str(self.visualInicioY))
+                            print("Eje X Descubridor: " + str(self.visualInicioX))
+
+                        else:
+                            self.visualInicioY -= 1
+                            self.mundo.ponerPelado(self.visualInicioY, self.visualInicioX)
                     if event.key == pygame.K_d:
                         self.mundo.sacarPelado(self.visualInicioY, self.visualInicioX)
                         self.visualInicioX += 1
@@ -166,6 +153,75 @@ class Eventos:
                         else:
                             self.visualInicioX -= 1
                             self.mundo.ponerPelado(self.visualInicioY, self.visualInicioX)
+                    '''
+                    
+                    if event.key == pygame.K_SPACE:
+                        if self.seleccion == True:
+                            self.seleccion = False
+                        else:
+                            self.seleccion = True
+
+                    if event.key == pygame.K_w:
+                        if self.seleccion == False:
+                            self.mundo.sacarMarcador(self.visualInicioY, self.visualInicioX)
+                        self.visualInicioY -= 1
+
+                        if self.visualInicioY < 1:
+                            self.visualInicioY = 1
+                        self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX)   
+                    if event.key == pygame.K_a:
+                        if self.seleccion == False:
+                            self.mundo.sacarMarcador(self.visualInicioY, self.visualInicioX)
+                        self.visualInicioX -= 1
+                        if self.visualInicioX < 1:
+                            self.visualInicioX = 1
+                        self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX)
+                    if event.key == pygame.K_s:
+                        if self.seleccion == False:
+                            self.mundo.sacarMarcador(self.visualInicioY, self.visualInicioX)
+                        self.visualInicioY += 1
+                        if self.visualInicioY > (self.celdasY - 3):
+                            self.visualInicioY = (self.celdasY - 3)
+                        self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX)
+                    if event.key == pygame.K_d:
+                        if self.seleccion == False:
+                            self.mundo.sacarMarcador(self.visualInicioY, self.visualInicioX)
+                        self.visualInicioX += 1
+
+                        if self.visualInicioX > (self.celdasX - 3):
+                            self.visualInicioX = (self.celdasX - 3)
+                        self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX)
+                    
+
+                    if event.key == pygame.K_DOWN:
+                        self.inicioCeldaY -= self.escalaY
+                        limiteAbajoY = ((self.celdasY * self.escalaY - 
+                        self.escalaY * int(self.pantallaY/self.escalaY)) * -1)
+                        
+                        if self.inicioCeldaY < limiteAbajoY:
+                            self.inicioCeldaY = limiteAbajoY
+                    
+                        print("Eje Y Lista: " + str(self.inicioCeldaY))
+                        print("Eje X Lista: " + str(self.inicioCeldaX))
+                  
+                    if event.key == pygame.K_UP:
+                        self.inicioCeldaY += self.escalaY
+
+                        if self.inicioCeldaY > 0:
+                            self.inicioCeldaY = 0
+                        
+                        print("Eje Y Lista: " + str(self.inicioCeldaY))
+                        print("Eje X Lista: " + str(self.inicioCeldaX))
+                    
+                    if event.key == pygame.K_RIGHT:
+                        self.inicioCeldaX -= self.escalaX
+                        limiteDerechaX = ((self.celdasX * self.escalaX - 
+                        self.escalaX * int(self.pantallaX/self.escalaX)) * -1)
+                        if self.inicioCeldaX < limiteDerechaX:
+                            self.inicioCeldaX = limiteDerechaX
+                        
+                        print("Eje Y Lista: " + str(self.inicioCeldaY))
+                        print("Eje X Lista: " + str(self.inicioCeldaX))
 
                     if event.key == pygame.K_LEFT:
                         self.inicioCeldaX += self.escalaX
@@ -175,23 +231,7 @@ class Eventos:
                         print("Eje Y Lista: " + str(self.inicioCeldaY))
                         print("Eje X Lista: " + str(self.inicioCeldaX))
 
-                    if event.key == pygame.K_a:
-                        self.mundo.sacarPelado(self.visualInicioY, self.visualInicioX)
-                        self.visualInicioX -= 1
-                        if self.visualInicioX < 1:
-                            self.visualInicioX = 1
-                        if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra and 
-                        type(self.mundo.getNaturaleza(self.visualInicioY,self.visualInicioX)) == Aire):
-                            
-                            self.mundo.cambiarVisualX(self.visualInicioY, self.visualInicioX, (-1))
-
-                            print("Eje Y Descubridor: " + str(self.visualInicioY))
-                            print("Eje X Descubridor: " + str(self.visualInicioX))
-
-                        else: 
-                            self.visualInicioX += 1
-                            self.mundo.ponerPelado(self.visualInicioY, self.visualInicioX)
-        
+                    
     
     def getCeldasX(self):
         return self.celdasX
@@ -210,12 +250,6 @@ class Eventos:
         x = int(random.randrange(20,190))
         return x
     
-    def getTerreno(self, y, x):
-        return self.mundo.getTerreno(y, x)
-    
-    def getNaturaleza(self, y, x):
-        return self.mundo.getNaturaleza(y, x)
-    
     def zonaInicial(self, y, x):
         self.mundo.zonaInicial(y, x)
 
@@ -225,6 +259,9 @@ class Eventos:
     def ponerPelado(self, y, x):
         self.mundo.ponerPelado(y, x)
     
+    def ponerMarcador(self, y, x):
+        self.mundo.ponerMarcador(y, x)
+
     def getVisual(self, y, x):
         return self.mundo.getVisual(y, x)
     
@@ -236,6 +273,9 @@ class Eventos:
     
     def getPelado(self, y, x):
         return self.mundo.getPelado(y, x)
+
+    def getMarcador(self, y, x):
+        return self.mundo.getMarcador(y, x)
 
     def getFondo(self):
         return self.menu.getFondo()

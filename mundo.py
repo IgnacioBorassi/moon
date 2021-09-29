@@ -100,12 +100,20 @@ class Mundo():
     def ponerPelado(self, y, x):
         return self.coordenadas[y][x].ponerPelado()
     
+    def ponerMarcador(self, y, x):
+        return self.coordenadas[y][x].ponerMarcador()
+
     def sacarPelado(self, y, x):
         return self.coordenadas[y][x].sacarPelado()
 
-    
+    def sacarMarcador(self, y, x):
+        return self.coordenadas[y][x].sacarMarcador()
+
     def getPelado(self, y, x):
         return self.coordenadas[y][x].getPelado()
+
+    def getMarcador(self, y, x):
+        return self.coordenadas[y][x].getMarcador()
 
     def getCasa(self, y, x):
         return self.coordenadas[y][x].getConstruccion()
