@@ -37,6 +37,7 @@ class Visual:
         arbol_sup = sprites.getArbol_sup()
         pelado_sup = sprites.getPelado_sup()
         casa_sup = sprites.getCasa_sup()
+        marcador_sup = sprites.getMarcador_sup()
 
         eventos = Eventos()
         inicioCeldaY = 0

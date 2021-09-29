@@ -1,3 +1,6 @@
+from aire import Aire
+from arbol import Arbol
+
 class Tierra:
     '''Representa la tierra y su construccion'''
     
@@ -15,3 +18,9 @@ class Tierra:
     def cambiarNaturaleza(self, naturaleza):
         '''Cambia naturaleza entre montana, arbol y aire'''
         self.naturaleza = naturaleza
+
+    def sacarArbol(self):
+        self.cambiarNaturaleza(Aire())
+    
+    def randomMaterial(self):
+        return self.naturaleza.randomMaterial()

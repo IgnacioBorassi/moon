@@ -158,3 +158,9 @@ class Mundo():
         self.cambiarVisual((visualInicioY + direccion), visualInicioX, True)
         self.cambiarVisual((visualInicioY + direccion), (visualInicioX + 1), True)
         self.cambiarVisual((visualInicioY + direccion), (visualInicioX - 1), True)
+
+    def sacarArbol(self, y, x):
+        self.coordenadas[y][x].sacarArbol()
+    
+    def cantidadMaterial(self, y, x):
+        return self.coordenadas[y][x].randomMaterial()

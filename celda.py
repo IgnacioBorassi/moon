@@ -12,7 +12,7 @@ class Celda():
         self.visual = visual
         self.numero = num
         self.persona = Persona(None)
-        self.marca = Marcador(None)
+        self.marcador = Marcador(None)
         self.casa = Casa(None)
 
     def tomarTerreno(self, propiedad):
@@ -72,3 +72,9 @@ class Celda():
     
     def getCasa(self):
         return self.casa.getCasa()
+
+    def sacarArbol(self):
+        self.terreno.sacarArbol()
+
+    def randomMaterial(self):
+        return self.terreno.randomMaterial()

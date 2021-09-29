@@ -76,9 +76,16 @@ class Eventos:
 
                 if self.menu.getActivo() == False:
                     if event.key == pygame.K_1:
-                        if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra 
-                        and type(self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)) == Aire):
-                            self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
+                        #for i in range(0, self.celdasY):
+                            #for x in range(0, self.celdasX):
+                                if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra 
+                                and type(self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)) == Aire):
+                                    self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
+
+                                if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra 
+                                and type(self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)) == Arbol): 
+                                    print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
+                                    self.mundo.sacarArbol(self.visualInicioY, self.visualInicioX)
 
                     if event.key == pygame.K_j:
                         self.inicioCeldaY = ((self.visualInicioY * - self.escalaY) +
