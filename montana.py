@@ -7,6 +7,5 @@ class Montana:
         self.material = self.randomMaterial()
 
     def randomMaterial(self):
-        '''Proximamente'''
-        num = random.randrange(100, 121)
+        num = random.randrange(10, 100)
         return num

@@ -8,7 +8,6 @@ class Arbol:
 
 
     def randomMaterial(self):
-        '''Proximamente'''
         num = random.randrange(10, 100)
         return num
 
