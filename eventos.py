@@ -22,7 +22,7 @@ class Eventos:
         self.escalaX = 40
         self.escalaY = 40
         self.seleccion = False
-
+        self.ordenSeleccion = -1
 
     def inicioCeldaYOP(self, y):
         '''Calculo para centrar la pantalla'''
@@ -84,17 +84,12 @@ class Eventos:
 
                                 if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra 
                                 and type(self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)) == Arbol): 
-                                    cant = self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX)
-                                    self.mundo.agregarMadera(cant)
+                                    print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
                                     self.mundo.sacarArbol(self.visualInicioY, self.visualInicioX)
 
                                 if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra 
                                 and type(self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)) == Montana):
                                     print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
-
-                    if event.key == pygame.K_2:
-                        self.mundo.crearBarco()
-
                     if event.key == pygame.K_j:
                         self.inicioCeldaY = ((self.visualInicioY * - self.escalaY) +
                             self.escalaY * int((self.pantallaY/self.escalaY)/2))
@@ -177,40 +172,76 @@ class Eventos:
                     
                     if event.key == pygame.K_SPACE:
                         if self.seleccion == True:
+                            self.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion)
+
+                            self.ordenSeleccion = -1
                             self.seleccion = False
+                            self.sacarMarcadores()
                         else:
+                            self.ordenSeleccion = 0
+                            self.ponerMarcador(self.visualInicioY, self.visualInicioX, 0)
                             self.seleccion = True
 
                     if event.key == pygame.K_w:
                         if self.seleccion == False:
                             self.mundo.sacarMarcador(self.visualInicioY, self.visualInicioX)
-                        self.visualInicioY -= 1
+                            self.ordenSeleccion = -1
+                            self.visualInicioY -= 1
+                        else:
+                            self.ordenSeleccion += 1
+                            self.visualInicioY -= 1
+                            
+
 
                         if self.visualInicioY < 1:
                             self.visualInicioY = 1
-                        self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX)   
+                        self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion) 
+
                     if event.key == pygame.K_a:
                         if self.seleccion == False:
                             self.mundo.sacarMarcador(self.visualInicioY, self.visualInicioX)
-                        self.visualInicioX -= 1
+                            self.ordenSeleccion = -1
+                            self.visualInicioX -= 1
+                        else:
+                            self.ordenSeleccion += 1
+                            self.visualInicioX -= 1
+                            
+
                         if self.visualInicioX < 1:
                             self.visualInicioX = 1
-                        self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX)
+                        self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion)
+
                     if event.key == pygame.K_s:
                         if self.seleccion == False:
                             self.mundo.sacarMarcador(self.visualInicioY, self.visualInicioX)
-                        self.visualInicioY += 1
+                            self.ordenSeleccion = -1
+                            self.visualInicioY += 1
+                            print(str(self.mundo.getOrdenMarcador(self.visualInicioY, self.visualInicioX)))
+                        else:
+                            self.ordenSeleccion += 1
+                            self.visualInicioY += 1
+                            print(str(self.mundo.getOrdenMarcador(self.visualInicioY, self.visualInicioX)))
+
+
                         if self.visualInicioY > (self.celdasY - 3):
                             self.visualInicioY = (self.celdasY - 3)
-                        self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX)
+                        
+
+                        self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion)
+
                     if event.key == pygame.K_d:
                         if self.seleccion == False:
                             self.mundo.sacarMarcador(self.visualInicioY, self.visualInicioX)
-                        self.visualInicioX += 1
+                            self.ordenSeleccion = -1
+                            self.visualInicioX += 1
+                        else:
+                            self.ordenSeleccion += 1
+                            self.visualInicioX += 1
+                            
 
                         if self.visualInicioX > (self.celdasX - 3):
                             self.visualInicioX = (self.celdasX - 3)
-                        self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX)
+                        self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion)
                     
 
                     if event.key == pygame.K_DOWN:
@@ -279,8 +310,8 @@ class Eventos:
     def ponerPelado(self, y, x):
         self.mundo.ponerPelado(y, x)
     
-    def ponerMarcador(self, y, x):
-        self.mundo.ponerMarcador(y, x)
+    def ponerMarcador(self, y, x, nuevoOrden):
+        self.mundo.ponerMarcador(y, x, nuevoOrden)
 
     def getVisual(self, y, x):
         return self.mundo.getVisual(y, x)
@@ -323,6 +354,13 @@ class Eventos:
                 visualInicioX = self.inicioPeladoX()
         self.visualInicioX = visualInicioX
         self.visualInicioY = visualInicioY
+
+    def sacarMarcadores(self):
+        for i in range(0, self.celdasY):
+            for x in range(0, self.celdasX):
+                self.mundo.sacarMarcador(i, x)
+        self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion)
+
 
     def getvisualInicioX(self):
         return self.visualInicioX

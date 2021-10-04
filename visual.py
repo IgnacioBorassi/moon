@@ -53,7 +53,7 @@ class Visual:
         eventos.zonaInicial(visualInicioY, visualInicioX)
         eventos.cambiarVisual(visualInicioY, visualInicioX, True)
         eventos.ponerPelado(visualInicioY, visualInicioX)
-        eventos.ponerMarcador(visualInicioY, visualInicioX)
+        eventos.ponerMarcador(visualInicioY, visualInicioX, -1)
 
         inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
         inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)

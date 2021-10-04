@@ -34,8 +34,8 @@ class Celda():
     def getConstruccion(self):
         self.terreno.getConstruccion()
 
-    def ponerMarcador(self):
-        self.marcador.ponerMarcador()
+    def ponerMarcador(self, nuevoOrden):
+        self.marcador.ponerMarcador(nuevoOrden)
 
     def sacarMarcador(self):
         self.marcador.sacarMarcador()
@@ -73,6 +73,8 @@ class Celda():
     def getCasa(self):
         return self.casa.getCasa()
 
+    def getOrdenMarcador(self):
+        return self.marcador.getMarcador()
     def sacarArbol(self):
         self.terreno.sacarArbol()
 

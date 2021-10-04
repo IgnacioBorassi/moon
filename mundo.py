@@ -6,7 +6,6 @@ from tierra import Tierra
 from aire import Aire
 from agua import Agua
 from montana import Montana
-from jugador import Jugador
 
 class Mundo():
     '''El mundo con sus rios, arboles, montanas y pelado'''
@@ -17,7 +16,6 @@ class Mundo():
         self.cantCeldasY = cantCeldasY
         self.inicioCeldaX = None
         self.inicioCeldaY = None
-        self.jugador = Jugador()
         self.crearMundo()
 
 
@@ -102,8 +100,8 @@ class Mundo():
     def ponerPelado(self, y, x):
         return self.coordenadas[y][x].ponerPelado()
     
-    def ponerMarcador(self, y, x):
-        return self.coordenadas[y][x].ponerMarcador()
+    def ponerMarcador(self, y, x, nuevoOrden):
+        return self.coordenadas[y][x].ponerMarcador(nuevoOrden)
 
     def sacarPelado(self, y, x):
         return self.coordenadas[y][x].sacarPelado()
@@ -122,6 +120,10 @@ class Mundo():
 
     def ponerCasa(self, y, x):
         return self.coordenadas[y][x].ponerCasa()
+
+    def getOrdenMarcador(self, y, x):
+        return self.coordenadas[y][x].getOrdenMarcador()
+
 
     def zonaInicial(self, y, x):
         '''Muestra la zona donde empieza el personaje'''
@@ -166,9 +168,3 @@ class Mundo():
     
     def cantidadMaterial(self, y, x):
         return self.coordenadas[y][x].randomMaterial()
-    
-    def agregarMadera(self, cant):
-        self.jugador.agregarMadera(cant)
-    
-    def crearBarco(self):
-        self.jugador.crearBarco()
