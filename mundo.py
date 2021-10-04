@@ -6,6 +6,7 @@ from tierra import Tierra
 from aire import Aire
 from agua import Agua
 from montana import Montana
+from jugador import Jugador
 
 class Mundo():
     '''El mundo con sus rios, arboles, montanas y pelado'''
@@ -16,6 +17,7 @@ class Mundo():
         self.cantCeldasY = cantCeldasY
         self.inicioCeldaX = None
         self.inicioCeldaY = None
+        self.jugador = Jugador()
         self.crearMundo()
 
 
@@ -164,3 +166,9 @@ class Mundo():
     
     def cantidadMaterial(self, y, x):
         return self.coordenadas[y][x].randomMaterial()
+    
+    def agregarMadera(self, cant):
+        self.jugador.agregarMadera(cant)
+    
+    def crearBarco(self):
+        self.jugador.crearBarco()

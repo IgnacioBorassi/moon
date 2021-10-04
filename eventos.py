@@ -84,12 +84,17 @@ class Eventos:
 
                                 if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra 
                                 and type(self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)) == Arbol): 
-                                    print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
+                                    cant = self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX)
+                                    self.mundo.agregarMadera(cant)
                                     self.mundo.sacarArbol(self.visualInicioY, self.visualInicioX)
 
                                 if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra 
                                 and type(self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)) == Montana):
                                     print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
+
+                    if event.key == pygame.K_2:
+                        self.mundo.crearBarco()
+
                     if event.key == pygame.K_j:
                         self.inicioCeldaY = ((self.visualInicioY * - self.escalaY) +
                             self.escalaY * int((self.pantallaY/self.escalaY)/2))
