@@ -7,7 +7,7 @@ from arbol import Arbol
 from tierra import Tierra
 from montana import Montana
 from sprites import Sprites
-
+import os
 class Visual:
     '''Clase que contiene todos los cambios de la pantalla'''
 
@@ -46,17 +46,20 @@ class Visual:
         visualInicioY = eventos.inicioPeladoY()
         visualInicioX = eventos.inicioPeladoX()
 
-        eventos.generacionPelado(visualInicioY, visualInicioX)
-        visualInicioX = eventos.getvisualInicioX()
-        visualInicioY = eventos.getVisualInicioY()
+        if os.stat("guardado.txt").st_size != 0:
+            eventos.cargarMapa()
+        else:
+            eventos.generacionPelado(visualInicioY, visualInicioX)
+            visualInicioX = eventos.getvisualInicioX()
+            visualInicioY = eventos.getVisualInicioY()
+            
+            eventos.zonaInicial(visualInicioY, visualInicioX)
+            eventos.cambiarVisual(visualInicioY, visualInicioX, True)
+            eventos.ponerPelado(visualInicioY, visualInicioX)
+            eventos.ponerMarcador(visualInicioY, visualInicioX, -1)
 
-        eventos.zonaInicial(visualInicioY, visualInicioX)
-        eventos.cambiarVisual(visualInicioY, visualInicioX, True)
-        eventos.ponerPelado(visualInicioY, visualInicioX)
-        eventos.ponerMarcador(visualInicioY, visualInicioX, -1)
-
-        inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
-        inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
+            inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
+            inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
 
         while True:
             eventos.repetidor(visualInicioY, visualInicioX, inicioCeldaY, inicioCeldaX)

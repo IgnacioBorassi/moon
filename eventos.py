@@ -1,12 +1,16 @@
+from agua import Agua
 from aire import Aire
 import pygame, sys, random
+from casa import Casa
+from marcador import Marcador
 from mundo import Mundo
 from arbol import Arbol
 from tierra import Tierra
 from montana import Montana
 from menu import Menu
+from persona import Persona
 import time
-
+import os
 
 class Eventos:
     '''Controlador de eventos'''
@@ -61,8 +65,6 @@ class Eventos:
                     self.cantNoMarcados += 1
     
     def realizarAcciones(self):
-        print(self.cantMarcadores)
-        print(self.cantNoMarcados)
         if (self.cantMarcadores - self.cantNoMarcados) == (self.cantMarcadores + 1):
             self.activar == False
             self.cantMarcadores = -1
@@ -227,6 +229,25 @@ class Eventos:
                             self.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion)
                             self.seleccion = True
 
+
+                    if event.key == pygame.K_p:
+                        with open("guardado.txt", "w") as archivo:
+                            for i in range(0, self.celdasY):
+                                for x in range(0, self.celdasX):
+                                    if (type(self.mundo.getTerreno(i, x))) == Tierra:
+                                        archivo.write('Tierra,')
+                                    if (type(self.mundo.getNaturaleza(i, x))) == Arbol:
+                                        archivo.write('Arbol,')
+                                    if (type(self.mundo.getNaturaleza(i, x))) == Montana:
+                                        archivo.write('Montana,')
+                                    if (type(self.mundo.getCasa(i, x))) == Casa:
+                                        archivo.write('Casa,')
+                                    if (type(self.mundo.getTerreno(i, x))) == Agua:
+                                        archivo.write('Agua,')
+                                    if (self.mundo.getPelado(i, x)) == True:
+                                        archivo.write('Persona,')
+                                archivo.write("\n")
+                    
                     if event.key == pygame.K_w:
                         if self.seleccion == False:
                             self.mundo.sacarMarcador(self.visualInicioY, self.visualInicioX)
@@ -407,3 +428,6 @@ class Eventos:
     
     def getVisualInicioY(self):
         return self.visualInicioY
+
+    def cargarMapa(self):
+        self.mundo.cargarMapa()

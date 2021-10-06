@@ -34,10 +34,18 @@ class Mundo():
                     milistaCopada[i].append(Celda(Agua(Aire(), None), None, False, randomN))
                 else:
                     milistaCopada[i].append(Celda(Tierra(Aire(), None), None, False, randomN))
-        
         return milistaCopada
+    
+    def cargarMapa(self): 
 
-
+        lista = []
+        archivo = open("guardado.txt","r")
+        for i in range(0, self.cantCeldasY):
+            lista.append([])
+            for x in archivo: 
+                self.coordenadas = x.split('\n')  
+        print (self.coordenadas)
+        
     def modificarMundo(self, listacopada):
         '''Modifica pedazos de agua y tierra'''
 
@@ -185,3 +193,9 @@ class Mundo():
     
     def cantidadMaterial(self, y, x):
         return self.coordenadas[y][x].randomMaterial()
+
+    # def traducirMapa(self): 
+
+    #     for i in range(0, self.celdasY):
+    #         for x in range(0, self.celdasX):
+    #             for f in self.coordenadas:
