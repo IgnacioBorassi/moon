@@ -74,7 +74,8 @@ class Celda():
         return self.casa.getCasa()
 
     def getOrdenMarcador(self):
-        return self.marcador.getMarcador()
+        return self.marcador.getOrdenMarcador()
+
     def sacarArbol(self):
         self.terreno.sacarArbol()
 

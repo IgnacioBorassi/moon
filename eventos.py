@@ -5,6 +5,7 @@ from arbol import Arbol
 from tierra import Tierra
 from montana import Montana
 from menu import Menu
+import time
 
 
 class Eventos:
@@ -22,7 +23,10 @@ class Eventos:
         self.escalaX = 40
         self.escalaY = 40
         self.seleccion = False
+        self.activar = False
         self.ordenSeleccion = -1
+        self.cantMarcadores = -1
+        self.cantNoMarcados = -1
 
     def inicioCeldaYOP(self, y):
         '''Calculo para centrar la pantalla'''
@@ -48,6 +52,48 @@ class Eventos:
 
     def getCasa(self, y, x):
         return self.mundo.getCasa(y, x)
+
+    def getCantMarcadores(self):
+        for i in range(1, (self.celdasY - 1)):
+            for x in range(1, (self.celdasX - 1)):
+                if self.mundo.getOrdenMarcador(i, x) != -1:
+                    self.cantMarcadores += 1
+                    self.cantNoMarcados += 1
+    
+    def realizarAcciones(self):
+        print(self.cantMarcadores)
+        print(self.cantNoMarcados)
+        if (self.cantMarcadores - self.cantNoMarcados) == (self.cantMarcadores + 1):
+            self.activar == False
+            self.cantMarcadores = -1
+            self.cantNoMarcados = -1
+            self.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion)
+            self.ordenSeleccion = -1
+            self.seleccion = False
+            self.sacarMarcadores()
+
+        if self.activar == True:
+            for i in range(1, (self.celdasY - 1)):
+                for x in range(1, (self.celdasX - 1)):
+                    if self.mundo.getOrdenMarcador(i, x) == (self.cantMarcadores - self.cantNoMarcados):
+                        self.cantNoMarcados -= 1
+                        if (self.cantMarcadores - self.cantNoMarcados) == 0:
+                            self.ponerPelado(i, x)
+                            return
+                        else:
+                            if self.getPelado(i - 1, x) == True:
+                                self.sacarPelado(i - 1, x)
+                            elif self.getPelado(i + 1, x) == True:
+                                self.sacarPelado(i + 1, x)
+                            elif self.getPelado(i, x - 1) == True:
+                                self.sacarPelado(i, x - 1)
+                            elif self.getPelado(i, x + 1) == True:
+                                self.sacarPelado(i, x + 1)
+                            self.ponerPelado(i, x)
+                            time.sleep(2)
+                            return
+
+
 
 
     def repetidor(self, visualInicioY, visualInicioX, inicioCeldaY, inicioCeldaX):
@@ -172,14 +218,13 @@ class Eventos:
                     
                     if event.key == pygame.K_SPACE:
                         if self.seleccion == True:
-                            self.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion)
+                            self.getCantMarcadores()
+                            self.activar = True
 
-                            self.ordenSeleccion = -1
-                            self.seleccion = False
-                            self.sacarMarcadores()
                         else:
+                            self.activar = False
                             self.ordenSeleccion = 0
-                            self.ponerMarcador(self.visualInicioY, self.visualInicioX, 0)
+                            self.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion)
                             self.seleccion = True
 
                     if event.key == pygame.K_w:
@@ -191,7 +236,6 @@ class Eventos:
                             self.ordenSeleccion += 1
                             self.visualInicioY -= 1
                             
-
 
                         if self.visualInicioY < 1:
                             self.visualInicioY = 1
@@ -206,7 +250,6 @@ class Eventos:
                             self.ordenSeleccion += 1
                             self.visualInicioX -= 1
                             
-
                         if self.visualInicioX < 1:
                             self.visualInicioX = 1
                         self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion)
@@ -216,16 +259,12 @@ class Eventos:
                             self.mundo.sacarMarcador(self.visualInicioY, self.visualInicioX)
                             self.ordenSeleccion = -1
                             self.visualInicioY += 1
-                            print(str(self.mundo.getOrdenMarcador(self.visualInicioY, self.visualInicioX)))
                         else:
                             self.ordenSeleccion += 1
                             self.visualInicioY += 1
-                            print(str(self.mundo.getOrdenMarcador(self.visualInicioY, self.visualInicioX)))
-
 
                         if self.visualInicioY > (self.celdasY - 3):
                             self.visualInicioY = (self.celdasY - 3)
-                        
 
                         self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion)
 
@@ -233,16 +272,14 @@ class Eventos:
                         if self.seleccion == False:
                             self.mundo.sacarMarcador(self.visualInicioY, self.visualInicioX)
                             self.ordenSeleccion = -1
-                            self.visualInicioX += 1
                         else:
                             self.ordenSeleccion += 1
-                            self.visualInicioX += 1
-                            
+                        
+                        self.visualInicioX += 1
 
                         if self.visualInicioX > (self.celdasX - 3):
                             self.visualInicioX = (self.celdasX - 3)
                         self.mundo.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion)
-                    
 
                     if event.key == pygame.K_DOWN:
                         self.inicioCeldaY -= self.escalaY
@@ -310,6 +347,9 @@ class Eventos:
     def ponerPelado(self, y, x):
         self.mundo.ponerPelado(y, x)
     
+    def sacarPelado(self, y, x):
+        self.mundo.sacarPelado(y, x)
+
     def ponerMarcador(self, y, x, nuevoOrden):
         self.mundo.ponerMarcador(y, x, nuevoOrden)
 

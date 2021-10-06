@@ -6,6 +6,7 @@ from tierra import Tierra
 from aire import Aire
 from agua import Agua
 from montana import Montana
+import time
 
 class Mundo():
     '''El mundo con sus rios, arboles, montanas y pelado'''
@@ -76,6 +77,22 @@ class Mundo():
                 elif (type(self.coordenadas[i][x].getTerreno()) == Tierra and 
                 self.coordenadas[i][x].getNum() in [11, 12, 13, 14, 15, 16, 17]):
                     self.coordenadas[i][x].cambiarNaturaleza(Arbol())
+
+
+    def realizarAcciones(self):
+        cantMarcadores = -1
+        for i in range(1, (self.cantCeldasY - 1)):
+            for x in range(1, (self.cantCeldasX - 1)):
+                if self.getOrdenMarcador(i, x) != -1:
+                    cantMarcadores += 1
+        for cant in range(0, cantMarcadores + 1):
+            for i in range(1, (self.cantCeldasY - 1)):
+                for x in range(1, (self.cantCeldasX - 1)):
+                    if self.getOrdenMarcador(i, x) == cant:
+                        self.ponerPelado(i,x)
+                        time.sleep(2)
+                        self.sacarPelado(i,x)
+
 
 
     def crearMundo(self):

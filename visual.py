@@ -75,7 +75,8 @@ class Visual:
                 inicioCeldaX = eventos.getInicioCeldaX()
                 pantalla.blit(fondo_copado, (0, 0))
                 pos_y = inicioCeldaY
-
+                eventos.realizarAcciones()
+                
                 for i in range(0, celdasY):
                     for x in range(0, celdasX):
                         if eventos.getVisual(i, x) == True:
@@ -100,7 +101,6 @@ class Visual:
                         
                         if eventos.getMarcador(i, x) == True:
                             pantalla.blit(marcador_sup, (pos_x, pos_y))
-
                         pos_x+=escalaX
                         
                     pos_x=inicioCeldaX
