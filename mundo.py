@@ -38,14 +38,47 @@ class Mundo():
     
     def cargarMapa(self): 
 
-        lista = []
-        archivo = open("guardado.txt","r")
-        for i in range(0, self.cantCeldasY):
-            lista.append([])
-            for x in archivo: 
-                self.coordenadas = x.split('\n')  
-        print (self.coordenadas)
-        
+        archivo = open("guardado.txt")
+        self.coordenadas = []
+
+        for position, line in enumerate(archivo):
+            line = line.split(',')
+            line.pop()
+            self.coordenadas.append(line)
+
+        for i in range(0, (self.cantCeldasY)):
+            for x in range(0, (self.cantCeldasX)):
+                if self.coordenadas[i][x] == "Tierra":
+                    self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
+                if self.coordenadas[i][x] == "Agua":
+                    self.coordenadas[i][x] = (Celda(Agua(Aire(), None), None, False, 0))
+                if self.coordenadas[i][x] == "Arbol":
+                    self.coordenadas[i][x] = (Celda(Tierra(Arbol(), None), None, False, 0))
+                if self.coordenadas[i][x] == "Montana":
+                    self.coordenadas[i][x] = (Celda(Tierra(Montana(), None), None, False, 0))
+                if self.coordenadas[i][x] == "Casa":
+                    self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
+                    self.coordenadas[i][x].ponerCasa()
+                if self.coordenadas[i][x] == "Persona":
+                    self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
+                    self.coordenadas[i][x].ponerPelado()
+                if self.coordenadas[i][x] == "VTierra":
+                    self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, True, 0))
+                if self.coordenadas[i][x] == "VAgua":
+                    self.coordenadas[i][x] = (Celda(Agua(Aire(), None), None, True, 0))
+                if self.coordenadas[i][x] == "VArbol":
+                    self.coordenadas[i][x] = (Celda(Tierra(Arbol(), None), None, True, 0))
+                if self.coordenadas[i][x] == "VMontana":
+                    self.coordenadas[i][x] = (Celda(Tierra(Montana(), None), None, True, 0))
+                if self.coordenadas[i][x] == "VCasa":
+                    self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, True, 0))
+                    self.coordenadas[i][x].ponerCasa()
+                if self.coordenadas[i][x] == "VPersona":
+                    self.inicioCeldaX = x
+                    self.inicioCeldaY = i
+                    self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, True, 0))
+                    self.coordenadas[i][x].ponerPelado()
+        print(self.inicioCeldaX)
     def modificarMundo(self, listacopada):
         '''Modifica pedazos de agua y tierra'''
 
@@ -149,6 +182,11 @@ class Mundo():
     def getOrdenMarcador(self, y, x):
         return self.coordenadas[y][x].getOrdenMarcador()
 
+    def getInicioX(self):
+        return self.inicioCeldaX
+    
+    def getInicioY(self):
+        return self.inicioCeldaY
 
     def zonaInicial(self, y, x):
         '''Muestra la zona donde empieza el personaje'''

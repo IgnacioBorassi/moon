@@ -234,18 +234,42 @@ class Eventos:
                         with open("guardado.txt", "w") as archivo:
                             for i in range(0, self.celdasY):
                                 for x in range(0, self.celdasX):
+                                    if self.mundo.getVisual(i, x) == True:
+                                        archivo.write('V')
                                     if (type(self.mundo.getTerreno(i, x))) == Tierra:
-                                        archivo.write('Tierra,')
-                                    if (type(self.mundo.getNaturaleza(i, x))) == Arbol:
-                                        archivo.write('Arbol,')
-                                    if (type(self.mundo.getNaturaleza(i, x))) == Montana:
-                                        archivo.write('Montana,')
-                                    if (type(self.mundo.getCasa(i, x))) == Casa:
-                                        archivo.write('Casa,')
-                                    if (type(self.mundo.getTerreno(i, x))) == Agua:
-                                        archivo.write('Agua,')
-                                    if (self.mundo.getPelado(i, x)) == True:
-                                        archivo.write('Persona,')
+                                        if (type(self.mundo.getNaturaleza(i, x))) == Arbol:
+                                            if x == self.celdasX:
+                                                archivo.write('Arbol')
+                                            else:
+                                                archivo.write('Arbol,')
+                                        elif (type(self.mundo.getNaturaleza(i, x))) == Montana:
+                                            if x == self.celdasX:
+                                                archivo.write('Montana')
+                                            else:
+                                                archivo.write('Montana,')
+                                        elif (type(self.mundo.getNaturaleza(i, x))) == Aire:  
+                                                             
+                                            if (self.mundo.getCasa(i, x)) == True:
+                                                if x == self.celdasX:
+                                                    archivo.write('Casa')
+                                                else:
+                                                    archivo.write('Casa,')
+                                            elif (self.mundo.getPelado(i, x)) == True:
+                                                if x == self.celdasX:
+                                                    archivo.write('Persona')
+                                                else:
+                                                    archivo.write('Persona,')
+                                            else:
+                                                if x == self.celdasX:
+                                                    archivo.write('Tierra')
+                                                else:
+                                                    archivo.write('Tierra,') 
+                                    else:
+                                        if x == self.celdasX:
+                                            archivo.write('Agua')
+                                        else:
+                                            archivo.write('Agua,')
+                                
                                 archivo.write("\n")
                     
                     if event.key == pygame.K_w:
@@ -428,6 +452,12 @@ class Eventos:
     
     def getVisualInicioY(self):
         return self.visualInicioY
+
+    def getMundoVisualX(self):
+        return self.mundo.getInicioX()
+
+    def getMundoVisualY(self):
+        return self.mundo.getInicioY()
 
     def cargarMapa(self):
         self.mundo.cargarMapa()

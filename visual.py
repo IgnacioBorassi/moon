@@ -48,6 +48,12 @@ class Visual:
 
         if os.stat("guardado.txt").st_size != 0:
             eventos.cargarMapa()
+            visualInicioX = eventos.getMundoVisualX()
+            visualInicioY = eventos.getMundoVisualY()
+            inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
+            inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
+            eventos.ponerMarcador(visualInicioY, visualInicioX, -1)
+
         else:
             eventos.generacionPelado(visualInicioY, visualInicioX)
             visualInicioX = eventos.getvisualInicioX()
@@ -78,7 +84,7 @@ class Visual:
                 inicioCeldaX = eventos.getInicioCeldaX()
                 pantalla.blit(fondo_copado, (0, 0))
                 pos_y = inicioCeldaY
-                eventos.realizarAcciones()
+                # eventos.realizarAcciones()
                 
                 for i in range(0, celdasY):
                     for x in range(0, celdasX):
