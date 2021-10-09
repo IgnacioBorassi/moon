@@ -40,7 +40,7 @@ class Menu:
 
         self.boton_exit_sup = pygame.image.load('Fotuchas/boton_exit.png').convert_alpha()
         self.boton_exit_sup = pygame.transform.scale(self.boton_exit_sup, (300, 100))
-        self.boton_exit_rect = self.boton_exit_sup.get_rect(topleft =(600,300))
+        self.boton_exit_rect = self.boton_exit_sup.get_rect(topleft =(600, 300))
 
     def getStartSup(self):
         return self.boton_start_sup
