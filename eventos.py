@@ -58,6 +58,8 @@ class Eventos:
         return self.mundo.getCasa(y, x)
 
     def getCantMarcadores(self):
+        self.cantMarcadores = -1
+        self.cantNoMarcados = -1
         for i in range(1, (self.celdasY - 1)):
             for x in range(1, (self.celdasX - 1)):
                 if self.mundo.getOrdenMarcador(i, x) != -1:
@@ -67,8 +69,8 @@ class Eventos:
     def realizarAcciones(self):
         if (self.cantMarcadores - self.cantNoMarcados) == (self.cantMarcadores + 1):
             self.activar == False
-            self.cantMarcadores = -1
-            self.cantNoMarcados = -1
+            self.cantMarcadores = -1000
+            self.cantNoMarcados = -1000
             self.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion)
             self.ordenSeleccion = -1
             self.seleccion = False
@@ -78,18 +80,25 @@ class Eventos:
             for i in range(1, (self.celdasY - 1)):
                 for x in range(1, (self.celdasX - 1)):
                     if self.mundo.getOrdenMarcador(i, x) == (self.cantMarcadores - self.cantNoMarcados):
-                        self.cantNoMarcados -= 1
+                        
                         if (self.cantMarcadores - self.cantNoMarcados) == 0:
-                            self.ponerPelado(i, x)
-                            return
+                            self.cantNoMarcados -= 1
+                            if self.getPelado(i, x) == True:
+                                self.ponerPelado(i, x)
+                                return
+                            else:
+                                print("Error: Se necesita haber seleccionado un pelado")
+                                self.cantNoMarcados = -1
+                                return
                         else:
-                            if self.getPelado(i - 1, x) == True:
+                            self.cantNoMarcados -= 1
+                            if self.getPelado(i - 1, x) == True and self.getMarcador(i - 1, x) == True:
                                 self.sacarPelado(i - 1, x)
-                            elif self.getPelado(i + 1, x) == True:
+                            elif self.getPelado(i + 1, x) == True and self.getMarcador(i + 1, x) == True:
                                 self.sacarPelado(i + 1, x)
-                            elif self.getPelado(i, x - 1) == True:
+                            elif self.getPelado(i, x - 1) == True and self.getMarcador(i, x - 1) == True:
                                 self.sacarPelado(i, x - 1)
-                            elif self.getPelado(i, x + 1) == True:
+                            elif self.getPelado(i, x + 1) == True and self.getMarcador(i, x + 1) == True:
                                 self.sacarPelado(i, x + 1)
                             self.ponerPelado(i, x)
                             time.sleep(2)
@@ -144,8 +153,6 @@ class Eventos:
 
                         self.inicioCeldaX = ((self.visualInicioX * - self.escalaX) +
                             self.escalaX * int((self.pantallaX/self.escalaX)/2))
-
-
 
                     '''if event.key == pygame.K_w:
                         self.mundo.sacarPelado(self.visualInicioY, self.visualInicioX)
@@ -217,12 +224,11 @@ class Eventos:
                             self.visualInicioX -= 1
                             self.mundo.ponerPelado(self.visualInicioY, self.visualInicioX)
                     '''
-                    
+
                     if event.key == pygame.K_SPACE:
                         if self.seleccion == True:
                             self.getCantMarcadores()
                             self.activar = True
-
                         else:
                             self.activar = False
                             self.ordenSeleccion = 0
