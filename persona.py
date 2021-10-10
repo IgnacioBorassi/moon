@@ -18,3 +18,6 @@ class Persona:
         
     def getPersona(self):
         return self.persona
+    
+    def _repr_(self) -> str:
+        return "Persona"

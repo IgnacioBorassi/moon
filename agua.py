@@ -12,4 +12,6 @@ class Agua:
     def getConstruccion(self):
         return self.construccion
 
+    def _repr_(self) -> str:
+        return "Agua"
     

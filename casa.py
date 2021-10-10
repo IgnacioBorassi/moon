@@ -8,3 +8,6 @@ class Casa:
     
     def getCasa(self):
         return self.activo
+
+    def _repr_(self) -> str:
+        return "Casa"

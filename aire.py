@@ -4,3 +4,6 @@ class Aire:
     
     def __init__(self):
         pass
+    
+    def _repr_(self) -> str:
+        return "Aire"
