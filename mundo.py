@@ -261,9 +261,3 @@ class Mundo():
     
     def cantidadMaterial(self, y, x):
         return self.coordenadas[y][x].randomMaterial()
-
-    # def traducirMapa(self): 
-
-    #     for i in range(0, self.celdasY):
-    #         for x in range(0, self.celdasX):
-    #             for f in self.coordenadas:

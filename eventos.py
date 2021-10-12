@@ -106,6 +106,14 @@ class Eventos:
                             elif self.getPelado(i, x + 1) == True and self.getMarcador(i, x + 1) == True:
                                 self.sacarPelado(i, x + 1)
                             self.ponerPelado(i, x)
+                            if ((self.mundo.getTerreno(i, x)._repr_()) == "Tierra" 
+                            and (self.mundo.getNaturaleza(i, x)._repr_()) == "Arbol"): 
+                                print (self.mundo.cantidadMaterial(i, x))
+                                self.mundo.sacarArbol(i, x)
+
+                            if ((self.mundo.getTerreno(i, x)._repr_()) == "Tierra" 
+                            and (self.mundo.getNaturaleza(i, x)._repr_()) == "Montana"):
+                                print (self.mundo.cantidadMaterial(i, x))
                             time.sleep(2)
                             return
 
@@ -160,20 +168,18 @@ class Eventos:
 
                 if self.menu.getActivo() == False:
                     if event.key == pygame.K_1:
-                        #for i in range(0, self.celdasY):
-                            #for x in range(0, self.celdasX):
-                                if ((self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)._repr_()) == "Tierra"
-                                and (self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)._repr_()) == "Aire"):
-                                    self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
+                        if ((self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)._repr_()) == "Tierra"
+                        and (self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)._repr_()) == "Aire"):
+                            self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
 
-                                if ((self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)._repr_()) == "Tierra" 
-                                and (self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)._repr_()) == "Arbol"): 
-                                    print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
-                                    self.mundo.sacarArbol(self.visualInicioY, self.visualInicioX)
+                        if ((self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)._repr_()) == "Tierra" 
+                        and (self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)._repr_()) == "Arbol"): 
+                            print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
+                            self.mundo.sacarArbol(self.visualInicioY, self.visualInicioX)
 
-                                if ((self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)._repr_()) == "Tierra" 
-                                and (self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)._repr_()) == "Montana"):
-                                    print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
+                        if ((self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)._repr_()) == "Tierra" 
+                        and (self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)._repr_()) == "Montana"):
+                            print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
                     if event.key == pygame.K_j:
                         self.inicioCeldaY = ((self.visualInicioY * - self.escalaY) +
                             self.escalaY * int((self.pantallaY/self.escalaY)/2))
@@ -311,8 +317,11 @@ class Eventos:
                             self.ordenSeleccion = -1
                             self.visualInicioY -= 1
                         else:
-                            self.ordenSeleccion += 1
-                            self.visualInicioY -= 1
+                            if self.getMarcador(self.visualInicioY - 1, self.visualInicioX) == True:
+                                print("No podes pasar por arriba de otro marcador")
+                            else:
+                                self.ordenSeleccion += 1
+                                self.visualInicioY -= 1
                             
 
                         if self.visualInicioY < 1:
@@ -325,8 +334,11 @@ class Eventos:
                             self.ordenSeleccion = -1
                             self.visualInicioX -= 1
                         else:
-                            self.ordenSeleccion += 1
-                            self.visualInicioX -= 1
+                            if self.getMarcador(self.visualInicioY, self.visualInicioX - 1) == True:
+                                print("No da ir a la izquierda si ya hay un marcador")
+                            else:
+                                self.ordenSeleccion += 1
+                                self.visualInicioX -= 1
                             
                         if self.visualInicioX < 1:
                             self.visualInicioX = 1
@@ -338,8 +350,11 @@ class Eventos:
                             self.ordenSeleccion = -1
                             self.visualInicioY += 1
                         else:
-                            self.ordenSeleccion += 1
-                            self.visualInicioY += 1
+                            if self.getMarcador(self.visualInicioY + 1, self.visualInicioX) == True:
+                                print("No da ir para abajo si ya hay un marcador")
+                            else:
+                                self.ordenSeleccion += 1
+                                self.visualInicioY += 1
 
                         if self.visualInicioY > (self.celdasY - 3):
                             self.visualInicioY = (self.celdasY - 3)
@@ -351,9 +366,11 @@ class Eventos:
                             self.mundo.sacarMarcador(self.visualInicioY, self.visualInicioX)
                             self.ordenSeleccion = -1
                         else:
-                            self.ordenSeleccion += 1
-                        
-                        self.visualInicioX += 1
+                            if self.getMarcador(self.visualInicioY, self.visualInicioX + 1) == True:
+                                print("No da ir a la derecha si ya hay un marcador")
+                            else:
+                                self.ordenSeleccion += 1
+                                self.visualInicioX += 1
 
                         if self.visualInicioX > (self.celdasX - 3):
                             self.visualInicioX = (self.celdasX - 3)
