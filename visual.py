@@ -46,34 +46,65 @@ class Visual:
         visualInicioY = eventos.inicioPeladoY()
         visualInicioX = eventos.inicioPeladoX()
 
-        if os.stat("guardado.txt").st_size != 0:
-            eventos.cargarMapa()
-            visualInicioX = eventos.getMundoVisualX()
-            visualInicioY = eventos.getMundoVisualY()
-            inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
-            inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
-            eventos.ponerMarcador(visualInicioY, visualInicioX, -1)
-
-        else:
-            eventos.generacionPelado(visualInicioY, visualInicioX)
-            visualInicioX = eventos.getvisualInicioX()
-            visualInicioY = eventos.getVisualInicioY()
-            
-            eventos.zonaInicial(visualInicioY, visualInicioX)
-            eventos.cambiarVisual(visualInicioY, visualInicioX, True)
-            eventos.ponerPelado(visualInicioY, visualInicioX)
-            eventos.ponerMarcador(visualInicioY, visualInicioX, -1)
-
-            inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
-            inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
-
+        
         while True:
+            if eventos.getMapa1() == True:
+                eventos.cargarMapa1()
+                visualInicioX = eventos.getMundoVisualX()
+                print (visualInicioX)
+                visualInicioY = eventos.getMundoVisualY()
+                
+                eventos.ponerMarcador(visualInicioY, visualInicioX, -1)
+                inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
+                inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
+                
+                eventos.sacarValoresMapas()
+
+            elif eventos.getMapa2() == True:
+                eventos.cargarMapa2()
+                visualInicioX = eventos.getMundoVisualX()
+                visualInicioY = eventos.getMundoVisualY()
+                inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
+                inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
+                eventos.ponerMarcador(visualInicioY, visualInicioX, -1)
+                eventos.sacarValoresMapas()
+            
+
+            elif eventos.getMapaG() == True:
+                if os.stat("guardado.txt").st_size != 0:
+                    eventos.cargarMapaG()
+                    visualInicioX = eventos.getMundoVisualX()
+                    visualInicioY = eventos.getMundoVisualY()
+                    inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
+                    inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
+                    eventos.ponerMarcador(visualInicioY, visualInicioX, -1)
+                    eventos.sacarValoresMapas()
+                else:
+                    eventos.generacionPelado(visualInicioY, visualInicioX)
+                    visualInicioX = eventos.getvisualInicioX()
+                    visualInicioY = eventos.getVisualInicioY()
+                    
+                    eventos.zonaInicial(visualInicioY, visualInicioX)
+                    eventos.cambiarVisual(visualInicioY, visualInicioX, True)
+                    eventos.ponerPelado(visualInicioY, visualInicioX)
+                    eventos.ponerMarcador(visualInicioY, visualInicioX, -1)
+
+                    inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
+                    inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
+                    eventos.sacarValoresMapas()
+
             eventos.repetidor(visualInicioY, visualInicioX, inicioCeldaY, inicioCeldaX)
             
             if eventos.getMenuActivo() == True:
                 pantalla.blit(eventos.getFondo(),(0,0))
                 pantalla.blit(eventos.getStartSup(), eventos.getStartRect())
                 pantalla.blit(eventos.getExitSup(), eventos.getExitRect())
+            
+            elif eventos.getModoActivo() == True:
+                pantalla.blit(eventos.getFondoModo(),(0,0))
+                pantalla.blit(eventos.getBotonMapa1Sup(), eventos.getBotonMapa1Rect())
+                pantalla.blit(eventos.getBotonMapa2Sup(), eventos.getBotonMapa2Rect())
+                pantalla.blit(eventos.getBotonMapaGSup(), eventos.getBotonMapaGRect())
             else:
 
                 celdasY=eventos.getCeldasY()

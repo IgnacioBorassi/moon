@@ -8,6 +8,7 @@ from arbol import Arbol
 from tierra import Tierra
 from montana import Montana
 from menu import Menu
+from modo import Modo
 from persona import Persona
 import time
 import os
@@ -23,6 +24,7 @@ class Eventos:
         self.visualInicioY = None
         self.visualInicioX = None
         self.menu = Menu()
+        self.modo = Modo()
         self.mundo = Mundo(self.celdasX, self.celdasY)
         self.escalaX = 40
         self.escalaY = 40
@@ -31,6 +33,9 @@ class Eventos:
         self.ordenSeleccion = -1
         self.cantMarcadores = -1
         self.cantNoMarcados = -1
+        self.mapa1 = None
+        self.mapa2 = None
+        self.mapaG = None
 
     def inicioCeldaYOP(self, y):
         '''Calculo para centrar la pantalla'''
@@ -121,11 +126,33 @@ class Eventos:
                 exit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if self.menu.getStartRect().collidepoint(event.pos):
-                    self.menu.apagarMenu()
-                elif self.menu.getExitRect().collidepoint(event.pos):
-                    pygame.quit()
-                    exit()
+                if self.modo.getActivo()== None or self.modo.getActivo()== False:
+                    if self.menu.getStartRect().collidepoint(event.pos):
+                        if self.modo.getActivo() == None:
+                            self.menu.apagarMenu()
+                            self.modo.activarModo()
+                        else:
+                            self.menu.apagarMenu()
+                            
+                    elif self.menu.getExitRect().collidepoint(event.pos):
+                        pygame.quit()
+                        exit()
+                else:
+                    if self.modo.getBotonMapa1Rect().collidepoint(event.pos):
+                        self.mapa1 = True
+                        print("nashe")
+                        self.modo.apagarModo()
+
+                        
+                    elif self.modo.getBotonMapa2Rect().collidepoint(event.pos):
+                        self.mapa2 = True
+                        print("nashe")
+                        self.modo.apagarModo()
+
+                    elif self.modo.getBotonMapaGRect().collidepoint(event.pos):
+                        self.mapaG = True
+                        print("nashe")
+                        self.modo.apagarModo()
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
@@ -467,3 +494,52 @@ class Eventos:
 
     def cargarMapa(self):
         self.mundo.cargarMapa()
+    
+    def cargarMapaG(self):
+        self.mundo.cargarMapaG()
+
+    def getModoActivo(self):
+        return self.modo.getActivo()
+    
+    def getFondoModo(self):
+        return self.modo.getFondoModo()
+    
+    def getBotonMapa1Sup(self):
+        return self.modo.getBotonMapa1Sup()
+    
+    def getBotonMapa1Rect(self):
+        return self.modo.getBotonMapa1Rect()
+    
+    def getBotonMapa2Sup(self):
+        return self.modo.getBotonMapa2Sup()
+    
+    def getBotonMapa2Rect(self):
+        return self.modo.getBotonMapa2Rect()
+    
+    def getBotonMapaGSup(self):
+        return self.modo.getBotonMapaGSup()
+    
+    def getBotonMapaGRect(self):
+        return self.modo.getBotonMapaGRect()
+    
+    def cargarMapa1(self):
+        self.mundo.cargarMapa1()
+    
+    def cargarMapa2(self):
+        self.mundo.cargarMapa2()
+    
+    def getMapaG(self):
+        return self.mapaG
+    
+    def getMapa1(self):
+        return self.mapa1
+    
+    def getMapa2(self):
+        return self.mapa2
+    
+    def sacarValoresMapas(self):
+        self.mapa1 = False
+        self.mapa2 = False
+        self.mapaG = False
+    
+    
