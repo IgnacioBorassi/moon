@@ -5,5 +5,5 @@ class Aire:
     def __init__(self):
         pass
     
-    def _repr_(self) -> str:
+    def __repr__(self) -> str:
         return "Aire"

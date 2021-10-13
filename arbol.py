@@ -11,6 +11,6 @@ class Arbol:
         num = random.randrange(10, 100)
         return num
 
-    def _repr_(self) -> str:
+    def __repr__(self) -> str:
         return "Arbol"
         

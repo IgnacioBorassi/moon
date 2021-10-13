@@ -25,5 +25,5 @@ class Tierra:
     def randomMaterial(self):
         return self.naturaleza.randomMaterial()
     
-    def _repr_(self) -> str:
+    def __repr__(self) -> str:
         return "Tierra"

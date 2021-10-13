@@ -120,13 +120,13 @@ class Visual:
                 for i in range(0, celdasY):
                     for x in range(0, celdasX):
                         if eventos.getVisual(i, x) == True:
-                            if (eventos.getTerreno(i, x)._repr_()) == "Tierra":
+                            if (repr(eventos.getTerreno(i, x))) == "Tierra":
                                 pantalla.blit(pasto_fond, (pos_x, pos_y))
                                 
-                                if (eventos.getNaturaleza(i, x)._repr_()) == "Arbol":
+                                if (repr(eventos.getNaturaleza(i, x))) == "Arbol":
                                     pantalla.blit(arbol_sup, (pos_x, pos_y))
 
-                                elif (eventos.getNaturaleza(i, x)._repr_()) == "Montana":
+                                elif (repr(eventos.getNaturaleza(i, x))) == "Montana":
                                     pantalla.blit(montana_sup, (pos_x, pos_y))
 
                             else:

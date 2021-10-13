@@ -106,15 +106,15 @@ class Eventos:
                             elif self.getPelado(i, x + 1) == True and self.getMarcador(i, x + 1) == True:
                                 self.sacarPelado(i, x + 1)
                             self.ponerPelado(i, x)
-                            if ((self.mundo.getTerreno(i, x)._repr_()) == "Tierra" 
-                            and (self.mundo.getNaturaleza(i, x)._repr_()) == "Arbol"): 
+                            if ((repr(self.getTerreno(i, x))) == "Tierra" 
+                            and (repr(self.getNaturaleza(i, x))) == "Arbol"): 
                                 print (self.mundo.cantidadMaterial(i, x))
                                 self.mundo.sacarArbol(i, x)
 
-                            if ((self.mundo.getTerreno(i, x)._repr_()) == "Tierra" 
-                            and (self.mundo.getNaturaleza(i, x)._repr_()) == "Montana"):
+                            if ((repr(self.getTerreno(i, x))) == "Tierra" 
+                            and (repr(self.getNaturaleza(i, x))) == "Montana"):
                                 print (self.mundo.cantidadMaterial(i, x))
-                            time.sleep(2)
+                            time.sleep(0.7)
                             return
 
 
@@ -168,17 +168,17 @@ class Eventos:
 
                 if self.menu.getActivo() == False:
                     if event.key == pygame.K_1:
-                        if ((self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)._repr_()) == "Tierra"
-                        and (self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)._repr_()) == "Aire"):
+                        if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
+                        and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
                             self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
 
-                        if ((self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)._repr_()) == "Tierra" 
-                        and (self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)._repr_()) == "Arbol"): 
+                        if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra" 
+                        and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Arbol"): 
                             print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
                             self.mundo.sacarArbol(self.visualInicioY, self.visualInicioX)
 
-                        if ((self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)._repr_()) == "Tierra" 
-                        and (self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)._repr_()) == "Montana"):
+                        if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra" 
+                        and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Montana"):
                             print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
                     if event.key == pygame.K_j:
                         self.inicioCeldaY = ((self.visualInicioY * - self.escalaY) +
@@ -275,18 +275,18 @@ class Eventos:
                                 for x in range(0, self.celdasX):
                                     if self.mundo.getVisual(i, x) == True:
                                         archivo.write('V')
-                                    if ((self.mundo.getTerreno(i, x))._repr_()) == "Tierra":
-                                        if ((self.mundo.getNaturaleza(i, x))._repr_()) == "Arbol":
+                                    if ((repr(self.getTerreno(i, x)))) == "Tierra":
+                                        if ((repr(self.getNaturaleza(i, x)))) == "Arbol":
                                             if x == self.celdasX:
                                                 archivo.write('Arbol')
                                             else:
                                                 archivo.write('Arbol,')
-                                        elif ((self.mundo.getNaturaleza(i, x))._repr_()) == "Montana":
+                                        elif ((repr(self.getNaturaleza(i, x)))) == "Montana":
                                             if x == self.celdasX:
                                                 archivo.write('Montana')
                                             else:
                                                 archivo.write('Montana,')
-                                        elif ((self.mundo.getNaturaleza(i, x))._repr_()) == "Aire":  
+                                        elif ((repr(self.getNaturaleza(i, x)))) == "Aire":  
                                                              
                                             if (self.mundo.getCasa(i, x)) == True:
                                                 if x == self.celdasX:
@@ -365,6 +365,7 @@ class Eventos:
                         if self.seleccion == False:
                             self.mundo.sacarMarcador(self.visualInicioY, self.visualInicioX)
                             self.ordenSeleccion = -1
+                            self.visualInicioX += 1
                         else:
                             if self.getMarcador(self.visualInicioY, self.visualInicioX + 1) == True:
                                 print("No da ir a la derecha si ya hay un marcador")
@@ -482,8 +483,8 @@ class Eventos:
         return self.mundo.getCasa(y, x)
     
     def generacionPelado(self, visualInicioY, visualInicioX):
-        while ((self.getTerreno(visualInicioY, visualInicioX)._repr_()) != Tierra or 
-            (self.getNaturaleza(visualInicioY, visualInicioX)._repr_()) != Aire):
+        while ((repr(self.getTerreno(visualInicioY, visualInicioX))) != Tierra or 
+            (repr(self.getNaturaleza(visualInicioY, visualInicioX))) != Aire):
 
                 visualInicioY = self.inicioPeladoY()
                 visualInicioX = self.inicioPeladoX()

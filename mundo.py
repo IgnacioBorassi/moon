@@ -116,22 +116,22 @@ class Mundo():
 
         for i in range(1, (self.cantCeldasY - 1)):
             for x in range(1, (self.cantCeldasX - 1)):
-                if (listacopada[i][x].getTerreno()._repr_()) == "Tierra":
-                    if ((listacopada[i - 1][x].getTerreno()._repr_()) == "Agua" and 
-                    (listacopada[i + 1][x].getTerreno()._repr_()) == "Agua"):
+                if (repr(listacopada[i][x].getTerreno())) == "Tierra":
+                    if (repr(listacopada[i - 1][x].getTerreno()) == "Agua" and 
+                    (repr(listacopada[i + 1][x].getTerreno())) == "Agua"):
 
                         otraLista[i][x].cambiarTerreno(Agua(Aire(), None))
                         
-                    elif ((listacopada[i][x - 1].getTerreno()._repr_()) == "Agua" and 
-                    (listacopada[i][x + 1].getTerreno()._repr_()) == "Agua"):
+                    elif (repr(listacopada[i][x - 1].getTerreno()) == "Agua" and 
+                    (repr(listacopada[i][x + 1].getTerreno())) == "Agua"):
                         otraLista[i][x].cambiarTerreno(Agua(Aire(), None))
 
         self.coordenadas = otraLista
 
         for i in range(1,(self.cantCeldasY - 1)):
             for x in range(1,(self.cantCeldasX - 1)):
-                if (otraLista[i][x].getTerreno()._repr_()) == "Agua":
-                    if ((otraLista[i - 1][x].getTerreno()._repr_()) == "Tierra" and (otraLista[i + 1][x].getTerreno()._repr_()) == "Tierra" and  (otraLista[i][x - 1].getTerreno()._repr_()) == "Tierra" and (otraLista[i][x + 1].getTerreno()._repr_()) == "Tierra"):
+                if (repr(otraLista[i][x].getTerreno())) == "Agua":
+                    if (repr(otraLista[i - 1][x].getTerreno()) == "Tierra" and (repr(otraLista[i + 1][x].getTerreno())) == "Tierra" and  (repr(otraLista[i][x - 1].getTerreno())) == "Tierra" and (repr(otraLista[i][x + 1].getTerreno())) == "Tierra"):
 
                         self.coordenadas[i][x].cambiarTerreno(Tierra(Aire(), None))
 
@@ -141,11 +141,11 @@ class Mundo():
 
         for i in range(0, self.cantCeldasY):
             for x in range(0, self.cantCeldasX):
-                if ((self.coordenadas[i][x].getTerreno()._repr_()) == "Tierra" and 
+                if (repr(self.coordenadas[i][x].getTerreno()) == "Tierra" and 
                 self.coordenadas[i][x].getNum() in [9, 10]):
                     self.coordenadas[i][x].cambiarNaturaleza(Montana())
 
-                elif ((self.coordenadas[i][x].getTerreno()._repr_()) == "Tierra" and 
+                elif (repr((self.coordenadas[i][x].getTerreno())) == "Tierra" and 
                 self.coordenadas[i][x].getNum() in [11, 12, 13, 14, 15, 16, 17]):
                     self.coordenadas[i][x].cambiarNaturaleza(Arbol())
 
