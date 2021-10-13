@@ -106,14 +106,19 @@ class Eventos:
                             elif self.getPelado(i, x + 1) == True and self.getMarcador(i, x + 1) == True:
                                 self.sacarPelado(i, x + 1)
                             self.ponerPelado(i, x)
-                            if ((repr(self.getTerreno(i, x))) == "Tierra" 
-                            and (repr(self.getNaturaleza(i, x))) == "Arbol"): 
-                                print (self.mundo.cantidadMaterial(i, x))
+                            print(str(repr(self.getNaturaleza(i, x))))
+                            if (repr(self.getNaturaleza(i, x))) == "Arbol": 
+                                cantMadera = self.mundo.cantidadMaterial(i, x)
+                                print(cantMadera)
+                                self.mundo.agregarMadera(cantMadera)
                                 self.mundo.sacarArbol(i, x)
+                                
+                                
 
-                            if ((repr(self.getTerreno(i, x))) == "Tierra" 
-                            and (repr(self.getNaturaleza(i, x))) == "Montana"):
-                                print (self.mundo.cantidadMaterial(i, x))
+                            if (repr(self.getNaturaleza(i, x))) == "Montana":
+                                piedra = self.mundo.cantidadMaterial(i, x)
+                                print(piedra)
+                                self.mundo.agregarPiedra(piedra)
                             time.sleep(0.7)
                             return
 

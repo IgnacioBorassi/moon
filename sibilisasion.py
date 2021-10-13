@@ -22,13 +22,17 @@ class civilizacion:
         return self.cantPiedra
     
     def agregarPiedra(self, cant):
-        self.cantPiedra = cant
+        self.cantPiedra += cant
+        print(self.cantPiedra)
+    
+    def restarPiedra(self, cant):
+        self.cantPiedra -= cant
     
     def CrearBarco(self):
         print(self.cantMadera)
-        if self.cantMadera >= 10:
+        if self.cantMadera >= 20:
             self.barco = True
             print("cree barco")
-            self.restarMadera(10)
+            self.restarMadera(20)
         else:
             self.barco = False
