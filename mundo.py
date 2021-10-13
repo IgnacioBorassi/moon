@@ -285,5 +285,5 @@ class Mundo():
     def getMadera(self):
         return self.jugador.getMadera()
     
-    def getEnergia(self):
+    def getPiedra(self):
         return self.jugador.getPiedra()

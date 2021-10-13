@@ -340,7 +340,7 @@ class Eventos:
                             self.visualInicioX -= 1
                         else:
                             if self.getMarcador(self.visualInicioY, self.visualInicioX - 1) == True:
-                                print("No da ir a la izquierda si ya hay un marcador")
+                                print("No podes ir a la izquierda si ya hay un marcador")
                             else:
                                 self.ordenSeleccion += 1
                                 self.visualInicioX -= 1
@@ -356,7 +356,7 @@ class Eventos:
                             self.visualInicioY += 1
                         else:
                             if self.getMarcador(self.visualInicioY + 1, self.visualInicioX) == True:
-                                print("No da ir para abajo si ya hay un marcador")
+                                print("No podes ir para abajo si ya hay un marcador")
                             else:
                                 self.ordenSeleccion += 1
                                 self.visualInicioY += 1
@@ -565,4 +565,11 @@ class Eventos:
         self.mapa2 = False
         self.mapaG = False
     
+    def getMadera(self):
+        return str(self.mundo.getMadera())
     
+    def getEnergia(self):
+        return str(self.mundo.getEnergia())
+
+    def getPiedra(self):
+        return str(self.mundo.getPiedra())
