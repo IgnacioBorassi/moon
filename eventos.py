@@ -437,6 +437,9 @@ class Eventos:
     def zonaInicial(self, y, x):
         self.mundo.zonaInicial(y, x)
 
+    def colocarCivilizacion(self, y, x):
+        self.mundo.colocarCivilizacion(y, x)
+
     def cambiarVisual(self, y, x, nuevoVisual):
         self.mundo.cambiarVisual(y, x, nuevoVisual)
 
@@ -483,11 +486,11 @@ class Eventos:
         return self.mundo.getCasa(y, x)
     
     def generacionPelado(self, visualInicioY, visualInicioX):
-        while ((repr(self.getTerreno(visualInicioY, visualInicioX))) != Tierra or 
-            (repr(self.getNaturaleza(visualInicioY, visualInicioX))) != Aire):
+        while ((repr(self.getTerreno(visualInicioY, visualInicioX))) != "Tierra" or 
+        (repr(self.getNaturaleza(visualInicioY, visualInicioX))) != "Aire"):
+            visualInicioY = self.inicioPeladoY()
+            visualInicioX = self.inicioPeladoX()
 
-                visualInicioY = self.inicioPeladoY()
-                visualInicioX = self.inicioPeladoX()
         self.visualInicioX = visualInicioX
         self.visualInicioY = visualInicioY
 

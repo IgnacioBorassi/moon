@@ -85,6 +85,7 @@ class Visual:
                     visualInicioY = eventos.getVisualInicioY()
                     
                     eventos.zonaInicial(visualInicioY, visualInicioX)
+                    eventos.colocarCivilizacion(visualInicioY, visualInicioX)
                     eventos.cambiarVisual(visualInicioY, visualInicioX, True)
                     eventos.ponerPelado(visualInicioY, visualInicioX)
                     eventos.ponerMarcador(visualInicioY, visualInicioX, -1)

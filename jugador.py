@@ -14,3 +14,18 @@ class Jugador:
     
     def crearBarco(self):
         self.civilizacion.CrearBarco()
+
+    def getMadera(self):
+        return self.civilizacion.getMadera()
+
+    def restarMadera(self, cant):
+        self.civilizacion.restarMadera(cant)
+    
+    def agregarPiedra(self, cant):
+        self.civilizacion.agregarPiedra(cant)
+
+    def restarPiedra(self, cant):
+        self.civilizacion.restarPiedra(cant)
+
+    def getEnergia(self):
+        return self.energia

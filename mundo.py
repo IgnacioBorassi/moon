@@ -231,7 +231,45 @@ class Mundo():
                 self.cambiarVisual(y + i, x - e, True)
                 self.cambiarVisual(y - i, x + e, True)
                 self.cambiarVisual(y - i, x - e, True)
- 
+
+
+    def colocarCivilizacion(self, y, x):
+        for i in range(1,4):
+            casaX = int(random.randrange(1, 4))
+            casaY = int(random.randrange(1, 4))
+            if i == 1:
+                while casaX != 999:
+                    if (repr(self.getTerreno(y + casaY, x + casaX)) == "Tierra" and
+                    repr(self.getNaturaleza(y + casaY, x + casaX)) == "Aire" and 
+                    self.getCasa(y + casaY, x + casaX) == None):
+                        self.ponerCasa(y + casaY, x + casaX)
+                        casaX = 999
+                    else:
+                        casaX = int(random.randrange(1, 4))
+                        casaY = int(random.randrange(1, 4))
+            elif i == 2:
+                while casaX != 999:
+                    if (repr(self.getTerreno(y - casaY, x - casaX)) == "Tierra" and
+                    repr(self.getNaturaleza(y - casaY, x - casaX)) == "Aire" and 
+                    self.getCasa(y - casaY, x - casaX) == None):
+                        self.ponerCasa(y - casaY, x - casaX)
+                        casaX = 999
+                    else:
+                        casaX = int(random.randrange(1, 4))
+                        casaY = int(random.randrange(1, 4))
+            else:
+                while casaX != 999:
+                    if (repr(self.getTerreno(y - casaY, x + casaX)) == "Tierra" and
+                    repr(self.getNaturaleza(y - casaY, x + casaX)) == "Aire" and 
+                    self.getCasa(y - casaY, x + casaX) == None):
+                        self.ponerCasa(y - casaY, x + casaX)
+                        casaX = 999
+                    else:
+                        casaX = int(random.randrange(1, 4))
+                        casaY = int(random.randrange(1, 4))
+                
+
+
 
     def cambiarVisualX(self, visualInicioY, visualInicioX, direccion):
         '''Hace visibles el alrededor del personaje segun la direccion en x'''
@@ -261,3 +299,4 @@ class Mundo():
     
     def cantidadMaterial(self, y, x):
         return self.coordenadas[y][x].randomMaterial()
+
