@@ -106,6 +106,7 @@ class Eventos:
                             elif self.getPelado(i, x + 1) == True and self.getMarcador(i, x + 1) == True:
                                 self.sacarPelado(i, x + 1)
                             self.ponerPelado(i, x)
+                            self.mundo.cambiarVisualMov(i, x)
                             print(str(repr(self.getNaturaleza(i, x))))
                             if (repr(self.getNaturaleza(i, x))) == "Arbol": 
                                 cantMadera = self.mundo.cantidadMaterial(i, x)

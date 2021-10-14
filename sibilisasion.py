@@ -27,13 +27,6 @@ class civilizacion:
     
     def agregarPiedra(self, cant):
         self.cantPiedra += cant
-<<<<<<< HEAD
-=======
-        print(self.cantPiedra)
-    
-    def restarPiedra(self, cant):
-        self.cantPiedra -= cant
->>>>>>> 08162da4706f5676ca9da513a53c6aef0e2b4c55
     
     def CrearBarco(self):
         print(self.cantMadera)

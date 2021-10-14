@@ -284,7 +284,6 @@ class Mundo():
         self.cambiarVisual((visualInicioY - 1), visualInicioX + direccion, True)
         self.cambiarVisual((visualInicioY + 1), visualInicioX + direccion, True)
 
-
     def cambiarVisualY(self, visualInicioY, visualInicioX, direccion):
         '''Hace visibles el alrededor del personaje segun la direccion en y'''
         
@@ -295,6 +294,17 @@ class Mundo():
         self.cambiarVisual((visualInicioY + direccion), visualInicioX, True)
         self.cambiarVisual((visualInicioY + direccion), (visualInicioX + 1), True)
         self.cambiarVisual((visualInicioY + direccion), (visualInicioX - 1), True)
+
+    def cambiarVisualMov(self, visualInicioY, visualInicioX):
+        self.cambiarVisual(visualInicioY, visualInicioX, True)
+        self.cambiarVisual(visualInicioY, (visualInicioX + 1), True)
+        self.cambiarVisual(visualInicioY, (visualInicioX - 1), True)
+        self.cambiarVisual(visualInicioY + 1, (visualInicioX + 1), True)
+        self.cambiarVisual(visualInicioY - 1, (visualInicioX - 1), True)
+        self.cambiarVisual(visualInicioY - 1, (visualInicioX + 1), True)
+        self.cambiarVisual(visualInicioY + 1, (visualInicioX - 1), True)
+        self.cambiarVisual(visualInicioY + 1, (visualInicioX), True)
+        self.cambiarVisual(visualInicioY - 1, (visualInicioX), True)
 
     def sacarArbol(self, y, x):
         self.coordenadas[y][x].sacarArbol()
