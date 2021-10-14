@@ -176,15 +176,7 @@ class Eventos:
                         if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
                         and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
                             self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
-
-                        if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra" 
-                        and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Arbol"): 
-                            print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
-                            self.mundo.sacarArbol(self.visualInicioY, self.visualInicioX)
-
-                        if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra" 
-                        and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Montana"):
-                            print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
+                            
                     if event.key == pygame.K_j:
                         self.inicioCeldaY = ((self.visualInicioY * - self.escalaY) +
                             self.escalaY * int((self.pantallaY/self.escalaY)/2))
@@ -488,8 +480,8 @@ class Eventos:
         return self.mundo.getCasa(y, x)
     
     def generacionPelado(self, visualInicioY, visualInicioX):
-        while ((repr(self.getTerreno(visualInicioY, visualInicioX))) != Tierra or 
-            (repr(self.getNaturaleza(visualInicioY, visualInicioX))) != Aire):
+        while ((repr(self.getTerreno(visualInicioY, visualInicioX))) != "Tierra" or 
+            (repr(self.getNaturaleza(visualInicioY, visualInicioX))) != "Aire"):
 
                 visualInicioY = self.inicioPeladoY()
                 visualInicioX = self.inicioPeladoX()
