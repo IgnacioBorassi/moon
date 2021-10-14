@@ -7,6 +7,8 @@ from arbol import Arbol
 from tierra import Tierra
 from montana import Montana
 from sprites import Sprites
+from sibilisasion import civilizacion
+from jugador import Jugador
 import os
 class Visual:
     '''Clase que contiene todos los cambios de la pantalla'''
@@ -38,7 +40,9 @@ class Visual:
         pelado_sup = sprites.getPelado_sup()
         casa_sup = sprites.getCasa_sup()
         marcador_sup = sprites.getMarcador_sup()
-
+        piedra_sup = sprites.getPiedra_sup()
+        madera_sup = sprites.getMadera_sup()
+        energia_sup = sprites.getEnergia_sup()
         eventos = Eventos()
         inicioCeldaY = 0
         inicioCeldaX = 0
@@ -108,7 +112,7 @@ class Visual:
                 pantalla.blit(eventos.getBotonMapaGSup(), eventos.getBotonMapaGRect())
             else:
 
-                celdasY=eventos.getCeldasY()
+                celdasY = eventos.getCeldasY()
                 celdasX = eventos.getCeldasX()
                 visualInicioX = eventos.getVisualInicioX()
                 visualInicioY = eventos.getVisualInicioY()
@@ -143,10 +147,19 @@ class Visual:
                         if eventos.getMarcador(i, x) == True:
                             pantalla.blit(marcador_sup, (pos_x, pos_y))
                         pos_x+=escalaX
-                        
-                    pos_x=inicioCeldaX
-                    pos_y+=escalaY
+                    
+                    pantalla.blit(piedra_sup, (904, 56))
+                    pantalla.blit(madera_sup, (904, 100))
+                    pantalla.blit(energia_sup, (904, 21))
+                    font = pygame.font.SysFont(None, 24)
+                    img = font.render(eventos.getEnergia(), True, (255, 255, 0))
+                    pantalla.blit(img, (950, 35))
+                    img2 = font.render(eventos.getPiedra(), True, (128, 128, 128))
+                    pantalla.blit(img2, (950, 70))
+                    img3 = font.render(eventos.getMadera(), True, (128, 0, 0))
+                    pantalla.blit(img3, (950, 110))
+                    pos_x = inicioCeldaX
+                    pos_y += escalaY
 
             pygame.display.update()
             fps.tick(60)
-    

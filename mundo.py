@@ -6,6 +6,7 @@ from tierra import Tierra
 from aire import Aire
 from agua import Agua
 from montana import Montana
+from jugador import Jugador
 import time
 
 class Mundo():
@@ -18,6 +19,7 @@ class Mundo():
         self.inicioCeldaX = None
         self.inicioCeldaY = None
         self.crearMundo()
+        self.jugador = Jugador()
 
 
     def generarTerreno(self):
@@ -81,7 +83,7 @@ class Mundo():
         for i in range(0, (self.cantCeldasY)):
             for x in range(0, (self.cantCeldasX)):
                 self.cargadoMapa(i, x)
-        print(self.inicioCeldaX)
+       
     
     def cargarMapa1(self):
         archivo = open("mapa1.txt")
@@ -94,7 +96,7 @@ class Mundo():
         for i in range(0, (self.cantCeldasY)):
             for x in range(0, (self.cantCeldasX)):
                 self.cargadoMapa(i,x)
-        print(self.inicioCeldaX)
+        
 
     def cargarMapa2(self):
         archivo = open("mapa2.txt")
@@ -107,7 +109,7 @@ class Mundo():
         for i in range(0, (self.cantCeldasY)):
             for x in range(0, (self.cantCeldasX)):
                 self.cargadoMapa(i,x)
-        print(self.inicioCeldaX)
+       
 
     def modificarMundo(self, listacopada):
         '''Modifica pedazos de agua y tierra'''
@@ -300,3 +302,26 @@ class Mundo():
     def cantidadMaterial(self, y, x):
         return self.coordenadas[y][x].randomMaterial()
 
+    def agregarMadera(self, cant):
+        self.jugador.agregarMadera(cant)
+    
+    def restarMadera(self, cant):
+        self.jugador.restarMadera(cant)
+    
+    def agregarPiedra(self, cant):
+        self.jugador.agregarPiedra(cant)
+    
+    def restarPiedra(self, cant):
+        self.jugador.restarPiedra(cant)
+    
+    def getMadera(self):
+        self.jugador.getMadera()
+    
+    def getEnergia(self):
+        return self.jugador.getEnergia()
+    
+    def getMadera(self):
+        return self.jugador.getMadera()
+    
+    def getPiedra(self):
+        return self.jugador.getPiedra()

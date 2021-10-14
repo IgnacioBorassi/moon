@@ -106,14 +106,19 @@ class Eventos:
                             elif self.getPelado(i, x + 1) == True and self.getMarcador(i, x + 1) == True:
                                 self.sacarPelado(i, x + 1)
                             self.ponerPelado(i, x)
-                            if ((repr(self.getTerreno(i, x))) == "Tierra" 
-                            and (repr(self.getNaturaleza(i, x))) == "Arbol"): 
-                                print (self.mundo.cantidadMaterial(i, x))
+                            print(str(repr(self.getNaturaleza(i, x))))
+                            if (repr(self.getNaturaleza(i, x))) == "Arbol": 
+                                cantMadera = self.mundo.cantidadMaterial(i, x)
+                                print(cantMadera)
+                                self.mundo.agregarMadera(cantMadera)
                                 self.mundo.sacarArbol(i, x)
+                                
+                                
 
-                            if ((repr(self.getTerreno(i, x))) == "Tierra" 
-                            and (repr(self.getNaturaleza(i, x))) == "Montana"):
-                                print (self.mundo.cantidadMaterial(i, x))
+                            if (repr(self.getNaturaleza(i, x))) == "Montana":
+                                piedra = self.mundo.cantidadMaterial(i, x)
+                                print(piedra)
+                                self.mundo.agregarPiedra(piedra)
                             time.sleep(0.7)
                             return
 
@@ -171,15 +176,7 @@ class Eventos:
                         if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
                         and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
                             self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
-
-                        if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra" 
-                        and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Arbol"): 
-                            print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
-                            self.mundo.sacarArbol(self.visualInicioY, self.visualInicioX)
-
-                        if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra" 
-                        and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Montana"):
-                            print (self.mundo.cantidadMaterial(self.visualInicioY, self.visualInicioX))
+                            
                     if event.key == pygame.K_j:
                         self.inicioCeldaY = ((self.visualInicioY * - self.escalaY) +
                             self.escalaY * int((self.pantallaY/self.escalaY)/2))
@@ -335,7 +332,7 @@ class Eventos:
                             self.visualInicioX -= 1
                         else:
                             if self.getMarcador(self.visualInicioY, self.visualInicioX - 1) == True:
-                                print("No da ir a la izquierda si ya hay un marcador")
+                                print("No podes ir a la izquierda si ya hay un marcador")
                             else:
                                 self.ordenSeleccion += 1
                                 self.visualInicioX -= 1
@@ -351,7 +348,7 @@ class Eventos:
                             self.visualInicioY += 1
                         else:
                             if self.getMarcador(self.visualInicioY + 1, self.visualInicioX) == True:
-                                print("No da ir para abajo si ya hay un marcador")
+                                print("No podes ir para abajo si ya hay un marcador")
                             else:
                                 self.ordenSeleccion += 1
                                 self.visualInicioY += 1
@@ -563,4 +560,11 @@ class Eventos:
         self.mapa2 = False
         self.mapaG = False
     
+    def getMadera(self):
+        return str(self.mundo.getMadera())
     
+    def getEnergia(self):
+        return str(self.mundo.getEnergia())
+
+    def getPiedra(self):
+        return str(self.mundo.getPiedra())

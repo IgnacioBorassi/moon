@@ -13,7 +13,9 @@ class Sprites:
         self.arbol_sup = None
         self.pelado_sup = None
         self.casa_sup = None
-
+        self.piedra_sup = None
+        self.madera_sup = None
+        self.energia_sup = None
 
     def getNegro_fond(self):
         self.negro_fond = pygame.image.load('Fotuchas/negro.png').convert_alpha()
@@ -25,12 +27,26 @@ class Sprites:
         self.marcador_sup = pygame.transform.scale(self.marcador_sup, (self.escalaX, self.escalaY))
         return self.marcador_sup
 
+
     def getMontana_sup(self):
         self.montana_sup = pygame.image.load('Fotuchas/montana.png').convert_alpha()
         self.montana_sup = pygame.transform.scale(self.montana_sup, (self.escalaX, self.escalaY))
         return self.montana_sup
 
+    def getPiedra_sup(self):
+        self.piedra_sup = pygame.image.load('Fotuchas/piedra.png').convert_alpha()
+        self.piedra_sup = pygame.transform.scale(self.piedra_sup, (self.escalaX, self.escalaY))
+        return self.piedra_sup
 
+    def getMadera_sup(self):
+        self.madera_sup = pygame.image.load('Fotuchas/madera.png').convert_alpha()
+        self.madera_sup = pygame.transform.scale(self.madera_sup, (self.escalaX, self.escalaY))
+        return self.madera_sup
+    
+    def getEnergia_sup(self):
+        self.energia_sup = pygame.image.load('Fotuchas/energia.png').convert_alpha()
+        self.energia_sup = pygame.transform.scale(self.energia_sup, (self.escalaX, self.escalaY))
+        return self.energia_sup
 
     def getAgua_fond(self):
         self.agua_fond = pygame.image.load('Fotuchas/agua.png').convert_alpha()
