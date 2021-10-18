@@ -16,6 +16,7 @@ class Sprites:
         self.piedra_sup = None
         self.madera_sup = None
         self.energia_sup = None
+        self.barco_sup = None
 
     def getNegro_fond(self):
         self.negro_fond = pygame.image.load('Fotuchas/negro.png').convert_alpha()
@@ -75,3 +76,8 @@ class Sprites:
         self.casa_sup = pygame.image.load('Fotuchas/casa_sup.png').convert_alpha()
         self.casa_sup = pygame.transform.scale(self.casa_sup, (self.escalaX, self.escalaY))
         return self.casa_sup
+    
+    def getBarco_sup(self):
+        self.barco_sup = pygame.image.load('Fotuchas/barco_sup.png').convert_alpha()
+        self.barco_sup = pygame.transform.scale(self.barco_sup, (self.escalaX, self.escalaY))
+        return self.barco_sup

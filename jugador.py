@@ -28,7 +28,14 @@ class Jugador:
 
     def restarEnergia(self, cant):
         self.energia -= cant
+        if self.energia < 0:
+            self.energia = 0
+        
+            
     
+    def setEnergia(self):
+        self.energia = 500
+
     def crearBarco(self):
         self.civilizacion.CrearBarco()
 
@@ -37,6 +44,7 @@ class Jugador:
 
     def restarMadera(self, cant):
         self.civilizacion.restarMadera(cant)
+
     
     def agregarPiedra(self, cant):
         self.civilizacion.agregarPiedra(cant)
@@ -46,3 +54,15 @@ class Jugador:
 
     def getEnergia(self):
         return self.energia
+
+    def getBarco(self):
+        return self.civilizacion.getBarco()
+    
+    def restarUsoBarco(self):
+        self.civilizacion.restarUsoBarco()
+
+    def getUsosBarco(self):
+        return self.civilizacion.getUsosBarco()
+    
+    def hacerCasa(self):
+        self.civilizacion.hacerCasa()

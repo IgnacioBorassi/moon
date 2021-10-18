@@ -14,6 +14,7 @@ class Celda():
         self.persona = Persona(None)
         self.marcador = Marcador(None)
         self.casa = Casa(None)
+        
 
     def tomarTerreno(self, propiedad):
         self.propiedad = propiedad

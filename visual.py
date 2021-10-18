@@ -1,3 +1,4 @@
+from pygame import event
 from eventos import Eventos
 from aire import Aire
 import pygame
@@ -43,6 +44,8 @@ class Visual:
         piedra_sup = sprites.getPiedra_sup()
         madera_sup = sprites.getMadera_sup()
         energia_sup = sprites.getEnergia_sup()
+        barco_sup = sprites.getBarco_sup()
+
         eventos = Eventos()
         inicioCeldaY = 0
         inicioCeldaX = 0
@@ -136,9 +139,13 @@ class Visual:
 
                             else:
                                 pantalla.blit(agua_fond, (pos_x, pos_y))
-
+                        
                             if eventos.getPelado(i, x) == True:
-                                pantalla.blit(pelado_sup, (pos_x, pos_y))
+                                if (repr(eventos.getTerreno(i, x))) == "Tierra":
+                                    pantalla.blit(pelado_sup, (pos_x, pos_y))
+                                else:
+                                    pantalla.blit(barco_sup,(pos_x, pos_y))
+                                    eventos.restarUsoBarco()
                             if eventos.getCasa(i,x) == True:
                                pantalla.blit(casa_sup, (pos_x, pos_y)) 
                         else:
@@ -151,6 +158,8 @@ class Visual:
                     pantalla.blit(piedra_sup, (904, 56))
                     pantalla.blit(madera_sup, (904, 100))
                     pantalla.blit(energia_sup, (904, 21))
+                   
+
                     font = pygame.font.SysFont(None, 24)
                     img = font.render(eventos.getEnergia(), True, (255, 255, 0))
                     pantalla.blit(img, (950, 35))
@@ -158,6 +167,12 @@ class Visual:
                     pantalla.blit(img2, (950, 70))
                     img3 = font.render(eventos.getMadera(), True, (128, 0, 0))
                     pantalla.blit(img3, (950, 110))
+
+                    if eventos.getBarco()== True:
+                        pantalla.blit(barco_sup, (904, 140))
+                        img4 = font.render(eventos.getUsoBarco(), True, (128, 0, 0))
+                        pantalla.blit(img4, (950, 150))
+                   
                     pos_x = inicioCeldaX
                     pos_y += escalaY
 

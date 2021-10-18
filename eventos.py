@@ -80,6 +80,9 @@ class Eventos:
             self.ordenSeleccion = -1
             self.seleccion = False
             self.sacarMarcadores()
+            if self.mundo.getEnergia() == 0:
+                self.mundo.setEnergia()
+            
 
         if self.activar == True:
             for i in range(1, (self.celdasY - 1)):
@@ -122,6 +125,7 @@ class Eventos:
                                 self.mundo.agregarPiedra(piedra)
                             time.sleep(0.7)
                             return
+        
 
 
 
@@ -154,18 +158,18 @@ class Eventos:
                 else:
                     if self.modo.getBotonMapa1Rect().collidepoint(event.pos):
                         self.mapa1 = True
-                        print("nashe")
+                        
                         self.modo.apagarModo()
 
                         
                     elif self.modo.getBotonMapa2Rect().collidepoint(event.pos):
                         self.mapa2 = True
-                        print("nashe")
+                        
                         self.modo.apagarModo()
 
                     elif self.modo.getBotonMapaGRect().collidepoint(event.pos):
                         self.mapaG = True
-                        print("nashe")
+                        
                         self.modo.apagarModo()
 
             if event.type == pygame.KEYDOWN:
@@ -176,7 +180,14 @@ class Eventos:
                     if event.key == pygame.K_1:
                         if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
                         and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
-                            self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
+                            if self.mundo.getMadera() >= 20 and self.mundo.getPiedra() >= 10:
+                                self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
+                                self.mundo.hacerCasa()
+                            else:
+                                print("te faltan recursos panflin")
+                    
+                    if event.key == pygame.K_2:
+                        self.mundo.hacerBarco()
                             
                     if event.key == pygame.K_j:
                         self.inicioCeldaY = ((self.visualInicioY * - self.escalaY) +
@@ -316,10 +327,35 @@ class Eventos:
                             self.visualInicioY -= 1
                         else:
                             if self.getMarcador(self.visualInicioY - 1, self.visualInicioX) == True:
+                                
                                 print("No podes pasar por arriba de otro marcador")
                             else:
-                                self.ordenSeleccion += 1
-                                self.visualInicioY -= 1
+                                if self.mundo.getEnergia() == 0:
+                                    print("ya esta men")
+                                else:
+                                    if ((repr(self.getTerreno(self.visualInicioY - 1, self.visualInicioX)))) == "Tierra":
+                                        if ((repr(self.getNaturaleza(self.visualInicioY - 1, self.visualInicioX)))) == "Arbol":
+                                            self.mundo.restarEnergia(100)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioY -= 1
+
+                                        elif ((repr(self.getNaturaleza(self.visualInicioY - 1 , self.visualInicioX)))) == "Aire":
+                                            self.mundo.restarEnergia(50)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioY -= 1 
+
+                                        elif ((repr(self.getNaturaleza(self.visualInicioY - 1 , self.visualInicioX)))) == "Montana":
+                                            self.mundo.restarEnergia(150)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioY -= 1
+                                    
+                                    elif ((repr(self.getTerreno(self.visualInicioY - 1, self.visualInicioX)))) == "Agua":  
+                                        if self.mundo.getBarco()== True:
+                                            self.mundo.restarEnergia(50)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioY -= 1
+                                        else:
+                                            print("No tienes barco")
                             
 
                         if self.visualInicioY < 1:
@@ -335,8 +371,29 @@ class Eventos:
                             if self.getMarcador(self.visualInicioY, self.visualInicioX - 1) == True:
                                 print("No podes ir a la izquierda si ya hay un marcador")
                             else:
-                                self.ordenSeleccion += 1
-                                self.visualInicioX -= 1
+                                if self.mundo.getEnergia() == 0:
+                                    print("ya esta men, estoy muy cansado")
+                                else:
+                                    if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX - 1)))) == "Tierra":
+                                        if ((repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX - 1)))) == "Arbol":
+                                            self.mundo.restarEnergia(100)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioX -= 1
+                                        elif ((repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX - 1 )))) == "Aire":
+                                            self.mundo.restarEnergia(50)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioX -= 1
+                                        elif ((repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX - 1 ))))== "Montana":
+                                            self.mundo.restarEnergia(150)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioX -= 1
+                                    elif ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX - 1)))) == "Agua":  
+                                        if self.mundo.getBarco()== True:
+                                            self.mundo.restarEnergia(50)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioX -= 1
+                                        else:
+                                            print("No tienes barco")
                             
                         if self.visualInicioX < 1:
                             self.visualInicioX = 1
@@ -351,8 +408,30 @@ class Eventos:
                             if self.getMarcador(self.visualInicioY + 1, self.visualInicioX) == True:
                                 print("No podes ir para abajo si ya hay un marcador")
                             else:
-                                self.ordenSeleccion += 1
-                                self.visualInicioY += 1
+                                if self.mundo.getEnergia() == 0:
+                                    print("ya esta men")
+                                else:
+                                    if ((repr(self.getTerreno(self.visualInicioY + 1, self.visualInicioX)))) == "Tierra":
+                                        if ((repr(self.getNaturaleza(self.visualInicioY + 1 , self.visualInicioX)))) == "Arbol":
+                                            self.mundo.restarEnergia(100)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioY += 1
+                                        elif ((repr(self.getNaturaleza(self.visualInicioY + 1, self.visualInicioX)))) == "Aire":
+                                            self.mundo.restarEnergia(50)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioY += 1
+                                        elif ((repr(self.getNaturaleza(self.visualInicioY + 1, self.visualInicioX)))) == "Montana":
+                                            self.mundo.restarEnergia(150)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioY += 1
+                                    elif ((repr(self.getTerreno(self.visualInicioY + 1, self.visualInicioX)))) == "Agua":  
+                                        if self.mundo.getBarco()== True:
+                                            self.mundo.restarEnergia(50)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioY += 1
+                                        else:
+                                            print("no tienes barco")
+                                    
 
                         if self.visualInicioY > (self.celdasY - 3):
                             self.visualInicioY = (self.celdasY - 3)
@@ -368,8 +447,30 @@ class Eventos:
                             if self.getMarcador(self.visualInicioY, self.visualInicioX + 1) == True:
                                 print("No da ir a la derecha si ya hay un marcador")
                             else:
-                                self.ordenSeleccion += 1
-                                self.visualInicioX += 1
+                                if self.mundo.getEnergia() == 0:
+                                    print("ya esta men")
+                                else:
+                                    if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX + 1)))) == "Tierra":
+                                        if ((repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX + 1)))) == "Arbol":
+                                            self.mundo.restarEnergia(100)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioX += 1
+                                        elif ((repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX + 1)))) == "Aire":
+                                            self.mundo.restarEnergia(50)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioX += 1
+                                        elif ((repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX + 1)))) == "Montana":
+                                            self.mundo.restarEnergia(150)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioX += 1
+                                    elif ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX + 1)))) == "Agua":  
+                                        if self.mundo.getBarco()== True:
+                                            self.mundo.restarEnergia(50)
+                                            self.ordenSeleccion += 1
+                                            self.visualInicioX += 1
+                                        else:
+                                            print("no tienes barco")
+                                    
 
                         if self.visualInicioX > (self.celdasX - 3):
                             self.visualInicioX = (self.celdasX - 3)
@@ -569,3 +670,12 @@ class Eventos:
 
     def getPiedra(self):
         return str(self.mundo.getPiedra())
+    
+    def getBarco(self):
+        return self.mundo.getBarco()
+    
+    def restarUsoBarco(self):
+        self.mundo.restarUsoBarco()
+    
+    def getUsoBarco(self):
+        return str(self.mundo.getUsosBarco())

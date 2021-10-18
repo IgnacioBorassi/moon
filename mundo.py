@@ -335,3 +335,24 @@ class Mundo():
     
     def getPiedra(self):
         return self.jugador.getPiedra()
+    
+    def restarEnergia(self, cant):
+        self.jugador.restarEnergia(cant)
+
+    def setEnergia(self):
+        self.jugador.setEnergia()
+    
+    def hacerBarco(self):
+        self.jugador.crearBarco()
+    
+    def getBarco(self):
+        return self.jugador.getBarco()
+    
+    def restarUsoBarco(self):
+        self.jugador.restarUsoBarco()
+    
+    def getUsosBarco(self):
+        return self.jugador.getUsosBarco()
+    
+    def hacerCasa(self):
+        self.jugador.hacerCasa()
