@@ -66,3 +66,9 @@ class Jugador:
     
     def hacerCasa(self):
         self.civilizacion.hacerCasa()
+
+    def hacerPuerto(self):
+        self.civilizacion.hacerPuerto()
+    
+    def hacerMina(self):
+        self.civilizacion.hacerMina()

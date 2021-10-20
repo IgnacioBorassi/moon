@@ -55,4 +55,16 @@ class civilizacion:
             self.restarPiedra(20)
         else:
             print("te faltan recursos panflin")
+
+    def hacerPuerto(self):
+        if self.cantMadera >= 100:
+            self.restarMadera(100)
+        else:
+            print("te faltan recursos panflin")
+
+    def hacerMina(self):
+        if self.cantMadera >= 40:
+            self.restarMadera(40)
+        else:
+            print("te faltan recursos panflin")
     

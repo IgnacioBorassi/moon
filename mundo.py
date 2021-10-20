@@ -7,6 +7,8 @@ from aire import Aire
 from agua import Agua
 from montana import Montana
 from jugador import Jugador
+from mina import Mina
+from puerto import Puerto
 import time
 
 class Mundo():
@@ -211,6 +213,18 @@ class Mundo():
     def ponerCasa(self, y, x):
         return self.coordenadas[y][x].ponerCasa()
 
+    def ponerMina(self, y, x):
+        return self.coordenadas[y][x].ponerMina()
+
+    def getMina(self, y, x):
+        return self.coordenadas[y][x].getMina()
+
+    def getPuerto(self, y, x):
+        return self.coordenadas[y][x].getPuerto()
+    
+    def ponerPuerto(self, y, x):
+        return self.coordenadas[y][x].ponerPuerto()
+
     def getOrdenMarcador(self, y, x):
         return self.coordenadas[y][x].getOrdenMarcador()
 
@@ -356,3 +370,9 @@ class Mundo():
     
     def hacerCasa(self):
         self.jugador.hacerCasa()
+    
+    def hacerPuerto(self):
+        self.jugador.hacerPuerto()
+    
+    def hacerMina(self):
+        self.jugador.hacerMina()

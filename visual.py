@@ -1,10 +1,11 @@
-from pygame import event
+from pygame import event, sprite
 from eventos import Eventos
 from aire import Aire
 import pygame
 import sys
 import random
 from arbol import Arbol
+from mina import Mina
 from tierra import Tierra
 from montana import Montana
 from sprites import Sprites
@@ -45,6 +46,8 @@ class Visual:
         madera_sup = sprites.getMadera_sup()
         energia_sup = sprites.getEnergia_sup()
         barco_sup = sprites.getBarco_sup()
+        puerto_sup = sprites.getPuerto_sup()
+        mina_sup = sprites.getMina_sup()
 
         eventos = Eventos()
         inicioCeldaY = 0
@@ -148,6 +151,12 @@ class Visual:
                                     eventos.restarUsoBarco()
                             if eventos.getCasa(i,x) == True:
                                pantalla.blit(casa_sup, (pos_x, pos_y)) 
+
+                            if eventos.getPuerto(i,x) == True:
+                               pantalla.blit(puerto_sup, (pos_x, pos_y)) 
+
+                            if eventos.getMina(i,x) == True:
+                               pantalla.blit(mina_sup, (pos_x, pos_y))
                         else:
                             pantalla.blit(negro_fond, (pos_x, pos_y))
                         

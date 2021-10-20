@@ -17,6 +17,7 @@ class Sprites:
         self.madera_sup = None
         self.energia_sup = None
         self.barco_sup = None
+        self.puerto_sup = None
 
     def getNegro_fond(self):
         self.negro_fond = pygame.image.load('Fotuchas/negro.png').convert_alpha()
@@ -81,3 +82,13 @@ class Sprites:
         self.barco_sup = pygame.image.load('Fotuchas/barco_sup.png').convert_alpha()
         self.barco_sup = pygame.transform.scale(self.barco_sup, (self.escalaX, self.escalaY))
         return self.barco_sup
+
+    def getPuerto_sup(self):
+        self.puerto_sup = pygame.image.load('Fotuchas/Puerto_sup.png').convert_alpha()
+        self.puerto_sup = pygame.transform.scale(self.puerto_sup, (self.escalaX, self.escalaY))
+        return self.puerto_sup
+    
+    def getMina_sup(self):
+        self.mina_sup = pygame.image.load('Fotuchas/Mina_sup.png').convert_alpha()
+        self.mina_sup = pygame.transform.scale(self.mina_sup, (self.escalaX, self.escalaY))
+        return self.mina_sup
