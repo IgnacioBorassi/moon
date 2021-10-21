@@ -66,3 +66,27 @@ class Jugador:
     
     def hacerCasa(self):
         self.civilizacion.hacerCasa()
+    
+    def getFundadorActivo(self):
+        return self.civilizacion.getFundadorActivo()
+
+    def getGuerrerorActivo(self):
+        return self.civilizacion.getGuerrerorActivo()
+    
+    def getArqueroActivo(self):
+        return self.civilizacion.getArqueroActivo()
+    
+    def getObreroActivo(self):
+        return self.civilizacion.getObreroActivo()
+    
+    def matarFundador(self):
+        self.civilizacion.matarFundador()
+    
+    def ponerGuerrero(self):
+        self.civilizacion.ponerGuerrero()
+    
+    def ponerArquero(self):
+        self.civilizacion.ponerArquero()
+    
+    def ponerObreros(self):
+        self.civilizacion.ponerObreros()

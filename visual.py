@@ -5,6 +5,7 @@ import pygame
 import sys
 import random
 from arbol import Arbol
+from fundador import Fundador
 from tierra import Tierra
 from montana import Montana
 from sprites import Sprites
@@ -45,6 +46,9 @@ class Visual:
         madera_sup = sprites.getMadera_sup()
         energia_sup = sprites.getEnergia_sup()
         barco_sup = sprites.getBarco_sup()
+        guerrero_sup = sprites.getGuerrero_sup()
+        arquero_sup = sprites.getArquero_sup()
+        obrero_sup = sprites.getObrero_sup()
 
         eventos = Eventos()
         inicioCeldaY = 0
@@ -92,9 +96,9 @@ class Visual:
                     visualInicioY = eventos.getVisualInicioY()
                     
                     eventos.zonaInicial(visualInicioY, visualInicioX)
-                    eventos.colocarCivilizacion(visualInicioY, visualInicioX)
+                    
                     eventos.cambiarVisual(visualInicioY, visualInicioX, True)
-                    eventos.ponerPelado(visualInicioY, visualInicioX)
+                    eventos.ponerPelado(visualInicioY, visualInicioX, Fundador())
                     eventos.ponerMarcador(visualInicioY, visualInicioX, -1)
 
                     inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
@@ -140,14 +144,28 @@ class Visual:
                             else:
                                 pantalla.blit(agua_fond, (pos_x, pos_y))
                         
-                            if eventos.getPelado(i, x) == True:
-                                if (repr(eventos.getTerreno(i, x))) == "Tierra":
-                                    pantalla.blit(pelado_sup, (pos_x, pos_y))
-                                else:
-                                    pantalla.blit(barco_sup,(pos_x, pos_y))
-                                    eventos.restarUsoBarco()
+                            
                             if eventos.getCasa(i,x) == True:
                                pantalla.blit(casa_sup, (pos_x, pos_y)) 
+                            if eventos.getPelado(i, x) == True:
+                                if (repr(eventos.getTerreno(i, x))) == "Tierra":
+                                    
+                                    if (repr(eventos.getClase(i, x))) == "Guerrero":
+                                        
+                                        pantalla.blit(guerrero_sup, (pos_x, pos_y))
+
+                                    elif (repr(eventos.getClase(i, x))) == "Arquero":
+                                        
+                                        pantalla.blit(arquero_sup, (pos_x, pos_y))
+                                    
+                                    elif (repr(eventos.getClase(i, x))) == "Obrero":
+                                        
+                                        pantalla.blit(obrero_sup, (pos_x, pos_y))
+                                    else:
+                                        pantalla.blit(pelado_sup, (pos_x, pos_y))
+
+                                else:
+                                    pantalla.blit(barco_sup,(pos_x, pos_y))
                         else:
                             pantalla.blit(negro_fond, (pos_x, pos_y))
                         

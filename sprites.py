@@ -17,6 +17,9 @@ class Sprites:
         self.madera_sup = None
         self.energia_sup = None
         self.barco_sup = None
+        self.guerrrero_sup = None
+        self.obrero_sup = None
+        self.arquero_sup = None
 
     def getNegro_fond(self):
         self.negro_fond = pygame.image.load('Fotuchas/negro.png').convert_alpha()
@@ -68,7 +71,7 @@ class Sprites:
     
 
     def getPelado_sup(self):
-        self.pelado_sup = pygame.image.load('Fotuchas/pelado.png').convert_alpha()
+        self.pelado_sup = pygame.image.load('Fotuchas/pelado_sup.png').convert_alpha()
         self.pelado_sup = pygame.transform.scale(self.pelado_sup, (self.escalaX, self.escalaY))
         return self.pelado_sup
     
@@ -81,3 +84,18 @@ class Sprites:
         self.barco_sup = pygame.image.load('Fotuchas/barco_sup.png').convert_alpha()
         self.barco_sup = pygame.transform.scale(self.barco_sup, (self.escalaX, self.escalaY))
         return self.barco_sup
+    
+    def getGuerrero_sup(self):
+        self.guerrero_sup = pygame.image.load('Fotuchas/peladoGuerrero_sup.png').convert_alpha()
+        self.guerrero_sup = pygame.transform.scale(self.guerrero_sup, (self.escalaX, self.escalaY))
+        return self.guerrero_sup
+    
+    def getArquero_sup(self):
+        self.arquero_sup = pygame.image.load('Fotuchas/peladoArquero_sup.png').convert_alpha()
+        self.arquero_sup = pygame.transform.scale(self.arquero_sup, (self.escalaX, self.escalaY))
+        return self.arquero_sup
+    
+    def getObrero_sup(self):
+        self.obrero_sup = pygame.image.load('Fotuchas/peladoObrero_sup.png').convert_alpha()
+        self.obrero_sup = pygame.transform.scale(self.obrero_sup, (self.escalaX, self.escalaY))
+        return self.obrero_sup

@@ -1,7 +1,11 @@
 from agua import Agua
 from aire import Aire
 import pygame, sys, random
+from arquero import Arquero
 from casa import Casa
+from fundador import Fundador
+from guerrero import Guerrero
+from obrero import Obrero
 from marcador import Marcador
 from mundo import Mundo
 from arbol import Arbol
@@ -33,6 +37,7 @@ class Eventos:
         self.ordenSeleccion = -1
         self.cantMarcadores = -1
         self.cantNoMarcados = -1
+        self.clase = None
         self.mapa1 = None
         self.mapa2 = None
         self.mapaG = None
@@ -72,6 +77,7 @@ class Eventos:
                     self.cantNoMarcados += 1
     
     def realizarAcciones(self):
+
         if (self.cantMarcadores - self.cantNoMarcados) == (self.cantMarcadores + 1):
             self.activar == False
             self.cantMarcadores = -1000
@@ -87,42 +93,58 @@ class Eventos:
         if self.activar == True:
             for i in range(1, (self.celdasY - 1)):
                 for x in range(1, (self.celdasX - 1)):
+                    
+
                     if self.mundo.getOrdenMarcador(i, x) == (self.cantMarcadores - self.cantNoMarcados):
                         
+                        
                         if (self.cantMarcadores - self.cantNoMarcados) == 0:
+                            self.clase = self.chequearClase(i, x)
+                            
                             self.cantNoMarcados -= 1
                             if self.getPelado(i, x) == True:
-                                self.ponerPelado(i, x)
+                                
+                                self.ponerPelado(i, x, self.clase)
+                                
                                 return
                             else:
                                 print("Error: Se necesita haber seleccionado un pelado")
                                 self.cantNoMarcados = -1
                                 return
                         else:
+                        
                             self.cantNoMarcados -= 1
                             if self.getPelado(i - 1, x) == True and self.getMarcador(i - 1, x) == True:
                                 self.sacarPelado(i - 1, x)
+
                             elif self.getPelado(i + 1, x) == True and self.getMarcador(i + 1, x) == True:
                                 self.sacarPelado(i + 1, x)
+
                             elif self.getPelado(i, x - 1) == True and self.getMarcador(i, x - 1) == True:
                                 self.sacarPelado(i, x - 1)
+
                             elif self.getPelado(i, x + 1) == True and self.getMarcador(i, x + 1) == True:
                                 self.sacarPelado(i, x + 1)
-                            self.ponerPelado(i, x)
+                            
+                            self.ponerPelado(i, x, self.clase)
+                            
                             self.mundo.cambiarVisualMov(i, x)
-                            print(str(repr(self.getNaturaleza(i, x))))
-                            if (repr(self.getNaturaleza(i, x))) == "Arbol": 
-                                cantMadera = self.mundo.cantidadMaterial(i, x)
-                                print(cantMadera)
-                                self.mundo.agregarMadera(cantMadera)
-                                self.mundo.sacarArbol(i, x)
-                                
-                                
+                            if (repr(self.getClase(i, x))) == "Obrero":
 
-                            if (repr(self.getNaturaleza(i, x))) == "Montana":
-                                piedra = self.mundo.cantidadMaterial(i, x)
-                                print(piedra)
-                                self.mundo.agregarPiedra(piedra)
+                                if (repr(self.getNaturaleza(i, x))) == "Arbol": 
+                                    cantMadera = self.mundo.cantidadMaterial(i, x)
+                                    self.mundo.agregarMadera(cantMadera)
+                                    self.mundo.sacarArbol(i, x)
+                                    
+                                    
+
+                                if (repr(self.getNaturaleza(i, x))) == "Montana":
+                                    piedra = self.mundo.cantidadMaterial(i, x)
+                                    self.mundo.agregarPiedra(piedra)
+                                
+                            if (repr(self.getTerreno(i, x))) == "Agua":
+                                self.mundo.restarUsoBarco()
+
                             time.sleep(0.7)
                             return
         
@@ -178,13 +200,24 @@ class Eventos:
 
                 if self.menu.getActivo() == False:
                     if event.key == pygame.K_1:
-                        if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
-                        and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
-                            if self.mundo.getMadera() >= 20 and self.mundo.getPiedra() >= 10:
-                                self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
+                        print((repr(self.mundo.getClasePersona(self.visualInicioY, self.visualInicioX))) )
+                        if (repr(self.mundo.getClasePersona(self.visualInicioY, self.visualInicioX))) == "Fundador":
+                            self.sacarPelado(self.visualInicioY, self.visualInicioX)
+                            if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
+                            and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
+                                
+                                self.colocarCivilizacion(visualInicioY, visualInicioX)
                                 self.mundo.hacerCasa()
-                            else:
-                                print("te faltan recursos panflin")
+                                
+                        else:
+                            if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
+                            and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
+                                if self.mundo.getMadera() >= 20 and self.mundo.getPiedra() >= 10:
+                                    self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
+                                    self.mundo.hacerCasa()
+                                    
+                                else:
+                                    print("te faltan recursos panflin")
                     
                     if event.key == pygame.K_2:
                         self.mundo.hacerBarco()
@@ -271,6 +304,7 @@ class Eventos:
                         if self.seleccion == True:
                             self.getCantMarcadores()
                             self.activar = True
+                            
                         else:
                             self.activar = False
                             self.ordenSeleccion = 0
@@ -303,10 +337,30 @@ class Eventos:
                                                 else:
                                                     archivo.write('Casa,')
                                             elif (self.mundo.getPelado(i, x)) == True:
-                                                if x == self.celdasX:
-                                                    archivo.write('Persona')
+                                                if (repr(self.getClase(i, x))) == "Guerrero":
+                                                    if x == self.celdasX:
+                                                        archivo.write('GPersona')
+                                                    else:
+                                                        archivo.write('GPersona,')
+                                                    
+                                                elif (repr(self.getClase(i, x))) == "Arquero":
+                                                    if x == self.celdasX:
+                                                        archivo.write('APersona')
+                                                    else:
+                                                        archivo.write('APersona,')
+                                                   
+                                                elif (repr(self.getClase(i, x))) == "Obrero":
+                                                    if x == self.celdasX:
+                                                        archivo.write('OPersona')
+                                                    else:
+                                                        archivo.write('OPersona,')
+                                                    
                                                 else:
-                                                    archivo.write('Persona,')
+                                                    if x == self.celdasX:
+                                                        archivo.write('FPersona')
+                                                    else:
+                                                        archivo.write('FPersona,')
+                                                
                                             else:
                                                 if x == self.celdasX:
                                                     archivo.write('Tierra')
@@ -542,8 +596,8 @@ class Eventos:
     def cambiarVisual(self, y, x, nuevoVisual):
         self.mundo.cambiarVisual(y, x, nuevoVisual)
 
-    def ponerPelado(self, y, x):
-        self.mundo.ponerPelado(y, x)
+    def ponerPelado(self, y, x, clase):
+        self.mundo.ponerPelado(y, x, clase)
     
     def sacarPelado(self, y, x):
         self.mundo.sacarPelado(y, x)
@@ -679,3 +733,36 @@ class Eventos:
     
     def getUsoBarco(self):
         return str(self.mundo.getUsosBarco())
+    
+    def getFundadorActivo(self):
+        return self.mundo.getFundadorActivo()
+    
+    def getGuerreroActivo(self):
+        return self.mundo.getGuerrerorActivo()
+    
+    def getArqueroActivo(self):
+        return self.mundo.getArqueroActivo()
+    
+    def getObreroActivo(self):
+        return self.mundo.getObreroActivo()
+    
+    def getClase(self, y, x):
+        return self.mundo.getClasePersona(y, x)
+    
+    def chequearClase(self, y, x):
+        if (repr(self.getClase(y, x))) == "Guerrero":                          
+            clase = Guerrero()
+            return clase
+
+        elif (repr(self.getClase(y, x))) == "Arquero":
+            clase = Arquero()
+            return clase
+        
+        elif (repr(self.getClase(y, x))) == "Obrero":
+            clase = Obrero()
+            return clase
+        else:
+            clase = Fundador()
+            return clase
+        
+        

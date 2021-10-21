@@ -1,11 +1,11 @@
 class Barco:
     def __init__(self):
         self.creado = False
-        self.usos = None
+        self.usos = 0
 
     def Crear(self):
         self.creado = True
-        self.usos = 10
+        self.usos += 10
     
     def restarUsos(self):
         self.usos -= 1

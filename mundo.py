@@ -1,7 +1,11 @@
+from arquero import Arquero
 from celda import  Celda 
 import pygame
 import random
 from arbol import Arbol
+from guerrero import Guerrero
+from obrero import Obrero
+from fundador import Fundador
 from tierra import Tierra
 from aire import Aire
 from agua import Agua
@@ -50,9 +54,18 @@ class Mundo():
         if self.coordenadas[i][x] == "Casa":
             self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
             self.coordenadas[i][x].ponerCasa()
-        if self.coordenadas[i][x] == "Persona":
+        if self.coordenadas[i][x] == "GPersona":
             self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
-            self.coordenadas[i][x].ponerPelado()
+            self.coordenadas[i][x].ponerPelado(Guerrero())
+        if self.coordenadas[i][x] == "OPersona":
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
+            self.coordenadas[i][x].ponerPelado(Obrero())
+        if self.coordenadas[i][x] == "APersona":
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
+            self.coordenadas[i][x].ponerPelado(Arquero())
+        if self.coordenadas[i][x] == "FPersona":
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
+            self.coordenadas[i][x].ponerPelado(Fundador())
         if self.coordenadas[i][x] == "VTierra":
             self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, True, 0))
         if self.coordenadas[i][x] == "VAgua":
@@ -64,11 +77,24 @@ class Mundo():
         if self.coordenadas[i][x] == "VCasa":
             self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, True, 0))
             self.coordenadas[i][x].ponerCasa()
-        if self.coordenadas[i][x] == "VPersona":
+        if self.coordenadas[i][x] == "VGPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
             self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, True, 0))
-            self.coordenadas[i][x].ponerPelado()
+            self.coordenadas[i][x].ponerPelado(Guerrero())
+        if self.coordenadas[i][x] == "VOPersona":
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
+            self.coordenadas[i][x].ponerPelado(Obrero())
+        if self.coordenadas[i][x] == "VAPersona":
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
+            self.coordenadas[i][x].ponerPelado(Arquero())
+        if self.coordenadas[i][x] == "VFPersona":
+            self.inicioCeldaX = x
+            self.inicioCeldaY = i
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, True, 0))
+            self.coordenadas[i][x].ponerPelado(Fundador())
+        
+            
     
     def cargarMapaG(self): 
 
@@ -152,19 +178,7 @@ class Mundo():
                     self.coordenadas[i][x].cambiarNaturaleza(Arbol())
 
 
-    def realizarAcciones(self):
-        cantMarcadores = -1
-        for i in range(1, (self.cantCeldasY - 1)):
-            for x in range(1, (self.cantCeldasX - 1)):
-                if self.getOrdenMarcador(i, x) != -1:
-                    cantMarcadores += 1
-        for cant in range(0, cantMarcadores + 1):
-            for i in range(1, (self.cantCeldasY - 1)):
-                for x in range(1, (self.cantCeldasX - 1)):
-                    if self.getOrdenMarcador(i, x) == cant:
-                        self.ponerPelado(i,x)
-                        time.sleep(2)
-                        self.sacarPelado(i,x)
+    
 
 
 
@@ -187,14 +201,20 @@ class Mundo():
     def cambiarVisual(self, y, x, nuevoVisual):
         return self.coordenadas[y][x].cambiarVisual(nuevoVisual)
     
-    def ponerPelado(self, y, x):
-        return self.coordenadas[y][x].ponerPelado()
+    def ponerPelado(self, y, x, clase):
+        return self.coordenadas[y][x].ponerPelado(clase)
     
     def ponerMarcador(self, y, x, nuevoOrden):
         return self.coordenadas[y][x].ponerMarcador(nuevoOrden)
 
     def sacarPelado(self, y, x):
         return self.coordenadas[y][x].sacarPelado()
+    
+    def cambiarClasePersona(self, y, x, clase):
+        return self.coordenadas[y][x].cambiarClasePersona(clase)
+    
+    def getClasePersona(self, y, x):
+        return self.coordenadas[y][x].getClasePersona()
 
     def sacarMarcador(self, y, x):
         return self.coordenadas[y][x].sacarMarcador()
@@ -236,7 +256,9 @@ class Mundo():
 
 
     def colocarCivilizacion(self, y, x):
+        self.sacarPelado(y, x)
         for i in range(1,4):
+            
             casaX = int(random.randrange(1, 4))
             casaY = int(random.randrange(1, 4))
             if i == 1:
@@ -244,7 +266,11 @@ class Mundo():
                     if (repr(self.getTerreno(y + casaY, x + casaX)) == "Tierra" and
                     repr(self.getNaturaleza(y + casaY, x + casaX)) == "Aire" and 
                     self.getCasa(y + casaY, x + casaX) == None):
+
                         self.ponerCasa(y + casaY, x + casaX)
+                        self.ponerPelado(y + casaY, x + casaX, Guerrero())
+                        
+                        
                         casaX = 999
                     else:
                         casaX = int(random.randrange(1, 4))
@@ -255,6 +281,8 @@ class Mundo():
                     repr(self.getNaturaleza(y - casaY, x - casaX)) == "Aire" and 
                     self.getCasa(y - casaY, x - casaX) == None):
                         self.ponerCasa(y - casaY, x - casaX)
+                        self.ponerPelado(y - casaY, x - casaX, Obrero())
+                        
                         casaX = 999
                     else:
                         casaX = int(random.randrange(1, 4))
@@ -265,6 +293,8 @@ class Mundo():
                     repr(self.getNaturaleza(y - casaY, x + casaX)) == "Aire" and 
                     self.getCasa(y - casaY, x + casaX) == None):
                         self.ponerCasa(y - casaY, x + casaX)
+                        self.ponerPelado(y - casaY, x + casaX, Arquero())
+                        
                         casaX = 999
                     else:
                         casaX = int(random.randrange(1, 4))
@@ -356,3 +386,31 @@ class Mundo():
     
     def hacerCasa(self):
         self.jugador.hacerCasa()
+    
+    def getFundadorActivo(self):
+        return self.jugador.getFundadorActivo()
+    
+    def getGuerrerorActivo(self):
+        return self.jugador.getGuerrerorActivo()
+    
+    def getArqueroActivo(self):
+        return self.jugador.getArqueroActivo()
+    
+    def getObreroActivo(self):
+        return self.jugador.getObreroActivo()
+    
+    
+    def matarFundador(self):
+        self.jugador.matarFundador()
+    
+    def chequearClase(self, y, x):
+        if (repr(self.getClasePersona(y, x))) == "Guerrero":                          
+            clase = "Guerrero"
+
+        elif (repr(self.getClasePersona(y, x))) == "Arquero":
+            clase = "Arquero"
+        
+        elif (repr(self.getClasePersona(y, x))) == "Obrero":
+            clase = "Obrero"
+        
+        return clase

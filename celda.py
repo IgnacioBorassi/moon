@@ -59,8 +59,8 @@ class Celda():
         '''Cambia la celda para poder visualizarla'''
         self.visual = nuevoVisual
 
-    def ponerPelado(self):
-        self.persona.ponerPelado()
+    def ponerPelado(self, clase):
+        self.persona.ponerPelado(clase)
 
     def sacarPelado(self):
         self.persona.sacarPelado()
@@ -82,3 +82,9 @@ class Celda():
 
     def randomMaterial(self):
         return self.terreno.randomMaterial()
+    
+    def cambiarClasePersona(self, clase):
+        self.persona.cambiarClase(clase)
+
+    def getClasePersona(self):
+        return self.persona.getClase()

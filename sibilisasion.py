@@ -1,4 +1,8 @@
 from barco import Barco
+from fundador import Fundador
+from guerrero import Guerrero
+from arquero import Arquero
+from obrero import Obrero
 
 
 class civilizacion:
@@ -6,9 +10,10 @@ class civilizacion:
         self.cantMadera = 0
         self.cantPiedra = 0
         self.barco = Barco()
-        self.obreros = []
-        self.guerreros = []
-        self.arqueros = []
+        self.fundador = Fundador()
+        self.obreros = Obrero()
+        self.guerreros = Guerrero()
+        self.arqueros = Arquero()
     
     def getMadera(self):
         return self.cantMadera
@@ -56,3 +61,26 @@ class civilizacion:
         else:
             print("te faltan recursos panflin")
     
+    def getFundadorActivo(self):
+        return self.fundador.getActivo()
+    
+    def getGuerrerorActivo(self):
+        return self.guerreros.getActivo()
+    
+    def getArqueroActivo(self):
+        return self.arqueros.getActivar()
+    
+    def getObreroActivo(self):
+        return self.obreros.getActivo()
+    
+    def matarFundador(self):
+        self.fundador.muerte()
+    
+    def ponerGuerrero(self):
+        self.guerreros.vivir()
+    
+    def ponerArquero(self):
+        self.arqueros.activar()
+    
+    def ponerObreros(self):
+        self.obreros.activar()

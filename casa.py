@@ -1,6 +1,7 @@
 class Casa:
     def __init__(self, activo):
         self.activo = activo
+        
     
 
     def ponerCasa(self):
