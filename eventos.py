@@ -67,6 +67,12 @@ class Eventos:
     def getCasa(self, y, x):
         return self.mundo.getCasa(y, x)
 
+    def getPuerto(self, y, x):
+        return self.mundo.getPuerto(y, x)
+
+    def getMina(self, y, x):
+        return self.mundo.getMina(y, x)
+
     def getCantMarcadores(self):
         self.cantMarcadores = -1
         self.cantNoMarcados = -1
@@ -216,8 +222,24 @@ class Eventos:
                                     self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
                                     self.mundo.hacerCasa()
                                     
-                                else:
-                                    print("te faltan recursos panflin")
+                            else:
+                                print("te faltan recursos panflin")
+
+                            if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Agua"
+                                and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
+                                    if self.mundo.getMadera() >= 100:
+                                        self.mundo.ponerPuerto(self.visualInicioY, self.visualInicioX)
+                                        self.mundo.hacerPuerto()
+                                    else:
+                                        print("te faltan recursos panflin")
+
+                            if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
+                                and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Montana"):
+                                    if self.mundo.getMadera() >= 40:
+                                        self.mundo.ponerMina(self.visualInicioY, self.visualInicioX)
+                                        self.mundo.hacerMina()
+                                    else:
+                                        print("te faltan recursos panflin")
                     
                     if event.key == pygame.K_2:
                         self.mundo.hacerBarco()

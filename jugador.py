@@ -90,3 +90,9 @@ class Jugador:
     
     def ponerObreros(self):
         self.civilizacion.ponerObreros()
+
+    def hacerPuerto(self):
+        self.civilizacion.hacerPuerto()
+    
+    def hacerMina(self):
+        self.civilizacion.hacerMina()

@@ -2,7 +2,8 @@ import pygame
 from persona import Persona
 from marcador import Marcador
 from casa import Casa
-
+from puerto import Puerto
+from mina import Mina
 class Celda():
     '''Clase Celda contiene el terreno, el propietario, visual y un numero'''
 
@@ -14,6 +15,8 @@ class Celda():
         self.persona = Persona(None)
         self.marcador = Marcador(None)
         self.casa = Casa(None)
+        self.puerto = Puerto(None)
+        self.mina = Mina(None)
         
 
     def tomarTerreno(self, propiedad):
@@ -73,6 +76,18 @@ class Celda():
     
     def getCasa(self):
         return self.casa.getCasa()
+
+    def getPuerto(self):
+        return self.puerto.getPuerto()
+    
+    def ponerPuerto(self):
+        self.puerto.ponerPuerto()
+
+    def getMina(self):
+        return self.mina.getMina()
+    
+    def ponerMina(self):
+        self.mina.ponerMina()
 
     def getOrdenMarcador(self):
         return self.marcador.getOrdenMarcador()

@@ -60,6 +60,7 @@ class civilizacion:
             self.restarPiedra(20)
         else:
             print("te faltan recursos panflin")
+<<<<<<< HEAD
     
     def getFundadorActivo(self):
         return self.fundador.getActivo()
@@ -84,3 +85,18 @@ class civilizacion:
     
     def ponerObreros(self):
         self.obreros.activar()
+=======
+
+    def hacerPuerto(self):
+        if self.cantMadera >= 100:
+            self.restarMadera(100)
+        else:
+            print("te faltan recursos panflin")
+
+    def hacerMina(self):
+        if self.cantMadera >= 40:
+            self.restarMadera(40)
+        else:
+            print("te faltan recursos panflin")
+    
+>>>>>>> 5aee1914ff5fc88f21e1573d5ac826eb78ff2d8c

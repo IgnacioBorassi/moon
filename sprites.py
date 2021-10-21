@@ -20,6 +20,7 @@ class Sprites:
         self.guerrrero_sup = None
         self.obrero_sup = None
         self.arquero_sup = None
+        self.puerto_sup = None
 
     def getNegro_fond(self):
         self.negro_fond = pygame.image.load('Fotuchas/negro.png').convert_alpha()
@@ -99,3 +100,13 @@ class Sprites:
         self.obrero_sup = pygame.image.load('Fotuchas/peladoObrero_sup.png').convert_alpha()
         self.obrero_sup = pygame.transform.scale(self.obrero_sup, (self.escalaX, self.escalaY))
         return self.obrero_sup
+
+    def getPuerto_sup(self):
+        self.puerto_sup = pygame.image.load('Fotuchas/Puerto_sup.png').convert_alpha()
+        self.puerto_sup = pygame.transform.scale(self.puerto_sup, (self.escalaX, self.escalaY))
+        return self.puerto_sup
+    
+    def getMina_sup(self):
+        self.mina_sup = pygame.image.load('Fotuchas/Mina_sup.png').convert_alpha()
+        self.mina_sup = pygame.transform.scale(self.mina_sup, (self.escalaX, self.escalaY))
+        return self.mina_sup
