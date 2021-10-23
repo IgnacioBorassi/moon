@@ -143,6 +143,8 @@ class Visual:
 
                                 elif (repr(eventos.getNaturaleza(i, x))) == "Montana":
                                     pantalla.blit(montana_sup, (pos_x, pos_y))
+                                    if eventos.getMina(i,x) == True:
+                                        pantalla.blit(mina_sup, (pos_x, pos_y))
 
                             else:
                                 pantalla.blit(agua_fond, (pos_x, pos_y))
@@ -150,6 +152,7 @@ class Visual:
                             
                             if eventos.getCasa(i,x) == True:
                                pantalla.blit(casa_sup, (pos_x, pos_y)) 
+
                             if eventos.getPelado(i, x) == True:
                                 if (repr(eventos.getTerreno(i, x))) == "Tierra":
                                     
@@ -170,14 +173,11 @@ class Visual:
                                 else:
                                     pantalla.blit(barco_sup,(pos_x, pos_y))
                                     eventos.restarUsoBarco()
-                            if eventos.getCasa(i,x) == True:
-                               pantalla.blit(casa_sup, (pos_x, pos_y)) 
+                            
 
                             if eventos.getPuerto(i,x) == True:
                                pantalla.blit(puerto_sup, (pos_x, pos_y)) 
 
-                            if eventos.getMina(i,x) == True:
-                               pantalla.blit(mina_sup, (pos_x, pos_y))
                         else:
                             pantalla.blit(negro_fond, (pos_x, pos_y))
                         

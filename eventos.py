@@ -144,7 +144,7 @@ class Eventos:
                                     
                                     
 
-                                if (repr(self.getNaturaleza(i, x))) == "Montana":
+                                if self.getMina(i, x) == True:
                                     piedra = self.mundo.cantidadMaterial(i, x)
                                     self.mundo.agregarPiedra(piedra)
                                 
@@ -206,14 +206,12 @@ class Eventos:
 
                 if self.menu.getActivo() == False:
                     if event.key == pygame.K_1:
-                        print((repr(self.mundo.getClasePersona(self.visualInicioY, self.visualInicioX))) )
                         if (repr(self.mundo.getClasePersona(self.visualInicioY, self.visualInicioX))) == "Fundador":
                             self.sacarPelado(self.visualInicioY, self.visualInicioX)
                             if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
                             and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
                                 
                                 self.colocarCivilizacion(visualInicioY, visualInicioX)
-                                self.mundo.hacerCasa()
                                 
                         else:
                             if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
@@ -251,77 +249,7 @@ class Eventos:
                         self.inicioCeldaX = ((self.visualInicioX * - self.escalaX) +
                             self.escalaX * int((self.pantallaX/self.escalaX)/2))
 
-                    '''if event.key == pygame.K_w:
-                        self.mundo.sacarPelado(self.visualInicioY, self.visualInicioX)
-                        self.visualInicioY -= 1
-
-                        if self.visualInicioY < 1:
-                            self.visualInicioY = 1
-
-                        if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra 
-                        and type(self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)) == Aire):
-
-                            self.mundo.cambiarVisualY(self.visualInicioY, self.visualInicioX, (-1))
-                            
-                            print("Eje Y Descubridor: " + str(self.visualInicioY))
-                            print("Eje X Descubridor: " + str(self.visualInicioX))
-
-                        else:
-                            self.visualInicioY += 1
-                            self.mundo.ponerPelado(self.visualInicioY, self.visualInicioX)
-                    if event.key == pygame.K_a:
-                        self.mundo.sacarPelado(self.visualInicioY, self.visualInicioX)
-                        self.visualInicioX -= 1
-                        if self.visualInicioX < 1:
-                            self.visualInicioX = 1
-                        if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra and 
-                        type(self.mundo.getNaturaleza(self.visualInicioY,self.visualInicioX)) == Aire):
-                            
-                            self.mundo.cambiarVisualX(self.visualInicioY, self.visualInicioX, (-1))
-
-                            print("Eje Y Descubridor: " + str(self.visualInicioY))
-                            print("Eje X Descubridor: " + str(self.visualInicioX))
-
-                        else: 
-                            self.visualInicioX += 1
-                            self.mundo.ponerPelado(self.visualInicioY, self.visualInicioX)
-                    if event.key == pygame.K_s:
-                        self.mundo.sacarPelado(self.visualInicioY, self.visualInicioX)
-                        self.visualInicioY += 1
-                        if self.visualInicioY > (self.celdasY - 3):
-                            self.visualInicioY = (self.celdasY - 3)
-
-                        if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra 
-                        and type(self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)) == Aire):
-
-                            self.mundo.cambiarVisualY(self.visualInicioY, self.visualInicioX, (1))
-
-                            print("Eje Y Descubridor: " + str(self.visualInicioY))
-                            print("Eje X Descubridor: " + str(self.visualInicioX))
-
-                        else:
-                            self.visualInicioY -= 1
-                            self.mundo.ponerPelado(self.visualInicioY, self.visualInicioX)
-                    if event.key == pygame.K_d:
-                        self.mundo.sacarPelado(self.visualInicioY, self.visualInicioX)
-                        self.visualInicioX += 1
-
-                        if self.visualInicioX > (self.celdasX - 3):
-                            self.visualInicioX = (self.celdasX - 3)
-
-                        if (type(self.mundo.getTerreno(self.visualInicioY, self.visualInicioX)) == Tierra 
-                        and type(self.mundo.getNaturaleza(self.visualInicioY, self.visualInicioX)) == Aire):
-
-                            self.mundo.cambiarVisualX(self.visualInicioY, self.visualInicioX, (1))
-                            
-                            print("Eje Y Descubridor: " + str(self.visualInicioY))
-                            print("Eje X Descubridor: " + str(self.visualInicioX))
-
-                        else:
-                            self.visualInicioX -= 1
-                            self.mundo.ponerPelado(self.visualInicioY, self.visualInicioX)
-                    '''
-
+                    
                     if event.key == pygame.K_SPACE:
                         if self.seleccion == True:
                             self.getCantMarcadores()
@@ -389,10 +317,35 @@ class Eventos:
                                                 else:
                                                     archivo.write('Tierra,') 
                                     else:
-                                        if x == self.celdasX:
-                                            archivo.write('Agua')
-                                        else:
-                                            archivo.write('Agua,')
+                                        if (self.mundo.getPelado(i, x)) == True:
+                                            if (repr(self.getClase(i, x))) == "Guerrero":
+                                                if x == self.celdasX:
+                                                    archivo.write('AGPersona')
+                                                else:
+                                                    archivo.write('AGPersona,')
+                                                
+                                            elif (repr(self.getClase(i, x))) == "Arquero":
+                                                if x == self.celdasX:
+                                                    archivo.write('AAPersona')
+                                                else:
+                                                    archivo.write('AAPersona,')
+                                                
+                                            elif (repr(self.getClase(i, x))) == "Obrero":
+                                                if x == self.celdasX:
+                                                    archivo.write('AOPersona')
+                                                else:
+                                                    archivo.write('AOPersona,')
+                                                
+                                            else:
+                                                if x == self.celdasX:
+                                                    archivo.write('AFPersona')
+                                                else:
+                                                    archivo.write('AFPersona,')
+                                        else:      
+                                            if x == self.celdasX:
+                                                archivo.write('Agua')
+                                            else:
+                                                archivo.write('Agua,')
                                 
                                 archivo.write("\n")
                     
