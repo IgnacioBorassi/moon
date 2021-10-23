@@ -172,7 +172,7 @@ class Eventos:
                 exit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if self.modo.getActivo()== None or self.modo.getActivo()== False:
+                if self.modo.getActivo() == None or self.menu.getActivo() == True:
                     if self.menu.getStartRect().collidepoint(event.pos):
                         if self.modo.getActivo() == None:
                             self.menu.apagarMenu()
@@ -182,7 +182,7 @@ class Eventos:
                             
                     elif self.menu.getExitRect().collidepoint(event.pos):
                         pygame.quit()
-                        exit()
+                        exit()                    
                 else:
                     if self.modo.getBotonMapa1Rect().collidepoint(event.pos):
                         self.mapa1 = True
@@ -360,7 +360,9 @@ class Eventos:
                                 print("No podes pasar por arriba de otro marcador")
                             else:
                                 if self.mundo.getEnergia() == 0:
-                                    print("ya esta men")
+                                    print("Estoy muy cansado")
+                                elif self.getPelado(self.visualInicioY - 1, self.visualInicioX) == True:
+                                    print("Aca ya hay alguien")
                                 else:
                                     if ((repr(self.getTerreno(self.visualInicioY - 1, self.visualInicioX)))) == "Tierra":
                                         if ((repr(self.getNaturaleza(self.visualInicioY - 1, self.visualInicioX)))) == "Arbol":
@@ -371,7 +373,7 @@ class Eventos:
                                         elif ((repr(self.getNaturaleza(self.visualInicioY - 1 , self.visualInicioX)))) == "Aire":
                                             self.mundo.restarEnergia(50)
                                             self.ordenSeleccion += 1
-                                            self.visualInicioY -= 1 
+                                            self.visualInicioY -= 1
 
                                         elif ((repr(self.getNaturaleza(self.visualInicioY - 1 , self.visualInicioX)))) == "Montana":
                                             self.mundo.restarEnergia(150)
@@ -401,7 +403,9 @@ class Eventos:
                                 print("No podes ir a la izquierda si ya hay un marcador")
                             else:
                                 if self.mundo.getEnergia() == 0:
-                                    print("ya esta men, estoy muy cansado")
+                                    print("Estoy muy cansado")
+                                elif self.getPelado(self.visualInicioY, self.visualInicioX - 1) == True:
+                                    print("Aca ya hay alguien")
                                 else:
                                     if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX - 1)))) == "Tierra":
                                         if ((repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX - 1)))) == "Arbol":
@@ -438,7 +442,9 @@ class Eventos:
                                 print("No podes ir para abajo si ya hay un marcador")
                             else:
                                 if self.mundo.getEnergia() == 0:
-                                    print("ya esta men")
+                                    print("Estoy muy cansado")
+                                elif self.getPelado(self.visualInicioY + 1, self.visualInicioX) == True:
+                                    print("Aca ya hay alguien")
                                 else:
                                     if ((repr(self.getTerreno(self.visualInicioY + 1, self.visualInicioX)))) == "Tierra":
                                         if ((repr(self.getNaturaleza(self.visualInicioY + 1 , self.visualInicioX)))) == "Arbol":
@@ -477,7 +483,9 @@ class Eventos:
                                 print("No da ir a la derecha si ya hay un marcador")
                             else:
                                 if self.mundo.getEnergia() == 0:
-                                    print("ya esta men")
+                                    print("Estoy muy cansado")
+                                elif self.getPelado(self.visualInicioY, self.visualInicioX + 1) == True:
+                                    print("Aca ya hay alguien")
                                 else:
                                     if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX + 1)))) == "Tierra":
                                         if ((repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX + 1)))) == "Arbol":
