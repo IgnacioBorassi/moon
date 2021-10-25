@@ -52,6 +52,7 @@ class Visual:
         obrero_sup = sprites.getObrero_sup()
         puerto_sup = sprites.getPuerto_sup()
         mina_sup = sprites.getMina_sup()
+        pez_sup = sprites.getPez_sup()
 
         eventos = Eventos()
         inicioCeldaY = 0
@@ -188,7 +189,7 @@ class Visual:
                     pantalla.blit(piedra_sup, (904, 56))
                     pantalla.blit(madera_sup, (904, 100))
                     pantalla.blit(energia_sup, (904, 21))
-                   
+                    pantalla.blit(pez_sup, (904, 150))
 
                     font = pygame.font.SysFont(None, 24)
                     img = font.render(eventos.getEnergia(), True, (255, 255, 0))
@@ -197,11 +198,13 @@ class Visual:
                     pantalla.blit(img2, (950, 70))
                     img3 = font.render(eventos.getMadera(), True, (128, 0, 0))
                     pantalla.blit(img3, (950, 110))
+                    img4 = font.render(eventos.getComida(), True, (128, 128, 128))
+                    pantalla.blit(img4, (950, 160))
 
                     if eventos.getBarco()== True:
-                        pantalla.blit(barco_sup, (904, 140))
+                        pantalla.blit(barco_sup, (904, 190))
                         img4 = font.render(eventos.getUsoBarco(), True, (128, 0, 0))
-                        pantalla.blit(img4, (950, 150))
+                        pantalla.blit(img4, (950, 200))
                    
                     pos_x = inicioCeldaX
                     pos_y += escalaY

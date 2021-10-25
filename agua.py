@@ -1,3 +1,4 @@
+import random
 class Agua:
     '''Representa el agua y su contrucciones'''
     
@@ -15,3 +16,6 @@ class Agua:
     def __repr__(self) -> str:
         return "Agua"
     
+    def randomMaterial(self):
+        num = random.randrange(1, 10)
+        return num

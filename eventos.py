@@ -94,7 +94,8 @@ class Eventos:
             self.sacarMarcadores()
             if self.mundo.getEnergia() == 0:
                 self.mundo.setEnergia()
-            
+            if self.mundo.getComida() == 0:
+                self.mundo.getComida()
 
         if self.activar == True:
             for i in range(1, (self.celdasY - 1)):
@@ -143,11 +144,28 @@ class Eventos:
                                     self.mundo.sacarArbol(i, x)
                                     
                                     
-
                                 if self.getMina(i, x) == True:
                                     piedra = self.mundo.cantidadMaterial(i, x)
                                     self.mundo.agregarPiedra(piedra)
+                                    print(piedra)
                                 
+                                if self.getPuerto(i, x) == True:
+                                    comida = self.mundo.cantidadMaterial(i, x)
+                                    self.mundo.agregarComida(comida)
+                                    print(comida)
+                                
+                            if (repr(self.getClase(i, x))) == "Guerrero":
+                                 if self.getPuerto(i, x) == True:
+                                    comida = self.mundo.cantidadMaterial(i, x)
+                                    self.mundo.agregarComida(comida)
+                                    print(comida)
+
+                            if (repr(self.getClase(i, x))) == "Arquero":
+                                 if self.getPuerto(i, x) == True:
+                                    comida = self.mundo.cantidadMaterial(i, x)
+                                    self.mundo.agregarComida(comida)
+                                    print(comida)
+
                             if (repr(self.getTerreno(i, x))) == "Agua":
                                 self.mundo.restarUsoBarco()
 
@@ -367,22 +385,26 @@ class Eventos:
                                     if ((repr(self.getTerreno(self.visualInicioY - 1, self.visualInicioX)))) == "Tierra":
                                         if ((repr(self.getNaturaleza(self.visualInicioY - 1, self.visualInicioX)))) == "Arbol":
                                             self.mundo.restarEnergia(100)
+                                            self.mundo.restarComida(3)
                                             self.ordenSeleccion += 1
                                             self.visualInicioY -= 1
 
                                         elif ((repr(self.getNaturaleza(self.visualInicioY - 1 , self.visualInicioX)))) == "Aire":
                                             self.mundo.restarEnergia(50)
+                                            self.mundo.restarComida(1)
                                             self.ordenSeleccion += 1
                                             self.visualInicioY -= 1
 
                                         elif ((repr(self.getNaturaleza(self.visualInicioY - 1 , self.visualInicioX)))) == "Montana":
                                             self.mundo.restarEnergia(150)
+                                            self.mundo.restarComida(5)
                                             self.ordenSeleccion += 1
                                             self.visualInicioY -= 1
                                     
                                     elif ((repr(self.getTerreno(self.visualInicioY - 1, self.visualInicioX)))) == "Agua":  
                                         if self.mundo.getBarco()== True:
                                             self.mundo.restarEnergia(50)
+                                            self.mundo.restarComida(1)
                                             self.ordenSeleccion += 1
                                             self.visualInicioY -= 1
                                         else:
@@ -410,19 +432,23 @@ class Eventos:
                                     if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX - 1)))) == "Tierra":
                                         if ((repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX - 1)))) == "Arbol":
                                             self.mundo.restarEnergia(100)
+                                            self.mundo.restarComida(3)
                                             self.ordenSeleccion += 1
                                             self.visualInicioX -= 1
                                         elif ((repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX - 1 )))) == "Aire":
                                             self.mundo.restarEnergia(50)
+                                            self.mundo.restarComida(1)
                                             self.ordenSeleccion += 1
                                             self.visualInicioX -= 1
                                         elif ((repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX - 1 ))))== "Montana":
                                             self.mundo.restarEnergia(150)
+                                            self.mundo.restarComida(5)
                                             self.ordenSeleccion += 1
                                             self.visualInicioX -= 1
                                     elif ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX - 1)))) == "Agua":  
                                         if self.mundo.getBarco()== True:
                                             self.mundo.restarEnergia(50)
+                                            self.mundo.restarComida(1)
                                             self.ordenSeleccion += 1
                                             self.visualInicioX -= 1
                                         else:
@@ -449,19 +475,23 @@ class Eventos:
                                     if ((repr(self.getTerreno(self.visualInicioY + 1, self.visualInicioX)))) == "Tierra":
                                         if ((repr(self.getNaturaleza(self.visualInicioY + 1 , self.visualInicioX)))) == "Arbol":
                                             self.mundo.restarEnergia(100)
+                                            self.mundo.restarComida(3)
                                             self.ordenSeleccion += 1
                                             self.visualInicioY += 1
                                         elif ((repr(self.getNaturaleza(self.visualInicioY + 1, self.visualInicioX)))) == "Aire":
                                             self.mundo.restarEnergia(50)
+                                            self.mundo.restarComida(1)
                                             self.ordenSeleccion += 1
                                             self.visualInicioY += 1
                                         elif ((repr(self.getNaturaleza(self.visualInicioY + 1, self.visualInicioX)))) == "Montana":
                                             self.mundo.restarEnergia(150)
+                                            self.mundo.restarComida(5)
                                             self.ordenSeleccion += 1
                                             self.visualInicioY += 1
                                     elif ((repr(self.getTerreno(self.visualInicioY + 1, self.visualInicioX)))) == "Agua":  
                                         if self.mundo.getBarco()== True:
                                             self.mundo.restarEnergia(50)
+                                            self.mundo.restarComida(1)
                                             self.ordenSeleccion += 1
                                             self.visualInicioY += 1
                                         else:
@@ -490,19 +520,23 @@ class Eventos:
                                     if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX + 1)))) == "Tierra":
                                         if ((repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX + 1)))) == "Arbol":
                                             self.mundo.restarEnergia(100)
+                                            self.mundo.restarComida(3)
                                             self.ordenSeleccion += 1
                                             self.visualInicioX += 1
                                         elif ((repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX + 1)))) == "Aire":
                                             self.mundo.restarEnergia(50)
+                                            self.mundo.restarComida(1)
                                             self.ordenSeleccion += 1
                                             self.visualInicioX += 1
                                         elif ((repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX + 1)))) == "Montana":
                                             self.mundo.restarEnergia(150)
+                                            self.mundo.restarComida(5)
                                             self.ordenSeleccion += 1
                                             self.visualInicioX += 1
                                     elif ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX + 1)))) == "Agua":  
                                         if self.mundo.getBarco()== True:
                                             self.mundo.restarEnergia(50)
+                                            self.mundo.restarComida(1)
                                             self.ordenSeleccion += 1
                                             self.visualInicioX += 1
                                         else:
@@ -708,6 +742,9 @@ class Eventos:
     def getPiedra(self):
         return str(self.mundo.getPiedra())
     
+    def getComida(self):
+        return str(self.mundo.getComida())
+
     def getBarco(self):
         return self.mundo.getBarco()
     

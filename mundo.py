@@ -397,6 +397,9 @@ class Mundo():
     def agregarPiedra(self, cant):
         self.jugador.agregarPiedra(cant)
     
+    def agregarComida(self, cant):
+        self.jugador.agregarComida(cant)
+
     def restarPiedra(self, cant):
         self.jugador.restarPiedra(cant)
     
@@ -412,12 +415,21 @@ class Mundo():
     def getPiedra(self):
         return self.jugador.getPiedra()
     
+    def getComida(self):
+        return self.jugador.getComida()
+
     def restarEnergia(self, cant):
         self.jugador.restarEnergia(cant)
+
+    def restarComida(self, cant):
+        self.jugador.restarComida(cant)
 
     def setEnergia(self):
         self.jugador.setEnergia()
     
+    def setComida(self):
+        self.jugador.setComida()
+        
     def hacerBarco(self):
         self.jugador.crearBarco()
     
