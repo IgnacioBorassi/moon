@@ -212,8 +212,13 @@ class Mundo():
                     self.coordenadas[i][x].cambiarNaturaleza(Arbol())
 
 
-    
-
+    def contarPelados(self):
+        cont = 0
+        for i in range(0, self.cantCeldasY):
+            for x in range(0, self.cantCeldasX):
+                if (self.coordenadas[i][x].getPelado()) == True:
+                    cont += 1
+        return cont
 
 
     def crearMundo(self):

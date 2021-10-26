@@ -16,7 +16,7 @@ class Jugador:
         return self.energia
 
     def getComida(self):
-        return self.civilizacion.getComida()
+        return self.comida
 
     def agregarMadera(self, cant):
         self.civilizacion.agregarMadera(cant)
@@ -39,7 +39,6 @@ class Jugador:
         self.comida -= cant
         if self.comida < 0:
             self.comida = 0
-        return self.comida
             
     def setEnergia(self):
         self.energia = 500

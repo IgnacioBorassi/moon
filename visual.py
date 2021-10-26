@@ -173,7 +173,6 @@ class Visual:
 
                                 else:
                                     pantalla.blit(barco_sup,(pos_x, pos_y))
-                                    eventos.restarUsoBarco()
                             
 
                             if eventos.getPuerto(i,x) == True:
