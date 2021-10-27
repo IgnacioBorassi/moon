@@ -39,93 +39,93 @@ class Mundo():
                 randomN = int(random.randrange(0, 40))
 
                 if randomN in [0, 1, 2, 3, 4, 5, 6]:
-                    milistaCopada[i].append(Celda(Agua(Aire(), None), None, False, randomN))
+                    milistaCopada[i].append(Celda(Agua(Aire(), None), 0, False, randomN))
                 else:
-                    milistaCopada[i].append(Celda(Tierra(Aire(), None), None, False, randomN))
+                    milistaCopada[i].append(Celda(Tierra(Aire(), None), 0, False, randomN))
         return milistaCopada
     
     def cargadoMapa(self, i, x):
         if self.coordenadas[i][x] == "Tierra":
-            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, False, 0))
         if self.coordenadas[i][x] == "Agua":
-            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), None, False, 0))
+            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, False, 0))
         if self.coordenadas[i][x] == "Arbol":
-            self.coordenadas[i][x] = (Celda(Tierra(Arbol(), None), None, False, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Arbol(), None), 0, False, 0))
         if self.coordenadas[i][x] == "Montana":
-            self.coordenadas[i][x] = (Celda(Tierra(Montana(), None), None, False, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Montana(), None), 0, False, 0))
         if self.coordenadas[i][x] == "Casa":
-            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerCasa()
         if self.coordenadas[i][x] == "GPersona":
-            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerPelado(Guerrero())
         if self.coordenadas[i][x] == "OPersona":
-            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerPelado(Obrero())
         if self.coordenadas[i][x] == "APersona":
-            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerPelado(Arquero())
         if self.coordenadas[i][x] == "FPersona":
-            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, False, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerPelado(Fundador())
         if self.coordenadas[i][x] == "AGPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
-            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), None, False, 0))
+            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerPelado(Guerrero())
         if self.coordenadas[i][x] == "AOPersona":
-            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), None, False, 0))
+            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerPelado(Obrero())
         if self.coordenadas[i][x] == "AAPersona":
-            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), None, False, 0))
+            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerPelado(Arquero())
         if self.coordenadas[i][x] == "AFPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
-            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), None, False, 0))
+            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerPelado(Fundador())
         if self.coordenadas[i][x] == "VTierra":
-            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, True, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
         if self.coordenadas[i][x] == "VAgua":
-            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), None, True, 0))
+            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, True, 0))
         if self.coordenadas[i][x] == "VArbol":
-            self.coordenadas[i][x] = (Celda(Tierra(Arbol(), None), None, True, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Arbol(), None), 0, True, 0))
         if self.coordenadas[i][x] == "VMontana":
-            self.coordenadas[i][x] = (Celda(Tierra(Montana(), None), None, True, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Montana(), None), 0, True, 0))
         if self.coordenadas[i][x] == "VCasa":
-            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, True, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerCasa()
         if self.coordenadas[i][x] == "VGPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
-            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, True, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Guerrero())
         if self.coordenadas[i][x] == "VOPersona":
-            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, True, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Obrero())
         if self.coordenadas[i][x] == "VAPersona":
-            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, True, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Arquero())
         if self.coordenadas[i][x] == "VFPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
-            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), None, True, 0))
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Fundador())
         if self.coordenadas[i][x] == "VAGPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
-            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), None, True, 0))
+            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Guerrero())
         if self.coordenadas[i][x] == "VAOPersona":
-            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), None, True, 0))
+            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Obrero())
         if self.coordenadas[i][x] == "VAAPersona":
-            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), None, True, 0))
+            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Arquero())
         if self.coordenadas[i][x] == "VAFPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
-            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), None, True, 0))
+            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Fundador())
         
             
@@ -293,17 +293,27 @@ class Mundo():
 
     def zonaInicial(self, y, x):
         '''Muestra la zona donde empieza el personaje'''
-
+        self.ponerCivJugador(y, x)
         for i in range(1, 6):
             self.cambiarVisual(y + i, x, True)
+            self.ponerCivJugador(y + i, x)
             self.cambiarVisual(y - i, x, True)
+            self.ponerCivJugador(y - i, x)
             self.cambiarVisual(y, x + i, True)
+            self.ponerCivJugador(y, x + i)
             self.cambiarVisual(y, x - i, True)
+            self.ponerCivJugador(y, x - i)
             for e in range(1, 6):
                 self.cambiarVisual(y + i, x + e, True)
+                self.ponerCivJugador(y + i, x + e)
                 self.cambiarVisual(y + i, x - e, True)
+                self.ponerCivJugador(y + i, x - e)
                 self.cambiarVisual(y - i, x + e, True)
+                self.ponerCivJugador(y - i, x + e)
                 self.cambiarVisual(y - i, x - e, True)
+                self.ponerCivJugador(y - i, x - e)
+                
+                
 
 
     def colocarCivilizacion(self, y, x):
@@ -353,7 +363,6 @@ class Mundo():
                 
 
 
-
     def cambiarVisualX(self, visualInicioY, visualInicioX, direccion):
         '''Hace visibles el alrededor del personaje segun la direccion en x'''
 
@@ -376,7 +385,7 @@ class Mundo():
         self.cambiarVisual((visualInicioY + direccion), (visualInicioX + 1), True)
         self.cambiarVisual((visualInicioY + direccion), (visualInicioX - 1), True)
 
-    def cambiarVisualMov(self, visualInicioY, visualInicioX):
+    def cambiarVisualMov(self, visualInicioY, visualInicioX, visualMov):
         self.cambiarVisual(visualInicioY, visualInicioX, True)
         self.cambiarVisual(visualInicioY, (visualInicioX + 1), True)
         self.cambiarVisual(visualInicioY, (visualInicioX - 1), True)
@@ -387,11 +396,50 @@ class Mundo():
         self.cambiarVisual(visualInicioY + 1, (visualInicioX), True)
         self.cambiarVisual(visualInicioY - 1, (visualInicioX), True)
 
+        if visualMov == True:
+            self.ponerCivJugador(visualInicioY, visualInicioX)
+            self.ponerCivJugador(visualInicioY, (visualInicioX + 1))
+            self.ponerCivJugador(visualInicioY, (visualInicioX - 1))
+            self.ponerCivJugador(visualInicioY + 1, (visualInicioX + 1))
+            self.ponerCivJugador(visualInicioY - 1, (visualInicioX - 1))
+            self.ponerCivJugador(visualInicioY - 1, (visualInicioX + 1))
+            self.ponerCivJugador(visualInicioY + 1, (visualInicioX - 1))
+            self.ponerCivJugador(visualInicioY + 1, (visualInicioX))
+            self.ponerCivJugador(visualInicioY - 1, (visualInicioX))
+
     def sacarArbol(self, y, x):
         self.coordenadas[y][x].sacarArbol()
     
     def cantidadMaterial(self, y, x):
         return self.coordenadas[y][x].randomMaterial()
+
+    def tipoBorde(self, y, x):
+        if self.coordenadas[y][x].getCivilizacion() != 0:
+            if (self.coordenadas[y-1][x].getCivilizacion() != 1 and self.coordenadas[y][x+1].getCivilizacion() != 1 and 
+                self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
+                return "borde_arriba_derecha"
+            elif (self.coordenadas[y-1][x].getCivilizacion() != 1 and self.coordenadas[y][x-1].getCivilizacion() != 1 and 
+                self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() == 1):
+                return "borde_arriba_izquierda"
+            elif (self.coordenadas[y+1][x].getCivilizacion() != 1 and self.coordenadas[y][x-1].getCivilizacion() != 1 and 
+                self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() == 1):
+                return "borde_abajo_izquierda"
+            elif (self.coordenadas[y+1][x].getCivilizacion() != 1 and self.coordenadas[y][x+1].getCivilizacion() != 1 and 
+                self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
+                return "borde_abajo_derecha"
+            elif (self.coordenadas[y+1][x].getCivilizacion() != 1 and self.coordenadas[y][x+1].getCivilizacion() == 1 and 
+                self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
+                return "borde_abajo"
+            elif (self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() == 1 and 
+                self.coordenadas[y-1][x].getCivilizacion() != 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
+                return "borde_arriba"
+            elif (self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() != 1 and 
+                self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
+                return "borde_derecha"
+            elif (self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() == 1 and 
+                self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() != 1):
+                return "borde_izquierda"
+        
 
     def agregarMadera(self, cant):
         self.jugador.agregarMadera(cant)
@@ -462,7 +510,10 @@ class Mundo():
     def getObreroActivo(self):
         return self.jugador.getObreroActivo()
     
-    
+    def ponerCivJugador(self, y, x):
+        self.coordenadas[y][x].ponerJugadorCiv()
+
+
     def matarFundador(self):
         self.jugador.matarFundador()
     

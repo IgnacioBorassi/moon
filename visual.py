@@ -53,6 +53,14 @@ class Visual:
         puerto_sup = sprites.getPuerto_sup()
         mina_sup = sprites.getMina_sup()
         pez_sup = sprites.getPez_sup()
+        bordeArriba_sup = sprites.getBordeArriba_sup()
+        bordeAbajo_sup = sprites.getBordeAbajo_sup()
+        bordeIzquierda_sup = sprites.getBordeIzquierda_sup()
+        bordeIzquierdaAbajo_sup = sprites.getBordeIzquierdaAbajo_sup()
+        bordeIzquierdaArriba_sup = sprites.getBordeIzquierdaArriba_sup()
+        bordeDerecha_sup = sprites.getBordeDerecha_sup()
+        bordeDerechaAbajo_sup = sprites.getBordeDerechaAbajo_sup()
+        bordeDerechaArriba_sup = sprites.getBordeDerechaArriba_sup()
 
         eventos = Eventos()
         inicioCeldaY = 0
@@ -176,14 +184,33 @@ class Visual:
                             
 
                             if eventos.getPuerto(i,x) == True:
-                               pantalla.blit(puerto_sup, (pos_x, pos_y)) 
+                               pantalla.blit(puerto_sup, (pos_x, pos_y))
+
+                            borde = eventos.bordeVisual(i, x)
+                            if borde == "borde_arriba_derecha":
+                                pantalla.blit(bordeDerechaArriba_sup, (pos_x, pos_y))
+                            elif borde == "borde_arriba_izquierda":
+                                pantalla.blit(bordeIzquierdaArriba_sup, (pos_x, pos_y))
+                            elif borde == "borde_abajo_izquierda":
+                                pantalla.blit(bordeIzquierdaAbajo_sup, (pos_x, pos_y))
+                            elif borde == "borde_abajo_derecha":
+                                pantalla.blit(bordeDerechaAbajo_sup, (pos_x, pos_y))
+                            elif borde == "borde_derecha":
+                                pantalla.blit(bordeDerecha_sup, (pos_x, pos_y))
+                            elif borde == "borde_izquierda":
+                                pantalla.blit(bordeIzquierda_sup, (pos_x, pos_y))
+                            elif borde == "borde_arriba":
+                                pantalla.blit(bordeArriba_sup, (pos_x, pos_y))
+                            elif borde == "borde_abajo":
+                                pantalla.blit(bordeAbajo_sup, (pos_x, pos_y))
+                            
 
                         else:
                             pantalla.blit(negro_fond, (pos_x, pos_y))
-                        
                         if eventos.getMarcador(i, x) == True:
                             pantalla.blit(marcador_sup, (pos_x, pos_y))
                         pos_x+=escalaX
+
                     
                     pantalla.blit(piedra_sup, (904, 56))
                     pantalla.blit(madera_sup, (904, 100))

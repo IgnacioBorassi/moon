@@ -116,4 +116,44 @@ class Sprites:
         self.pez_sup = pygame.image.load('Fotuchas/Pez_sup.png').convert_alpha()
         self.pez_sup = pygame.transform.scale(self.pez_sup, (self.escalaX, self.escalaY))
         return self.pez_sup
+
+    def getBordeArriba_sup(self):
+        self.bordeArriba_sup = pygame.image.load('Fotuchas/borde_arriba.png').convert_alpha()
+        self.bordeArriba_sup = pygame.transform.scale(self.bordeArriba_sup, (self.escalaX, self.escalaY))
+        return self.bordeArriba_sup
+    
+    def getBordeAbajo_sup(self):
+        self.bordeAbajo_sup = pygame.image.load('Fotuchas/borde_abajo.png').convert_alpha()
+        self.bordeAbajo_sup = pygame.transform.scale(self.bordeAbajo_sup, (self.escalaX, self.escalaY))
+        return self.bordeAbajo_sup
+
+    def getBordeDerecha_sup(self):
+        self.bordeDerecha_sup = pygame.image.load('Fotuchas/borde_derecha.png').convert_alpha()
+        self.bordeDerecha_sup = pygame.transform.scale(self.bordeDerecha_sup, (self.escalaX, self.escalaY))
+        return self.bordeDerecha_sup
+    
+    def getBordeIzquierda_sup(self):
+        self.bordeIzquierda_sup = pygame.image.load('Fotuchas/borde_izquierda.png').convert_alpha()
+        self.bordeIzquierda_sup = pygame.transform.scale(self.bordeIzquierda_sup, (self.escalaX, self.escalaY))
+        return self.bordeIzquierda_sup
+
+    def getBordeIzquierdaArriba_sup(self):
+        self.bordeIzquierdaArriba_sup = pygame.image.load('Fotuchas/borde_izquierda_arriba.png').convert_alpha()
+        self.bordeIzquierdaArriba_sup = pygame.transform.scale(self.bordeIzquierdaArriba_sup, (self.escalaX, self.escalaY))
+        return self.bordeIzquierdaArriba_sup
+
+    def getBordeIzquierdaAbajo_sup(self):
+        self.bordeIzquierdaAbajo_sup = pygame.image.load('Fotuchas/borde_izquierda_abajo.png').convert_alpha()
+        self.bordeIzquierdaAbajo_sup = pygame.transform.scale(self.bordeIzquierdaAbajo_sup, (self.escalaX, self.escalaY))
+        return self.bordeIzquierdaAbajo_sup
+
+    def getBordeDerechaArriba_sup(self):
+        self.bordeDerechaArriba_sup = pygame.image.load('Fotuchas/borde_derecha_arriba.png').convert_alpha()
+        self.bordeDerechaArriba_sup = pygame.transform.scale(self.bordeDerechaArriba_sup, (self.escalaX, self.escalaY))
+        return self.bordeDerechaArriba_sup
+
+    def getBordeDerechaAbajo_sup(self):
+        self.bordeDerechaAbajo_sup = pygame.image.load('Fotuchas/borde_derecha_abajo.png').convert_alpha()
+        self.bordeDerechaAbajo_sup = pygame.transform.scale(self.bordeDerechaAbajo_sup, (self.escalaX, self.escalaY))
+        return self.bordeDerechaAbajo_sup
     

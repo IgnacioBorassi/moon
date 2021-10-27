@@ -37,6 +37,7 @@ class Eventos:
         self.ordenSeleccion = -1
         self.cantMarcadores = -1
         self.cantNoMarcados = -1
+        self.visualMov = True
         self.clase = None
         self.mapa1 = None
         self.mapa2 = None
@@ -82,6 +83,10 @@ class Eventos:
                     self.cantMarcadores += 1
                     self.cantNoMarcados += 1
     
+    def bordeVisual(self, y, x):
+       return self.mundo.tipoBorde(y, x)
+                
+
     def realizarAcciones(self):
 
         if (self.cantMarcadores - self.cantNoMarcados) == (self.cantMarcadores + 1):
@@ -136,7 +141,7 @@ class Eventos:
                             
                             self.ponerPelado(i, x, self.clase)
                             
-                            self.mundo.cambiarVisualMov(i, x)
+                            self.mundo.cambiarVisualMov(i, x, self.visualMov)
                             if (repr(self.getClase(i, x))) == "Obrero":
 
                                 if (repr(self.getNaturaleza(i, x))) == "Arbol": 
@@ -268,7 +273,12 @@ class Eventos:
                         self.inicioCeldaX = ((self.visualInicioX * - self.escalaX) +
                             self.escalaX * int((self.pantallaX/self.escalaX)/2))
 
-                    
+                    if event.key == pygame.K_v:
+                        if self.visualMov == True:
+                            self.visualMov = False
+                        else:
+                            self.visualMov = True
+                            
                     if event.key == pygame.K_SPACE:
                         if self.seleccion == True:
                             self.getCantMarcadores()

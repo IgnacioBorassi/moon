@@ -26,6 +26,14 @@ class Celda():
         '''Permite ver o no ver la celda'''
         self.visual = visual
 
+    def cambiarCivilizacion(self, nuevaCiv):
+        self.propiedad = nuevaCiv
+
+    def ponerJugadorCiv(self):
+        self.cambiarCivilizacion(1)
+
+    def getCivilizacion(self):
+        return self.propiedad
     def getTerreno(self):
         return self.terreno
 
