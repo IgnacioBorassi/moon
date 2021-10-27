@@ -70,6 +70,12 @@ class Eventos:
     def getPuerto(self, y, x):
         return self.mundo.getPuerto(y, x)
 
+    def getCorral(self, y, x):
+        return self.mundo.getCorral(y, x)
+
+    def getCultivo(self, y, x):
+        return self.mundo.getCultivo(y, x)
+        
     def getMina(self, y, x):
         return self.mundo.getMina(y, x)
 
@@ -155,18 +161,16 @@ class Eventos:
                                     self.mundo.agregarComida(comida)
                                     print(comida)
                                 
-                            if (repr(self.getClase(i, x))) == "Guerrero":
-                                 if self.getPuerto(i, x) == True:
-                                    comida = self.mundo.cantidadMaterial(i, x)
+                                if self.getCorral(i, x) == True:
+                                    comida = self.mundo.cantidadMaterialCorral(i, x)
                                     self.mundo.agregarComida(comida)
                                     print(comida)
-
-                            if (repr(self.getClase(i, x))) == "Arquero":
-                                 if self.getPuerto(i, x) == True:
-                                    comida = self.mundo.cantidadMaterial(i, x)
+                                
+                                if self.getCultivo(i, x) == True:
+                                    comida = self.mundo.cantidadMaterialCultivo(i, x)
                                     self.mundo.agregarComida(comida)
                                     print(comida)
-
+                            
                             if (repr(self.getTerreno(i, x))) == "Agua":
                                 self.mundo.restarUsoBarco()
 
@@ -260,7 +264,25 @@ class Eventos:
                     
                     if event.key == pygame.K_2:
                         self.mundo.hacerBarco()
-                            
+                    
+                    if event.key == pygame.K_3:
+                        if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
+                            and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
+                                if self.mundo.getMadera() >= 20:
+                                    self.mundo.ponerCorral(self.visualInicioY, self.visualInicioX)
+                                    self.mundo.hacerCorral()
+                                else: 
+                                    print("te faltan recursos panflin")
+                    
+                    if event.key == pygame.K_4:
+                        if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
+                            and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
+                                if self.mundo.getMadera() >= 5 and self.mundo.getPiedra() >= 3:
+                                    self.mundo.ponerCultivo(self.visualInicioY, self.visualInicioX)
+                                    self.mundo.hacerCultivo()
+                                else: 
+                                    print("te faltan recursos panflin")
+                    
                     if event.key == pygame.K_j:
                         self.inicioCeldaY = ((self.visualInicioY * - self.escalaY) +
                             self.escalaY * int((self.pantallaY/self.escalaY)/2))

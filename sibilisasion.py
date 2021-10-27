@@ -102,6 +102,19 @@ class civilizacion:
         else:
             print("te faltan recursos panflin")
 
+    def hacerCorral(self):
+        if self.cantMadera >= 20:
+            self.restarMadera(20)
+        else:
+            print("te faltan recursos panflin")
+
+    def hacerCultivo(self):
+        if self.cantMadera >= 5 and self.cantPiedra >= 3:
+            self.restarMadera(5)
+            self.restarPiedra(5)
+        else:
+            print("te faltan recursos panflin")
+
     def hacerMina(self):
         if self.cantMadera >= 40:
             self.restarMadera(40)

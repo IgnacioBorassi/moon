@@ -15,6 +15,9 @@ class Tierra:
     def getConstruccion(self):
         return self.construccion
     
+    def cambiarConstruccion(self, construccion):
+        self.construccion = construccion
+
     def cambiarNaturaleza(self, naturaleza):
         '''Cambia naturaleza entre montana, arbol y aire'''
         self.naturaleza = naturaleza
@@ -24,6 +27,6 @@ class Tierra:
     
     def randomMaterial(self):
         return self.naturaleza.randomMaterial()
-    
+         
     def __repr__(self) -> str:
         return "Tierra"
