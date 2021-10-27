@@ -482,3 +482,15 @@ class Mundo():
     
     def hacerMina(self):
         self.jugador.hacerMina()
+    
+    def getTurno(self):
+        return self.jugador.getTurno()
+
+    def setTurno(self):
+        self.jugador.setTurno()
+    
+    def getCantTurno(self):
+        return self.jugador.getCantTurno()
+    
+    def reiniciarTurnos(self):
+        self.jugador.reiniciarTurno()

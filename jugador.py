@@ -4,6 +4,8 @@ class Jugador:
     def __init__(self):
         self.energia = 500
         self.comida = 30
+        self.turno = True
+        self.cantTurno = 0
         self.civilizacion = civilizacion()
     
     def getMadera(self):
@@ -34,6 +36,7 @@ class Jugador:
         self.energia -= cant
         if self.energia < 0:
             self.energia = 0
+        
     
     def restarComida(self, cant):
         self.comida -= cant
@@ -106,3 +109,22 @@ class Jugador:
     
     def hacerMina(self):
         self.civilizacion.hacerMina()
+
+    def setTurno(self):
+        if self.energia > 0:
+            self.turno = True
+        else:
+            self.turno = False
+            self.cantTurno += 1
+        print(self.turno)
+        print(self.cantTurno)
+    
+    def getTurno(self):
+        return self.turno
+    
+    def getCantTurno(self):
+        return self.cantTurno
+    
+    def reiniciarTurno(self):
+        self.cantTurno = 0
+        self.turno = True

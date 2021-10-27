@@ -108,105 +108,112 @@ class Visual:
                     inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
                     inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
                     eventos.sacarValoresMapas()
-
-            eventos.repetidor(visualInicioY, visualInicioX, inicioCeldaY, inicioCeldaX)
-            
-            if eventos.getMenuActivo() == True:
-                pantalla.blit(eventos.getFondo(),(0,0))
-                pantalla.blit(eventos.getStartSup(), eventos.getStartRect())
-                pantalla.blit(eventos.getExitSup(), eventos.getExitRect())
-            
-            elif eventos.getModoActivo() == True:
-                pantalla.blit(eventos.getFondoModo(),(0,0))
-                pantalla.blit(eventos.getBotonMapa1Sup(), eventos.getBotonMapa1Rect())
-                pantalla.blit(eventos.getBotonMapa2Sup(), eventos.getBotonMapa2Rect())
-                pantalla.blit(eventos.getBotonMapaGSup(), eventos.getBotonMapaGRect())
+            if eventos.getCantTurno() == 2:
+                eventos.activarFinal()
+                eventos.repetidor(visualInicioY, visualInicioX, inicioCeldaY, inicioCeldaX)
+                if eventos.getActivoFinal() == True:
+                    pantalla.blit(eventos.getFondoFinal(),(0,0))
+                    pantalla.blit(eventos.getReiniciarsup(), eventos.getReiniciarRect())
+                    pantalla.blit(eventos.getCerrarSup(), eventos.getCerrarRect())
             else:
-
-                celdasY = eventos.getCeldasY()
-                celdasX = eventos.getCeldasX()
-                visualInicioX = eventos.getVisualInicioX()
-                visualInicioY = eventos.getVisualInicioY()
-                inicioCeldaY = eventos.getInicioCeldaY()
-                inicioCeldaX = eventos.getInicioCeldaX()
-                pantalla.blit(fondo_copado, (0, 0))
-                pos_y = inicioCeldaY
-                eventos.realizarAcciones()
+                eventos.repetidor(visualInicioY, visualInicioX, inicioCeldaY, inicioCeldaX)
                 
-                for i in range(0, celdasY):
-                    for x in range(0, celdasX):
-                        if eventos.getVisual(i, x) == True:
-                            if (repr(eventos.getTerreno(i, x))) == "Tierra":
-                                pantalla.blit(pasto_fond, (pos_x, pos_y))
-                                
-                                if (repr(eventos.getNaturaleza(i, x))) == "Arbol":
-                                    pantalla.blit(arbol_sup, (pos_x, pos_y))
+                if eventos.getMenuActivo() == True:
+                    pantalla.blit(eventos.getFondo(),(0,0))
+                    pantalla.blit(eventos.getStartSup(), eventos.getStartRect())
+                    pantalla.blit(eventos.getExitSup(), eventos.getExitRect())
+                
+                elif eventos.getModoActivo() == True:
+                    pantalla.blit(eventos.getFondoModo(),(0,0))
+                    pantalla.blit(eventos.getBotonMapa1Sup(), eventos.getBotonMapa1Rect())
+                    pantalla.blit(eventos.getBotonMapa2Sup(), eventos.getBotonMapa2Rect())
+                    pantalla.blit(eventos.getBotonMapaGSup(), eventos.getBotonMapaGRect())
+                else:
 
-                                elif (repr(eventos.getNaturaleza(i, x))) == "Montana":
-                                    pantalla.blit(montana_sup, (pos_x, pos_y))
-                                    if eventos.getMina(i,x) == True:
-                                        pantalla.blit(mina_sup, (pos_x, pos_y))
-
-                            else:
-                                pantalla.blit(agua_fond, (pos_x, pos_y))
-                        
-                            
-                            if eventos.getCasa(i,x) == True:
-                               pantalla.blit(casa_sup, (pos_x, pos_y)) 
-
-                            if eventos.getPelado(i, x) == True:
+                    celdasY = eventos.getCeldasY()
+                    celdasX = eventos.getCeldasX()
+                    visualInicioX = eventos.getVisualInicioX()
+                    visualInicioY = eventos.getVisualInicioY()
+                    inicioCeldaY = eventos.getInicioCeldaY()
+                    inicioCeldaX = eventos.getInicioCeldaX()
+                    pantalla.blit(fondo_copado, (0, 0))
+                    pos_y = inicioCeldaY
+                    eventos.realizarAcciones()
+                    
+                    for i in range(0, celdasY):
+                        for x in range(0, celdasX):
+                            if eventos.getVisual(i, x) == True:
                                 if (repr(eventos.getTerreno(i, x))) == "Tierra":
+                                    pantalla.blit(pasto_fond, (pos_x, pos_y))
                                     
-                                    if (repr(eventos.getClase(i, x))) == "Guerrero":
-                                        
-                                        pantalla.blit(guerrero_sup, (pos_x, pos_y))
+                                    if (repr(eventos.getNaturaleza(i, x))) == "Arbol":
+                                        pantalla.blit(arbol_sup, (pos_x, pos_y))
 
-                                    elif (repr(eventos.getClase(i, x))) == "Arquero":
-                                        
-                                        pantalla.blit(arquero_sup, (pos_x, pos_y))
-                                    
-                                    elif (repr(eventos.getClase(i, x))) == "Obrero":
-                                        
-                                        pantalla.blit(obrero_sup, (pos_x, pos_y))
-                                    else:
-                                        pantalla.blit(pelado_sup, (pos_x, pos_y))
+                                    elif (repr(eventos.getNaturaleza(i, x))) == "Montana":
+                                        pantalla.blit(montana_sup, (pos_x, pos_y))
+                                        if eventos.getMina(i,x) == True:
+                                            pantalla.blit(mina_sup, (pos_x, pos_y))
 
                                 else:
-                                    pantalla.blit(barco_sup,(pos_x, pos_y))
+                                    pantalla.blit(agua_fond, (pos_x, pos_y))
                             
+                                
+                                if eventos.getCasa(i,x) == True:
+                                    pantalla.blit(casa_sup, (pos_x, pos_y)) 
 
-                            if eventos.getPuerto(i,x) == True:
-                               pantalla.blit(puerto_sup, (pos_x, pos_y)) 
+                                if eventos.getPelado(i, x) == True:
+                                    if (repr(eventos.getTerreno(i, x))) == "Tierra":
+                                        
+                                        if (repr(eventos.getClase(i, x))) == "Guerrero":
+                                            
+                                            pantalla.blit(guerrero_sup, (pos_x, pos_y))
 
-                        else:
-                            pantalla.blit(negro_fond, (pos_x, pos_y))
+                                        elif (repr(eventos.getClase(i, x))) == "Arquero":
+                                            
+                                            pantalla.blit(arquero_sup, (pos_x, pos_y))
+                                        
+                                        elif (repr(eventos.getClase(i, x))) == "Obrero":
+                                            
+                                            pantalla.blit(obrero_sup, (pos_x, pos_y))
+                                        else:
+                                            pantalla.blit(pelado_sup, (pos_x, pos_y))
+
+                                    else:
+                                        pantalla.blit(barco_sup,(pos_x, pos_y))
+                                
+
+                                if eventos.getPuerto(i,x) == True:
+                                    pantalla.blit(puerto_sup, (pos_x, pos_y)) 
+
+                            else:
+                                pantalla.blit(negro_fond, (pos_x, pos_y))
+                            
+                            if eventos.getMarcador(i, x) == True:
+                                pantalla.blit(marcador_sup, (pos_x, pos_y))
+                            pos_x+=escalaX
                         
-                        if eventos.getMarcador(i, x) == True:
-                            pantalla.blit(marcador_sup, (pos_x, pos_y))
-                        pos_x+=escalaX
+                        pantalla.blit(piedra_sup, (904, 56))
+                        pantalla.blit(madera_sup, (904, 100))
+                        pantalla.blit(energia_sup, (904, 21))
+                        pantalla.blit(pez_sup, (904, 150))
+
+                        font = pygame.font.SysFont(None, 24)
+                        img = font.render(eventos.getEnergia(), True, (255, 255, 0))
+                        pantalla.blit(img, (950, 35))
+                        img2 = font.render(eventos.getPiedra(), True, (128, 128, 128))
+                        pantalla.blit(img2, (950, 70))
+                        img3 = font.render(eventos.getMadera(), True, (128, 0, 0))
+                        pantalla.blit(img3, (950, 110))
+                        img4 = font.render(eventos.getComida(), True, (128, 128, 128))
+                        pantalla.blit(img4, (950, 160))
+
+                        if eventos.getBarco()== True:
+                            pantalla.blit(barco_sup, (904, 190))
+                            img4 = font.render(eventos.getUsoBarco(), True, (128, 0, 0))
+                            pantalla.blit(img4, (950, 200))
                     
-                    pantalla.blit(piedra_sup, (904, 56))
-                    pantalla.blit(madera_sup, (904, 100))
-                    pantalla.blit(energia_sup, (904, 21))
-                    pantalla.blit(pez_sup, (904, 150))
-
-                    font = pygame.font.SysFont(None, 24)
-                    img = font.render(eventos.getEnergia(), True, (255, 255, 0))
-                    pantalla.blit(img, (950, 35))
-                    img2 = font.render(eventos.getPiedra(), True, (128, 128, 128))
-                    pantalla.blit(img2, (950, 70))
-                    img3 = font.render(eventos.getMadera(), True, (128, 0, 0))
-                    pantalla.blit(img3, (950, 110))
-                    img4 = font.render(eventos.getComida(), True, (128, 128, 128))
-                    pantalla.blit(img4, (950, 160))
-
-                    if eventos.getBarco()== True:
-                        pantalla.blit(barco_sup, (904, 190))
-                        img4 = font.render(eventos.getUsoBarco(), True, (128, 0, 0))
-                        pantalla.blit(img4, (950, 200))
-                   
-                    pos_x = inicioCeldaX
-                    pos_y += escalaY
+                        pos_x = inicioCeldaX
+                        pos_y += escalaY
 
             pygame.display.update()
             fps.tick(60)
