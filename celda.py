@@ -4,6 +4,8 @@ from marcador import Marcador
 from casa import Casa
 from puerto import Puerto
 from mina import Mina
+from corral import Corral
+from cultivo import Cultivo
 class Celda():
     '''Clase Celda contiene el terreno, el propietario, visual y un numero'''
 
@@ -17,8 +19,9 @@ class Celda():
         self.casa = Casa(None)
         self.puerto = Puerto(None)
         self.mina = Mina(None)
+        self.corral = Corral(None)
+        self.cultivo = Cultivo(None)
         
-
     def tomarTerreno(self, propiedad):
         self.propiedad = propiedad
     
@@ -80,8 +83,20 @@ class Celda():
     def getPuerto(self):
         return self.puerto.getPuerto()
     
+    def getCorral(self):
+        return self.corral.getCorral()
+
+    def getCultivo(self):
+        return self.cultivo.getCultivo()
+        
     def ponerPuerto(self):
         self.puerto.ponerPuerto()
+
+    def ponerCorral(self):
+        self.corral.ponerCorral()
+
+    def ponerCultivo(self):
+        self.cultivo.ponerCultivo()
 
     def getMina(self):
         return self.mina.getMina()
@@ -98,6 +113,12 @@ class Celda():
     def randomMaterial(self):
         return self.terreno.randomMaterial()
     
+    def randomMaterialCorral(self):
+        return self.corral.randomMaterial()
+    
+    def randomMaterialCultivo(self):
+        return self.cultivo.randomMaterial()
+
     def cambiarClasePersona(self, clase):
         self.persona.cambiarClase(clase)
 

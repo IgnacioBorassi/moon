@@ -53,6 +53,8 @@ class Visual:
         puerto_sup = sprites.getPuerto_sup()
         mina_sup = sprites.getMina_sup()
         pez_sup = sprites.getPez_sup()
+        corral_sup = sprites.getCorral_sup()
+        cultivo_sup = sprites.getCultivo_sup()
 
         eventos = Eventos()
         inicioCeldaY = 0
@@ -211,6 +213,17 @@ class Visual:
                             pantalla.blit(barco_sup, (904, 190))
                             img4 = font.render(eventos.getUsoBarco(), True, (128, 0, 0))
                             pantalla.blit(img4, (950, 200))
+                            if eventos.getCorral(i,x) == True:
+                               pantalla.blit(corral_sup, (pos_x, pos_y)) 
+                            
+                            if eventos.getCultivo(i,x) == True:
+                               pantalla.blit(cultivo_sup, (pos_x, pos_y)) 
+                        else:
+                            pantalla.blit(negro_fond, (pos_x, pos_y))
+                        
+                        if eventos.getMarcador(i, x) == True:
+                            pantalla.blit(marcador_sup, (pos_x, pos_y))
+                        pos_x += escalaX
                     
                         pos_x = inicioCeldaX
                         pos_y += escalaY

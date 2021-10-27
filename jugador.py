@@ -58,9 +58,8 @@ class Jugador:
     def restarMadera(self, cant):
         self.civilizacion.restarMadera(cant)
 
-    
     def agregarComida(self, cant):
-        self.civilizacion.agregarComida(cant)
+        self.comida += cant
 
     def restarPiedra(self, cant):
         self.civilizacion.restarPiedra(cant)
@@ -107,6 +106,12 @@ class Jugador:
     def hacerPuerto(self):
         self.civilizacion.hacerPuerto()
     
+    def hacerCorral(self):
+        self.civilizacion.hacerCorral()
+
+    def hacerCultivo(self):
+        self.civilizacion.hacerCultivo()
+
     def hacerMina(self):
         self.civilizacion.hacerMina()
 
