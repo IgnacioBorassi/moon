@@ -273,14 +273,26 @@ class Mundo():
     def ponerMina(self, y, x):
         return self.coordenadas[y][x].ponerMina()
 
+    def ponerPuerto(self, y, x):
+        return self.coordenadas[y][x].ponerPuerto()
+
     def getMina(self, y, x):
         return self.coordenadas[y][x].getMina()
 
     def getPuerto(self, y, x):
         return self.coordenadas[y][x].getPuerto()
     
-    def ponerPuerto(self, y, x):
-        return self.coordenadas[y][x].ponerPuerto()
+    def getCorral(self, y, x):
+        return self.coordenadas[y][x].getCorral()
+
+    def getCultivo(self, y, x):
+        return self.coordenadas[y][x].getCultivo()
+
+    def ponerCorral(self, y, x):
+        return self.coordenadas[y][x].ponerCorral()
+
+    def ponerCultivo(self, y, x):
+        return self.coordenadas[y][x].ponerCultivo()
 
     def getOrdenMarcador(self, y, x):
         return self.coordenadas[y][x].getOrdenMarcador()
@@ -441,6 +453,12 @@ class Mundo():
                 return "borde_izquierda"
         
 
+    def cantidadMaterialCultivo(self, y, x):
+        return self.coordenadas[y][x].randomMaterialCultivo()
+
+    def cantidadMaterialCorral(self, y, x):
+        return self.coordenadas[y][x].randomMaterialCorral()
+    
     def agregarMadera(self, cant):
         self.jugador.agregarMadera(cant)
     
@@ -528,8 +546,27 @@ class Mundo():
             clase = "Obrero"
         
         return clase
+
     def hacerPuerto(self):
         self.jugador.hacerPuerto()
     
+    def hacerCorral(self):
+        self.jugador.hacerCorral()
+
+    def hacerCultivo(self):
+        self.jugador.hacerCultivo()
+
     def hacerMina(self):
         self.jugador.hacerMina()
+    
+    def getTurno(self):
+        return self.jugador.getTurno()
+
+    def setTurno(self):
+        self.jugador.setTurno()
+    
+    def getCantTurno(self):
+        return self.jugador.getCantTurno()
+    
+    def reiniciarTurnos(self):
+        self.jugador.reiniciarTurno()

@@ -22,6 +22,8 @@ class Sprites:
         self.arquero_sup = None
         self.puerto_sup = None
         self.pez_sup = None
+        self.corral_sup = None
+        self.cultivo_sup = None
 
     def getNegro_fond(self):
         self.negro_fond = pygame.image.load('Fotuchas/negro.png').convert_alpha()
@@ -117,6 +119,7 @@ class Sprites:
         self.pez_sup = pygame.transform.scale(self.pez_sup, (self.escalaX, self.escalaY))
         return self.pez_sup
 
+<<<<<<< HEAD
     def getBordeArriba_sup(self):
         self.bordeArriba_sup = pygame.image.load('Fotuchas/borde_arriba.png').convert_alpha()
         self.bordeArriba_sup = pygame.transform.scale(self.bordeArriba_sup, (self.escalaX, self.escalaY))
@@ -156,4 +159,15 @@ class Sprites:
         self.bordeDerechaAbajo_sup = pygame.image.load('Fotuchas/borde_derecha_abajo.png').convert_alpha()
         self.bordeDerechaAbajo_sup = pygame.transform.scale(self.bordeDerechaAbajo_sup, (self.escalaX, self.escalaY))
         return self.bordeDerechaAbajo_sup
+=======
+    def getCorral_sup(self):
+        self.corral_sup = pygame.image.load('Fotuchas/corral_sup.png').convert_alpha()
+        self.corral_sup = pygame.transform.scale(self.corral_sup, (self.escalaX, self.escalaY))
+        return self.corral_sup
+    
+    def getCultivo_sup(self):
+        self.cultivo_sup = pygame.image.load('Fotuchas/cultivo_sup.png').convert_alpha()
+        self.cultivo_sup = pygame.transform.scale(self.cultivo_sup, (self.escalaX, self.escalaY))
+        return self.cultivo_sup
+>>>>>>> 9650c0cc99bc60f2d7714cb221377d7368a19037
     
