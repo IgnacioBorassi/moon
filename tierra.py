@@ -9,6 +9,9 @@ class Tierra:
         self.construccion = construccion
 
 
+    def setConstruccion(self):
+        self.construccion = True
+
     def getNaturaleza(self):
         return self.naturaleza
     

@@ -14,6 +14,7 @@ from jugador import Jugador
 from mina import Mina
 from puerto import Puerto
 import time
+from peludo import Peludo
 
 class Mundo():
     '''El mundo con sus rios, arboles, montanas y pelado'''
@@ -216,7 +217,7 @@ class Mundo():
         cont = 0
         for i in range(0, self.cantCeldasY):
             for x in range(0, self.cantCeldasX):
-                if (self.coordenadas[i][x].getPelado()) == True:
+                if (self.coordenadas[i][x].getPelado()) == True and (repr(self.getClasePersona(i, x))) != "Peludo":
                     cont += 1
         return cont
 
@@ -240,6 +241,9 @@ class Mundo():
     def cambiarVisual(self, y, x, nuevoVisual):
         return self.coordenadas[y][x].cambiarVisual(nuevoVisual)
     
+    def ponerPelado(self, y, x, clase):
+        return self.coordenadas[y][x].ponerPelado(clase)
+
     def ponerPelado(self, y, x, clase):
         return self.coordenadas[y][x].ponerPelado(clase)
     
@@ -326,6 +330,36 @@ class Mundo():
                 self.ponerCivJugador(y - i, x - e)
                 
                 
+    def zonaInicialPeludo(self):
+        civPrimera = [10, 170]
+        civSegunda = [90, 70]
+        civTercera = [90, 170]
+        for i in range(1,4):
+            if i == 1:
+                y = civPrimera[0]
+                x = civPrimera[1]
+            elif i == 2:
+                y = civSegunda[0]
+                x = civSegunda[1]
+            else:
+                y = civTercera[0]
+                x = civTercera[1]
+            self.ponerCivPeludo(y, x, i + 1)
+            for l in range(1, 6):
+                self.ponerCivPeludo(y + l, x, i + 1)
+                self.ponerCivPeludo(y - l, x, i + 1)
+                self.ponerCivPeludo(y, x + l, i + 1)
+                self.ponerCivPeludo(y, x - l, i + 1)
+                for h in range(1, 6):
+                    self.ponerCivPeludo(y + l, x + h, i + 1)
+                    self.ponerCivPeludo(y + l, x - h, i + 1)
+                    self.ponerCivPeludo(y - l, x + h, i + 1)
+                    self.ponerCivPeludo(y - l, x - h, i + 1)
+            for z in range(1, 4):
+                self.coordenadas[y][x + z].cambiarTerreno(Tierra(Aire(), None))
+                self.ponerCasa(y, x + z)
+                self.ponerPelado(y, x + z, Peludo())
+            
 
 
     def colocarCivilizacion(self, y, x):
@@ -374,29 +408,6 @@ class Mundo():
                         casaY = int(random.randrange(1, 4))
                 
 
-
-    def cambiarVisualX(self, visualInicioY, visualInicioX, direccion):
-        '''Hace visibles el alrededor del personaje segun la direccion en x'''
-
-        self.ponerPelado(visualInicioY, visualInicioX)
-        self.cambiarVisual(visualInicioY, visualInicioX, True)
-        self.cambiarVisual((visualInicioY - 1), visualInicioX, True)
-        self.cambiarVisual((visualInicioY + 1), visualInicioX, True)
-        self.cambiarVisual(visualInicioY, (visualInicioX + direccion), True)
-        self.cambiarVisual((visualInicioY - 1), visualInicioX + direccion, True)
-        self.cambiarVisual((visualInicioY + 1), visualInicioX + direccion, True)
-
-    def cambiarVisualY(self, visualInicioY, visualInicioX, direccion):
-        '''Hace visibles el alrededor del personaje segun la direccion en y'''
-        
-        self.ponerPelado(visualInicioY, visualInicioX)
-        self.cambiarVisual(visualInicioY, visualInicioX, True)
-        self.cambiarVisual(visualInicioY, (visualInicioX + 1), True)
-        self.cambiarVisual(visualInicioY, (visualInicioX - 1), True)
-        self.cambiarVisual((visualInicioY + direccion), visualInicioX, True)
-        self.cambiarVisual((visualInicioY + direccion), (visualInicioX + 1), True)
-        self.cambiarVisual((visualInicioY + direccion), (visualInicioX - 1), True)
-
     def cambiarVisualMov(self, visualInicioY, visualInicioX, visualMov):
         self.cambiarVisual(visualInicioY, visualInicioX, True)
         self.cambiarVisual(visualInicioY, (visualInicioX + 1), True)
@@ -427,30 +438,57 @@ class Mundo():
 
     def tipoBorde(self, y, x):
         if self.coordenadas[y][x].getCivilizacion() != 0:
-            if (self.coordenadas[y-1][x].getCivilizacion() != 1 and self.coordenadas[y][x+1].getCivilizacion() != 1 and 
-                self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
-                return "borde_arriba_derecha"
-            elif (self.coordenadas[y-1][x].getCivilizacion() != 1 and self.coordenadas[y][x-1].getCivilizacion() != 1 and 
-                self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() == 1):
-                return "borde_arriba_izquierda"
-            elif (self.coordenadas[y+1][x].getCivilizacion() != 1 and self.coordenadas[y][x-1].getCivilizacion() != 1 and 
-                self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() == 1):
-                return "borde_abajo_izquierda"
-            elif (self.coordenadas[y+1][x].getCivilizacion() != 1 and self.coordenadas[y][x+1].getCivilizacion() != 1 and 
-                self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
-                return "borde_abajo_derecha"
-            elif (self.coordenadas[y+1][x].getCivilizacion() != 1 and self.coordenadas[y][x+1].getCivilizacion() == 1 and 
-                self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
-                return "borde_abajo"
-            elif (self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() == 1 and 
-                self.coordenadas[y-1][x].getCivilizacion() != 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
-                return "borde_arriba"
-            elif (self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() != 1 and 
-                self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
-                return "borde_derecha"
-            elif (self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() == 1 and 
-                self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() != 1):
-                return "borde_izquierda"
+            if self.coordenadas[y][x].getCivilizacion() == 1:
+                if (self.coordenadas[y-1][x].getCivilizacion() != 1 and self.coordenadas[y][x+1].getCivilizacion() != 1 and 
+                    self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
+                    return "borde_arriba_derecha"
+                elif (self.coordenadas[y-1][x].getCivilizacion() != 1 and self.coordenadas[y][x-1].getCivilizacion() != 1 and 
+                    self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() == 1):
+                    return "borde_arriba_izquierda"
+                elif (self.coordenadas[y+1][x].getCivilizacion() != 1 and self.coordenadas[y][x-1].getCivilizacion() != 1 and 
+                    self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() == 1):
+                    return "borde_abajo_izquierda"
+                elif (self.coordenadas[y+1][x].getCivilizacion() != 1 and self.coordenadas[y][x+1].getCivilizacion() != 1 and 
+                    self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
+                    return "borde_abajo_derecha"
+                elif (self.coordenadas[y+1][x].getCivilizacion() != 1 and self.coordenadas[y][x+1].getCivilizacion() == 1 and 
+                    self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
+                    return "borde_abajo"
+                elif (self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() == 1 and 
+                    self.coordenadas[y-1][x].getCivilizacion() != 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
+                    return "borde_arriba"
+                elif (self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() != 1 and 
+                    self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() == 1):
+                    return "borde_derecha"
+                elif (self.coordenadas[y+1][x].getCivilizacion() == 1 and self.coordenadas[y][x+1].getCivilizacion() == 1 and
+                    self.coordenadas[y-1][x].getCivilizacion() == 1 and self.coordenadas[y][x-1].getCivilizacion() != 1):
+                    return "borde_izquierda"
+            else:
+                civPeludo = self.coordenadas[y][x].getCivilizacion()
+                if (self.coordenadas[y-1][x].getCivilizacion() != civPeludo and self.coordenadas[y][x+1].getCivilizacion() != civPeludo and 
+                    self.coordenadas[y+1][x].getCivilizacion() == civPeludo and self.coordenadas[y][x-1].getCivilizacion() == civPeludo):
+                    return "pel_borde_arriba_derecha"
+                elif (self.coordenadas[y-1][x].getCivilizacion() != civPeludo and self.coordenadas[y][x-1].getCivilizacion() != civPeludo and 
+                    self.coordenadas[y+1][x].getCivilizacion() == civPeludo and self.coordenadas[y][x+1].getCivilizacion() == civPeludo):
+                    return "pel_borde_arriba_izquierda"
+                elif (self.coordenadas[y+1][x].getCivilizacion() != civPeludo and self.coordenadas[y][x-1].getCivilizacion() != civPeludo and 
+                    self.coordenadas[y-1][x].getCivilizacion() == civPeludo and self.coordenadas[y][x+1].getCivilizacion() == civPeludo):
+                    return "pel_borde_abajo_izquierda"
+                elif (self.coordenadas[y+1][x].getCivilizacion() != civPeludo and self.coordenadas[y][x+1].getCivilizacion() != civPeludo and 
+                    self.coordenadas[y-1][x].getCivilizacion() == civPeludo and self.coordenadas[y][x-1].getCivilizacion() == civPeludo):
+                    return "pel_borde_abajo_derecha"
+                elif (self.coordenadas[y+1][x].getCivilizacion() != civPeludo and self.coordenadas[y][x+1].getCivilizacion() == civPeludo and 
+                    self.coordenadas[y-1][x].getCivilizacion() == civPeludo and self.coordenadas[y][x-1].getCivilizacion() == civPeludo):
+                    return "pel_borde_abajo"
+                elif (self.coordenadas[y+1][x].getCivilizacion() == civPeludo and self.coordenadas[y][x+1].getCivilizacion() == civPeludo and 
+                    self.coordenadas[y-1][x].getCivilizacion() != civPeludo and self.coordenadas[y][x-1].getCivilizacion() == civPeludo):
+                    return "pel_borde_arriba"
+                elif (self.coordenadas[y+1][x].getCivilizacion() == civPeludo and self.coordenadas[y][x+1].getCivilizacion() != civPeludo and 
+                    self.coordenadas[y-1][x].getCivilizacion() == civPeludo and self.coordenadas[y][x-1].getCivilizacion() == civPeludo):
+                    return "pel_borde_derecha"
+                elif (self.coordenadas[y+1][x].getCivilizacion() == civPeludo and self.coordenadas[y][x+1].getCivilizacion() == civPeludo and 
+                    self.coordenadas[y-1][x].getCivilizacion() == civPeludo and self.coordenadas[y][x-1].getCivilizacion() != civPeludo):
+                    return "pel_borde_izquierda"
         
 
     def cantidadMaterialCultivo(self, y, x):
@@ -531,6 +569,8 @@ class Mundo():
     def ponerCivJugador(self, y, x):
         self.coordenadas[y][x].ponerJugadorCiv()
 
+    def ponerCivPeludo(self, y, x, civ):
+        self.coordenadas[y][x].ponerPeludoCiv(civ)
 
     def matarFundador(self):
         self.jugador.matarFundador()
@@ -550,6 +590,9 @@ class Mundo():
     def hacerPuerto(self):
         self.jugador.hacerPuerto()
     
+    def getConstruccion(self, y, x):
+        return self.coordenadas[y][x].getConstruccion()
+
     def hacerCorral(self):
         self.jugador.hacerCorral()
 

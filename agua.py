@@ -9,7 +9,10 @@ class Agua:
 
     def getNaturaleza(self):
         return self.naturaleza
-    
+
+    def setConstruccion(self):
+        self.construccion = True
+
     def getConstruccion(self):
         return self.construccion
 

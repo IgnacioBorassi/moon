@@ -61,8 +61,18 @@ class Visual:
         bordeDerecha_sup = sprites.getBordeDerecha_sup()
         bordeDerechaAbajo_sup = sprites.getBordeDerechaAbajo_sup()
         bordeDerechaArriba_sup = sprites.getBordeDerechaArriba_sup()
+        pel_bordeArriba_sup = sprites.getpel_BordeArriba_sup()
+        pel_bordeAbajo_sup = sprites.getpel_BordeAbajo_sup()
+        pel_bordeIzquierda_sup = sprites.getpel_BordeIzquierda_sup()
+        pel_bordeIzquierdaAbajo_sup = sprites.getpel_BordeIzquierdaAbajo_sup()
+        pel_bordeIzquierdaArriba_sup = sprites.getpel_BordeIzquierdaArriba_sup()
+        pel_bordeDerecha_sup = sprites.getpel_BordeDerecha_sup()
+        pel_bordeDerechaAbajo_sup = sprites.getpel_BordeDerechaAbajo_sup()
+        pel_bordeDerechaArriba_sup = sprites.getpel_BordeDerechaArriba_sup()
         corral_sup = sprites.getCorral_sup()
         cultivo_sup = sprites.getCultivo_sup()
+        peludo_sup = sprites.getPeludo_sup()
+        evil_casa_sup = sprites.getEvil_Casa_sup()
 
         eventos = Eventos()
         inicioCeldaY = 0
@@ -110,7 +120,7 @@ class Visual:
                     visualInicioY = eventos.getVisualInicioY()
                     
                     eventos.zonaInicial(visualInicioY, visualInicioX)
-                    
+                    eventos.zonaInicialPeludo()
                     eventos.cambiarVisual(visualInicioY, visualInicioX, True)
                     eventos.ponerPelado(visualInicioY, visualInicioX, Fundador())
                     eventos.ponerMarcador(visualInicioY, visualInicioX, -1)
@@ -118,7 +128,7 @@ class Visual:
                     inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
                     inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
                     eventos.sacarValoresMapas()
-            if eventos.getCantTurno() == 2:
+            if eventos.getCantTurno() == 200:
                 eventos.activarFinal()
                 eventos.repetidor(visualInicioY, visualInicioX, inicioCeldaY, inicioCeldaX)
                 if eventos.getActivoFinal() == True:
@@ -167,7 +177,12 @@ class Visual:
                                 else:
                                     pantalla.blit(agua_fond, (pos_x, pos_y))
                             
-                                
+                                if eventos.getCorral(i,x) == True:
+                                    pantalla.blit(corral_sup, (pos_x, pos_y)) 
+                        
+                                if eventos.getCultivo(i,x) == True:
+                                    pantalla.blit(cultivo_sup, (pos_x, pos_y)) 
+
                                 if eventos.getCasa(i,x) == True:
                                     pantalla.blit(casa_sup, (pos_x, pos_y)) 
 
@@ -185,6 +200,11 @@ class Visual:
                                         elif (repr(eventos.getClase(i, x))) == "Obrero":
                                             
                                             pantalla.blit(obrero_sup, (pos_x, pos_y))
+
+                                        elif (repr(eventos.getClase(i, x))) == "Peludo":
+                                            
+                                            pantalla.blit(peludo_sup, (pos_x, pos_y))
+
                                         else:
                                             pantalla.blit(pelado_sup, (pos_x, pos_y))
 
@@ -192,29 +212,43 @@ class Visual:
                                         pantalla.blit(barco_sup,(pos_x, pos_y))
                                 
 
-                            if eventos.getPuerto(i,x) == True:
-                               pantalla.blit(puerto_sup, (pos_x, pos_y))
-
-                            borde = eventos.bordeVisual(i, x)
-                            if borde == "borde_arriba_derecha":
-                                pantalla.blit(bordeDerechaArriba_sup, (pos_x, pos_y))
-                            elif borde == "borde_arriba_izquierda":
-                                pantalla.blit(bordeIzquierdaArriba_sup, (pos_x, pos_y))
-                            elif borde == "borde_abajo_izquierda":
-                                pantalla.blit(bordeIzquierdaAbajo_sup, (pos_x, pos_y))
-                            elif borde == "borde_abajo_derecha":
-                                pantalla.blit(bordeDerechaAbajo_sup, (pos_x, pos_y))
-                            elif borde == "borde_derecha":
-                                pantalla.blit(bordeDerecha_sup, (pos_x, pos_y))
-                            elif borde == "borde_izquierda":
-                                pantalla.blit(bordeIzquierda_sup, (pos_x, pos_y))
-                            elif borde == "borde_arriba":
-                                pantalla.blit(bordeArriba_sup, (pos_x, pos_y))
-                            elif borde == "borde_abajo":
-                                pantalla.blit(bordeAbajo_sup, (pos_x, pos_y))
-                            
                                 if eventos.getPuerto(i,x) == True:
-                                    pantalla.blit(puerto_sup, (pos_x, pos_y)) 
+                                    pantalla.blit(puerto_sup, (pos_x, pos_y))
+
+                                borde = eventos.bordeVisual(i, x)
+                                if borde == "borde_arriba_derecha":
+                                    pantalla.blit(bordeDerechaArriba_sup, (pos_x, pos_y))
+                                elif borde == "borde_arriba_izquierda":
+                                    pantalla.blit(bordeIzquierdaArriba_sup, (pos_x, pos_y))
+                                elif borde == "borde_abajo_izquierda":
+                                    pantalla.blit(bordeIzquierdaAbajo_sup, (pos_x, pos_y))
+                                elif borde == "borde_abajo_derecha":
+                                    pantalla.blit(bordeDerechaAbajo_sup, (pos_x, pos_y))
+                                elif borde == "borde_derecha":
+                                    pantalla.blit(bordeDerecha_sup, (pos_x, pos_y))
+                                elif borde == "borde_izquierda":
+                                    pantalla.blit(bordeIzquierda_sup, (pos_x, pos_y))
+                                elif borde == "borde_arriba":
+                                    pantalla.blit(bordeArriba_sup, (pos_x, pos_y))
+                                elif borde == "borde_abajo":
+                                    pantalla.blit(bordeAbajo_sup, (pos_x, pos_y))
+                                elif borde == "pel_borde_arriba_derecha":
+                                    pantalla.blit(pel_bordeDerechaArriba_sup, (pos_x, pos_y))
+                                elif borde == "pel_borde_arriba_izquierda":
+                                    pantalla.blit(pel_bordeIzquierdaArriba_sup, (pos_x, pos_y))
+                                elif borde == "pel_borde_abajo_izquierda":
+                                    pantalla.blit(pel_bordeIzquierdaAbajo_sup, (pos_x, pos_y))
+                                elif borde == "pel_borde_abajo_derecha":
+                                    pantalla.blit(pel_bordeDerechaAbajo_sup, (pos_x, pos_y))
+                                elif borde == "pel_borde_derecha":
+                                    pantalla.blit(pel_bordeDerecha_sup, (pos_x, pos_y))
+                                elif borde == "pel_borde_izquierda":
+                                    pantalla.blit(pel_bordeIzquierda_sup, (pos_x, pos_y))
+                                elif borde == "pel_borde_arriba":
+                                    pantalla.blit(pel_bordeArriba_sup, (pos_x, pos_y))
+                                elif borde == "pel_borde_abajo":
+                                    pantalla.blit(pel_bordeAbajo_sup, (pos_x, pos_y))
+                            
 
                             else:
                                 pantalla.blit(negro_fond, (pos_x, pos_y))
@@ -242,11 +276,6 @@ class Visual:
                             pantalla.blit(barco_sup, (904, 190))
                             img4 = font.render(eventos.getUsoBarco(), True, (128, 0, 0))
                             pantalla.blit(img4, (950, 200))
-                            if eventos.getCorral(i,x) == True:
-                               pantalla.blit(corral_sup, (pos_x, pos_y)) 
-                            
-                            if eventos.getCultivo(i,x) == True:
-                               pantalla.blit(cultivo_sup, (pos_x, pos_y)) 
                         else:
                             pantalla.blit(negro_fond, (pos_x, pos_y))
                         if eventos.getMarcador(i, x) == True:

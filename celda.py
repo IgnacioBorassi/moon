@@ -22,8 +22,6 @@ class Celda():
         self.corral = Corral(None)
         self.cultivo = Cultivo(None)
         
-    def tomarTerreno(self, propiedad):
-        self.propiedad = propiedad
     
     def visualizar(self, visual):
         '''Permite ver o no ver la celda'''
@@ -32,11 +30,15 @@ class Celda():
     def cambiarCivilizacion(self, nuevaCiv):
         self.propiedad = nuevaCiv
 
+    def ponerPeludoCiv(self, nuevaCiv):
+        self.cambiarCivilizacion(nuevaCiv)
+
     def ponerJugadorCiv(self):
         self.cambiarCivilizacion(1)
 
     def getCivilizacion(self):
         return self.propiedad
+
     def getTerreno(self):
         return self.terreno
 
@@ -47,7 +49,7 @@ class Celda():
         return self.marcador.getMarcador()
     
     def getConstruccion(self):
-        self.terreno.getConstruccion()
+        return self.terreno.getConstruccion()
 
     def ponerMarcador(self, nuevoOrden):
         self.marcador.ponerMarcador(nuevoOrden)
@@ -76,6 +78,9 @@ class Celda():
     def ponerPelado(self, clase):
         self.persona.ponerPelado(clase)
 
+    def ponerPeludo(self, clase):
+        self.persona.ponerPeludo(clase)
+
     def sacarPelado(self):
         self.persona.sacarPelado()
 
@@ -83,6 +88,7 @@ class Celda():
         return self.persona.getPersona()
 
     def ponerCasa(self):
+        self.terreno.setConstruccion()
         self.casa.ponerCasa()
     
     def getCasa(self):
@@ -98,18 +104,22 @@ class Celda():
         return self.cultivo.getCultivo()
         
     def ponerPuerto(self):
+        self.terreno.setConstruccion()
         self.puerto.ponerPuerto()
 
     def ponerCorral(self):
+        self.terreno.setConstruccion()
         self.corral.ponerCorral()
 
     def ponerCultivo(self):
+        self.terreno.setConstruccion()
         self.cultivo.ponerCultivo()
 
     def getMina(self):
         return self.mina.getMina()
     
     def ponerMina(self):
+        self.terreno.setConstruccion()
         self.mina.ponerMina()
 
     def getOrdenMarcador(self):
