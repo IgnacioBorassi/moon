@@ -71,6 +71,9 @@ class Mundo():
         if self.coordenadas[i][x] == "FPersona":
             self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerPelado(Fundador())
+        if self.coordenadas[i][x] == "PPersona":
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, False, 0))
+            self.coordenadas[i][x].ponerPelado(Peludo())
         if self.coordenadas[i][x] == "AGPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i

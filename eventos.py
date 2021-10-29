@@ -359,12 +359,43 @@ class Eventos:
                                             else:
                                                 archivo.write('Montana,')
                                         elif ((repr(self.getNaturaleza(i, x)))) == "Aire":  
-                                                             
+                                            
                                             if (self.mundo.getCasa(i, x)) == True:
                                                 if x == self.celdasX:
                                                     archivo.write('Casa')
                                                 else:
                                                     archivo.write('Casa,')
+
+                                            if (self.mundo.getMina(i, x)) == True:
+                                                if x == self.celdasX:
+                                                    archivo.write('Mina')
+                                                else:
+                                                    archivo.write('Mina,')  
+
+                                            if (self.mundo.getCorral(i, x)) == True:
+                                                if x == self.celdasX:
+                                                    archivo.write('Corral')
+                                                else:
+                                                    archivo.write('Corral,') 
+                                            
+                                            if (self.mundo.getPuerto(i, x)) == True:
+                                                if x == self.celdasX:
+                                                    archivo.write('Puerto')
+                                                else:
+                                                    archivo.write('Puerto,')            
+                                            
+                                            if (self.mundo.getCultivo(i, x)) == True:
+                                                if x == self.celdasX:
+                                                    archivo.write('Cultivo')
+                                                else:
+                                                    archivo.write('Cultivo,') 
+                                            
+                                            if (self.mundo.getPeludoCasa(i, x)) == True:
+                                                if x == self.celdasX:
+                                                    archivo.write('CasaPeludo')
+                                                else:
+                                                    archivo.write('CasaPeludo,')   
+
                                             elif (self.mundo.getPelado(i, x)) == True:
                                                 if (repr(self.getClase(i, x))) == "Guerrero":
                                                     if x == self.celdasX:
@@ -383,13 +414,19 @@ class Eventos:
                                                         archivo.write('OPersona')
                                                     else:
                                                         archivo.write('OPersona,')
-                                                    
+
                                                 else:
                                                     if x == self.celdasX:
                                                         archivo.write('FPersona')
                                                     else:
                                                         archivo.write('FPersona,')
-                                                
+
+                                                if (repr(self.mundo.getClasePersona(i, x))) == "Peludo":
+                                                    if x == self.celdasX:
+                                                        archivo.write('Peludo')
+                                                    else:
+                                                        archivo.write('Peludo,') 
+                                                 
                                             else:
                                                 if x == self.celdasX:
                                                     archivo.write('Tierra')
@@ -414,12 +451,22 @@ class Eventos:
                                                     archivo.write('AOPersona')
                                                 else:
                                                     archivo.write('AOPersona,')
-                                                
                                             else:
                                                 if x == self.celdasX:
                                                     archivo.write('AFPersona')
                                                 else:
                                                     archivo.write('AFPersona,')
+                                            if (repr(self.mundo.getClasePersona(i, x))) == "Peludo":
+                                                if x == self.celdasX:
+                                                    archivo.write('APeludo')
+                                                else:
+                                                    archivo.write('APeludo,')
+                                            if (self.mundo.getPuerto(i, x)) == True:
+                                                if x == self.celdasX:
+                                                    archivo.write('Puerto')
+                                                else:
+                                                    archivo.write('Puerto,')      
+                                        
                                         else:      
                                             if x == self.celdasX:
                                                 archivo.write('Agua')
@@ -714,10 +761,10 @@ class Eventos:
     
     def getCasa(self, y, x):
         return self.mundo.getCasa(y, x)
-
+    
     def getPeludoCasa(self, y, x):
         return self.mundo.getPeludoCasa(y, x)
-    
+
     def generacionPelado(self, visualInicioY, visualInicioX):
         while ((repr(self.getTerreno(visualInicioY, visualInicioX))) != "Tierra" or 
         (repr(self.getNaturaleza(visualInicioY, visualInicioX))) != "Aire"):
