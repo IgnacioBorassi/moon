@@ -56,14 +56,17 @@ class civilizacion:
             print("agarra madera")
             
         
+    def agregarUsoBarco(self, cant):
+        self.barco.agregarUsos(cant)
+
     def getBarco(self):
-        return self.barco.getBarco()
-    
-    def restarUsoBarco(self):
-        self.barco.restarUsos()
-    
+        return self.barco.getBarco()  
+
     def getUsosBarco(self):
         return self.barco.getUsos()
+
+    def restarUsoBarco(self):
+        self.barco.restarUsos()
     
     def hacerCasa(self):
         if self.cantMadera >= 40 and self.cantPiedra >= 20:

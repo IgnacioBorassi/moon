@@ -1,9 +1,9 @@
 from sibilisasion import civilizacion
-
 class Jugador:
     def __init__(self):
-        self.energia = 500
-        self.comida = 30
+        self.energia = 0
+        self.comida = 0
+        self.usosBarcos = 0
         self.turno = True
         self.cantTurno = 0
         self.civilizacion = civilizacion()
@@ -13,9 +13,6 @@ class Jugador:
     
     def getPiedra(self):
         return self.civilizacion.getPiedra()
-    
-    def getEnergia(self):
-        return self.energia
 
     def getComida(self):
         return self.comida
@@ -43,11 +40,12 @@ class Jugador:
         if self.comida < 0:
             self.comida = 0
             
-    def setEnergia(self):
-        self.energia = 500
+    def setEnergia(self, cant):
+        self.energia = cant
 
-    def setComida(self):
-        self.comida = 30
+
+    def setComida(self, cant):
+        self.comida = cant
 
     def crearBarco(self):
         self.civilizacion.CrearBarco()
@@ -61,6 +59,9 @@ class Jugador:
     def agregarComida(self, cant):
         self.comida += cant
 
+    def agregarEnergia(self, cant):
+        self.energia += cant
+
     def restarPiedra(self, cant):
         self.civilizacion.restarPiedra(cant)
 
@@ -70,12 +71,15 @@ class Jugador:
     def getBarco(self):
         return self.civilizacion.getBarco()
     
+    def agregarBarco(self, cant):
+        self.civilizacion.agregarUsoBarco(cant)
+
     def restarUsoBarco(self):
         self.civilizacion.restarUsoBarco()
 
     def getUsosBarco(self):
         return self.civilizacion.getUsosBarco()
-    
+
     def hacerCasa(self):
         self.civilizacion.hacerCasa()
     

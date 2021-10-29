@@ -12,9 +12,14 @@ class Barco:
         if self.usos == 0:
             self.creado = False
         
-
+    def agregarUsos(self, cant):
+        self.usos += cant
+    
     def getUsos(self):
         return self.usos
     
     def getBarco(self):
         return self.creado
+
+    def cambiarBarcos(self, bool):
+        self.creado = bool

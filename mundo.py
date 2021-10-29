@@ -15,19 +15,21 @@ from mina import Mina
 from puerto import Puerto
 import time
 from peludo import Peludo
+from barco import Barco
 
 class Mundo():
     '''El mundo con sus rios, arboles, montanas y pelado'''
 
     def __init__(self, cantCeldasX, cantCeldasY):
         self.coordenadas = []
+        self.materiales = []
         self.cantCeldasX = cantCeldasX
         self.cantCeldasY = cantCeldasY
         self.inicioCeldaX = None
         self.inicioCeldaY = None
         self.crearMundo()
         self.jugador = Jugador()
-
+        self.barco = Barco()
 
     def generarTerreno(self):
         '''Completa toda la matriz con agua o tierra'''
@@ -144,8 +146,21 @@ class Mundo():
         for i in range(0, (self.cantCeldasY)):
             for x in range(0, (self.cantCeldasX)):
                 self.cargadoMapa(i, x)
-       
-    
+        
+        materiales = open("materiales.txt")
+        
+        self.materialesLista = []
+
+        for i, material in enumerate (materiales):
+            material = material.split(',')
+            self.materialesLista.append(material)
+
+        self.jugador.setEnergia(int(self.materialesLista[0][0]))
+        self.jugador.setComida(int(self.materialesLista[0][1]))
+        self.jugador.agregarMadera(int(self.materialesLista[0][2]))
+        self.jugador.agregarPiedra(int(self.materialesLista[0][3]))
+        self.jugador.agregarBarco(int(self.materialesLista[0][4]))
+
     def cargarMapa1(self):
         archivo = open("mapa1.txt")
         self.coordenadas = []
@@ -157,7 +172,6 @@ class Mundo():
         for i in range(0, (self.cantCeldasY)):
             for x in range(0, (self.cantCeldasX)):
                 self.cargadoMapa(i,x)
-        
 
     def cargarMapa2(self):
         archivo = open("mapa2.txt")
@@ -170,7 +184,6 @@ class Mundo():
         for i in range(0, (self.cantCeldasY)):
             for x in range(0, (self.cantCeldasX)):
                 self.cargadoMapa(i,x)
-       
 
     def modificarMundo(self, listacopada):
         '''Modifica pedazos de agua y tierra'''
@@ -558,11 +571,14 @@ class Mundo():
     def restarComida(self, cant):
         self.jugador.restarComida(cant)
 
-    def setEnergia(self):
-        self.jugador.setEnergia()
+    def setEnergia(self, cant):
+        self.jugador.setEnergia(cant)
     
-    def setComida(self):
-        self.jugador.setComida()
+    def setUsosBarco(self, cant):
+        self.jugador.setUsosBarco(cant)
+
+    def setComida(self, cant):
+        self.jugador.setComida(cant)
         
     def hacerBarco(self):
         self.jugador.crearBarco()

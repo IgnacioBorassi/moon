@@ -96,7 +96,7 @@ class Eventos:
                 
 
     def realizarAcciones(self):
-
+        
         if (self.cantMarcadores - self.cantNoMarcados) == (self.cantMarcadores + 1):
             self.activar == False
             self.cantMarcadores = -1000
@@ -107,11 +107,11 @@ class Eventos:
             self.sacarMarcadores()
             if self.mundo.getEnergia() == 0:
                 self.mundo.setTurno()
-                self.mundo.setEnergia()
+                self.mundo.setEnergia(500)
                 self.mundo.setTurno()
                 self.mundo.restarComida(self.mundo.contarPelados()*3)
             if self.mundo.getComida() == 0:
-                self.mundo.setComida()
+                self.mundo.setComida(30)
 
         if self.activar == True:
             for i in range(1, (self.celdasY - 1)):
@@ -335,6 +335,11 @@ class Eventos:
 
 
                     if event.key == pygame.K_p:
+                        energia = self.getEnergia()
+                        comida = self.getComida()
+                        barcos = self.getUsoBarco()
+                        piedra = self.getPiedra()
+                        madera = self.getMadera()
                         with open("guardado.txt", "w") as archivo:
                             for i in range(0, self.celdasY):
                                 for x in range(0, self.celdasX):
@@ -421,6 +426,13 @@ class Eventos:
                                 
                                 archivo.write("\n")
                     
+                        with open("materiales.txt", "w") as materiales:
+                            materiales.write(energia + ',')
+                            materiales.write(comida + ',')
+                            materiales.write(madera + ',')
+                            materiales.write(piedra + ',')
+                            materiales.write(barcos)
+
                     if event.key == pygame.K_w:
                         if self.mundo.getTurno() == True:
                             if self.seleccion == False:
@@ -454,7 +466,7 @@ class Eventos:
                                                 self.visualInicioY -= 1
                                         
                                         elif ((repr(self.getTerreno(self.visualInicioY - 1, self.visualInicioX)))) == "Agua":  
-                                            if self.mundo.getBarco()== True:
+                                            if self.mundo.getUsosBarco() > 0:
                                                 self.mundo.restarEnergia(50)
                                                 self.ordenSeleccion += 1
                                                 self.visualInicioY -= 1
@@ -496,7 +508,7 @@ class Eventos:
                                                 self.ordenSeleccion += 1
                                                 self.visualInicioX -= 1
                                         elif ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX - 1)))) == "Agua":  
-                                            if self.mundo.getBarco()== True:
+                                            if self.mundo.getUsosBarco() > 0:
                                                 self.mundo.restarEnergia(50)
                                                 self.ordenSeleccion += 1
                                                 self.visualInicioX -= 1
@@ -536,12 +548,12 @@ class Eventos:
                                                 self.ordenSeleccion += 1
                                                 self.visualInicioY += 1
                                         elif ((repr(self.getTerreno(self.visualInicioY + 1, self.visualInicioX)))) == "Agua":  
-                                            if self.mundo.getBarco()== True:
+                                            if self.mundo.getUsosBarco() > 0:
                                                 self.mundo.restarEnergia(50)
                                                 self.ordenSeleccion += 1
                                                 self.visualInicioY += 1
                                             else:
-                                                print("no tienes barco")
+                                                print("No tienes barco")
                                         
 
                             if self.visualInicioY > (self.celdasY - 3):
@@ -578,7 +590,7 @@ class Eventos:
                                                 self.ordenSeleccion += 1
                                                 self.visualInicioX += 1
                                         elif ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX + 1)))) == "Agua":  
-                                            if self.mundo.getBarco()== True:
+                                            if self.mundo.getUsosBarco() > 0:
                                                 self.mundo.restarEnergia(50)
                                                 self.ordenSeleccion += 1
                                                 self.visualInicioX += 1
