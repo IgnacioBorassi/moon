@@ -128,6 +128,7 @@ class Visual:
                     inicioCeldaY = eventos.inicioCeldaYOP(visualInicioY)
                     inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
                     eventos.sacarValoresMapas()
+
             if eventos.getCantTurno() == 200:
                 eventos.activarFinal()
                 eventos.repetidor(visualInicioY, visualInicioX, inicioCeldaY, inicioCeldaX)
