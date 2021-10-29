@@ -89,10 +89,10 @@ class Sprites:
         self.casa_sup = pygame.transform.scale(self.casa_sup, (self.escalaX, self.escalaY))
         return self.casa_sup
 
-    def getEvil_Casa_sup(self):
-        self.evil_casa_sup = pygame.image.load('Fotuchas/evil_casa_sup.png').convert_alpha()
-        self.evil_casa_sup = pygame.transform.scale(self.evil_casa_sup, (self.escalaX, self.escalaY))
-        return self.evil_casa_sup
+    def getPeludoCasa_sup(self):
+        self.peludoCasa_sup = pygame.image.load('Fotuchas/peludocasa.png').convert_alpha()
+        self.peludoCasa_sup = pygame.transform.scale(self.peludoCasa_sup, (self.escalaX, self.escalaY))
+        return self.peludoCasa_sup
     
     def getBarco_sup(self):
         self.barco_sup = pygame.image.load('Fotuchas/barco_sup.png').convert_alpha()

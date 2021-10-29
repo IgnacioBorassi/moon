@@ -6,6 +6,8 @@ from puerto import Puerto
 from mina import Mina
 from corral import Corral
 from cultivo import Cultivo
+from peludocasa import PeludoCasa
+
 class Celda():
     '''Clase Celda contiene el terreno, el propietario, visual y un numero'''
 
@@ -17,6 +19,7 @@ class Celda():
         self.persona = Persona(None)
         self.marcador = Marcador(None)
         self.casa = Casa(None)
+        self.peludoCasa = PeludoCasa(None)
         self.puerto = Puerto(None)
         self.mina = Mina(None)
         self.corral = Corral(None)
@@ -90,9 +93,16 @@ class Celda():
     def ponerCasa(self):
         self.terreno.setConstruccion()
         self.casa.ponerCasa()
+
+    def ponerPeludoCasa(self):
+        self.terreno.setConstruccion()
+        self.peludoCasa.ponerPeludoCasa()
     
     def getCasa(self):
         return self.casa.getCasa()
+
+    def getPeludoCasa(self):
+        return self.peludoCasa.getPeludoCasa()
 
     def getPuerto(self):
         return self.puerto.getPuerto()

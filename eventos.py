@@ -700,6 +700,9 @@ class Eventos:
     
     def getCasa(self, y, x):
         return self.mundo.getCasa(y, x)
+
+    def getPeludoCasa(self, y, x):
+        return self.mundo.getPeludoCasa(y, x)
     
     def generacionPelado(self, visualInicioY, visualInicioX):
         while ((repr(self.getTerreno(visualInicioY, visualInicioX))) != "Tierra" or 

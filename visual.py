@@ -72,7 +72,7 @@ class Visual:
         corral_sup = sprites.getCorral_sup()
         cultivo_sup = sprites.getCultivo_sup()
         peludo_sup = sprites.getPeludo_sup()
-        evil_casa_sup = sprites.getEvil_Casa_sup()
+        peludocasa_sup = sprites.getPeludoCasa_sup()
 
         eventos = Eventos()
         inicioCeldaY = 0
@@ -184,8 +184,11 @@ class Visual:
                                     pantalla.blit(cultivo_sup, (pos_x, pos_y)) 
 
                                 if eventos.getCasa(i,x) == True:
-                                    pantalla.blit(casa_sup, (pos_x, pos_y)) 
+                                    pantalla.blit(casa_sup, (pos_x, pos_y))
 
+                                if eventos.getPeludoCasa(i, x) == True:
+                                    pantalla.blit(peludocasa_sup, (pos_x, pos_y))
+                                    
                                 if eventos.getPelado(i, x) == True:
                                     if (repr(eventos.getTerreno(i, x))) == "Tierra":
                                         

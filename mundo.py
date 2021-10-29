@@ -271,8 +271,14 @@ class Mundo():
     def getCasa(self, y, x):
         return self.coordenadas[y][x].getCasa()
 
+    def getPeludoCasa(self, y, x):
+        return self.coordenadas[y][x].getPeludoCasa()
+
     def ponerCasa(self, y, x):
         return self.coordenadas[y][x].ponerCasa()
+
+    def ponerPeludoCasa(self, y, x):
+        return self.coordenadas[y][x].ponerPeludoCasa()
 
     def ponerMina(self, y, x):
         return self.coordenadas[y][x].ponerMina()
@@ -357,7 +363,7 @@ class Mundo():
                     self.ponerCivPeludo(y - l, x - h, i + 1)
             for z in range(1, 4):
                 self.coordenadas[y][x + z].cambiarTerreno(Tierra(Aire(), None))
-                self.ponerCasa(y, x + z)
+                self.ponerPeludoCasa(y, x + z)
                 self.ponerPelado(y, x + z, Peludo())
             
 
@@ -429,6 +435,25 @@ class Mundo():
             self.ponerCivJugador(visualInicioY + 1, (visualInicioX - 1))
             self.ponerCivJugador(visualInicioY + 1, (visualInicioX))
             self.ponerCivJugador(visualInicioY - 1, (visualInicioX))
+
+
+    def movimientoCivPeludo(self, y, x, civ):
+        self.ponerCivPeludo(y, x + 1, civ)
+        self.ponerCivPeludo(y, x - 1, civ)
+        self.ponerCivPeludo(y + 1, x, civ)
+        self.ponerCivPeludo(y - 1, x, civ)
+        self.ponerCivPeludo(y + 1, x + 1, civ)
+        self.ponerCivPeludo(y + 1, x - 1, civ)
+        self.ponerCivPeludo(y - 1, x + 1, civ)
+        self.ponerCivPeludo(y - 1, x - 1, civ)
+        self.ponerCivPeludo(y, x, civ)
+
+
+    def movimientoPeludo(self, y, x, civ):
+        eje = int(random.randrange(1, 5))
+        ejeXDistancia = int(random.randrange(0, 13))
+        ejeYDistancia = int(random.randrange(0, 13))
+
 
     def sacarArbol(self, y, x):
         self.coordenadas[y][x].sacarArbol()
