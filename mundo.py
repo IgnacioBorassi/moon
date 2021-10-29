@@ -463,10 +463,54 @@ class Mundo():
 
 
     def movimientoPeludo(self, y, x, civ):
-        eje = int(random.randrange(1, 5))
-        ejeXDistancia = int(random.randrange(0, 13))
-        ejeYDistancia = int(random.randrange(0, 13))
+        ejeX = int(random.randrange(1, 3))
+        if ejeX == 1:
+            ejeX = -1
+        else:
+            ejeX = 1
+        ejeY = int(random.randrange(1, 3))
+        if ejeY == 1:
+            ejeY = -1
+        else:
+            ejeY = 1
+        ejeXDistancia = int(random.randrange(0, 5))
+        ejeYDistancia = int(random.randrange(0, 5))
+        while ((y + (ejeYDistancia * ejeY)) < 1 or (y + (ejeYDistancia * ejeY)) > 103 or 
+            (x + (ejeXDistancia * ejeX)) < 1 or (x + (ejeXDistancia * ejeX) > 215) or 
+            self.getPelado(y + (ejeYDistancia * ejeY), x + (ejeXDistancia * ejeX)) != None):
+            
+            ejeX = int(random.randrange(1, 3))
+            if ejeX == 1:
+                ejeX = -1
+            else:
+                ejeX = 1
+            ejeY = int(random.randrange(1, 3))
+            if ejeY == 1:
+                ejeY = -1
+            else:
+                ejeY = 1
+            ejeXDistancia = int(random.randrange(0, 13))
+            ejeYDistancia = int(random.randrange(0, 13))
 
+        for h in range(0, ejeYDistancia):
+            for l in range(0, ejeXDistancia):
+                self.movimientoCivPeludo(y + (h * ejeY), x + (l * ejeX), civ)
+        self.ponerPelado(y + (ejeYDistancia * ejeY), x + (ejeXDistancia * ejeX), Peludo())
+        self.sacarPelado(y, x)
+        
+    def turnoPeludo(self):
+        listaPeludos = []
+        cant = 0
+        for i in range(0, self.cantCeldasY):
+            for x in range(0, self.cantCeldasX):
+                if repr(self.getClasePersona(i, x)) == "Peludo":
+                    listaPeludos.append([])
+                    listaPeludos[cant].append(i)
+                    listaPeludos[cant].append(x)
+                    cant += 1
+        for i in range(0, 9):
+            civ = self.coordenadas[(listaPeludos[i][0])][(listaPeludos[i][1])].getCivilizacion()
+            self.movimientoPeludo((listaPeludos[i][0]), (listaPeludos[i][1]), civ)
 
     def sacarArbol(self, y, x):
         self.coordenadas[y][x].sacarArbol()

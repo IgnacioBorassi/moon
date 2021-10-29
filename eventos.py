@@ -107,6 +107,8 @@ class Eventos:
             self.sacarMarcadores()
             if self.mundo.getEnergia() == 0:
                 self.mundo.setTurno()
+                if (self.mundo.getCantTurno() % 2) == 0:
+                    self.mundo.turnoPeludo()
                 self.mundo.setEnergia(500)
                 self.mundo.setTurno()
                 self.mundo.restarComida(self.mundo.contarPelados()*3)

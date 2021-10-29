@@ -189,7 +189,7 @@ class Visual:
 
                                 if eventos.getPeludoCasa(i, x) == True:
                                     pantalla.blit(peludocasa_sup, (pos_x, pos_y))
-                                    
+
                                 if eventos.getPelado(i, x) == True:
                                     if (repr(eventos.getTerreno(i, x))) == "Tierra":
                                         
