@@ -129,12 +129,12 @@ class Visual:
                     inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
                     eventos.sacarValoresMapas()
 
-            if eventos.getCantTurno() == 2:
+            if eventos.getCantTurno() == 200:
                 font = pygame.font.Font('Font/AmongUs-Regular.ttf', 50)
                 ganador = eventos.ganador()
                 print(ganador)
 
-                img5 = font.render(eventos.ganador(), True, (235, 28, 191))
+                img5 = font.render(eventos.ganador(), True, (138, 0, 104))
                 eventos.activarFinal()
                 eventos.repetidor(visualInicioY, visualInicioX, inicioCeldaY, inicioCeldaX)
                 if eventos.getActivoFinal() == True:
