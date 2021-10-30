@@ -49,11 +49,9 @@ class Eventos:
         '''Calculo para centrar la pantalla'''
         return (y * - self.escalaY) + self.escalaY * int((self.pantallaY/self.escalaY)/2)
 
-
     def inicioCeldaXOP(self, x):
         '''Calculo para centrar la pantalla'''
         return (x * - self.escalaX) + self.escalaX * int((self.pantallaX/self.escalaX)/2)
-
 
     def getInicioCeldaX(self):
         return self.inicioCeldaX
@@ -261,32 +259,39 @@ class Eventos:
                             if self.mundo.getConstruccion(self.visualInicioY, self.visualInicioX) != True: 
                                 if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
                                 and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
-                                    if self.mundo.getMadera() >= 20 and self.mundo.getPiedra() >= 10:
-                                        self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
-                                        self.mundo.hacerCasa()
-                                        self.mundo.restarEnergia(20)
+                                    if self.mundo.getCivilizacion(self.visualInicioY, self.visualInicioX) == 1:
+                                        if self.mundo.getMadera() >= 20 and self.mundo.getPiedra() >= 10:
+                                            self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
+                                            self.mundo.hacerCasa()
+                                            self.mundo.restarEnergia(20)
                                         
                                         
+                                        else:
+                                            print("te faltan recursos panflin")
                                     else:
-                                        print("te faltan recursos panflin")
+                                        print("No podes construir fuera de tu territorio")
 
                                 elif ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Agua"
                                     and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
-                                        if self.mundo.getMadera() >= 100:
-                                            self.mundo.ponerPuerto(self.visualInicioY, self.visualInicioX)
-                                            self.mundo.hacerPuerto()
-                                            self.mundo.restarEnergia(25)
-                                        else:
-                                            print("te faltan recursos panflin")
+                                        if self.mundo.getCivilizacion(self.visualInicioY, self.visualInicioX) == 1:
+                                            if self.mundo.getMadera() >= 100:
+                                                self.mundo.ponerPuerto(self.visualInicioY, self.visualInicioX)
+                                                self.mundo.hacerPuerto()
+                                                self.mundo.restarEnergia(25)
+                                            else:
+                                                print("te faltan recursos panflin")
 
                                 elif ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
                                     and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Montana"):
-                                        if self.mundo.getMadera() >= 40:
-                                            self.mundo.ponerMina(self.visualInicioY, self.visualInicioX)
-                                            self.mundo.hacerMina()
-                                            self.mundo.restarEnergia(30)
+                                        if self.mundo.getCivilizacion(self.visualInicioY, self.visualInicioX) == 1:
+                                            if self.mundo.getMadera() >= 40:
+                                                self.mundo.ponerMina(self.visualInicioY, self.visualInicioX)
+                                                self.mundo.hacerMina()
+                                                self.mundo.restarEnergia(30)
+                                            else:
+                                                print("te faltan recursos panflin")
                                         else:
-                                            print("te faltan recursos panflin")
+                                            print("No podes construir fuera de tu territorio")
                     
                     if event.key == pygame.K_2:
                         self.mundo.hacerBarco()
@@ -295,21 +300,27 @@ class Eventos:
                         if self.mundo.getConstruccion(self.visualInicioY, self.visualInicioX) != True: 
                             if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
                                 and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
-                                    if self.mundo.getMadera() >= 20:
-                                        self.mundo.ponerCorral(self.visualInicioY, self.visualInicioX)
-                                        self.mundo.hacerCorral()
-                                    else: 
-                                        print("te faltan recursos panflin")
-                    
+                                    if self.mundo.getCivilizacion(self.visualInicioY, self.visualInicioX) == 1:
+                                        if self.mundo.getMadera() >= 20:
+                                            self.mundo.ponerCorral(self.visualInicioY, self.visualInicioX)
+                                            self.mundo.hacerCorral()
+                                        else: 
+                                            print("te faltan recursos panflin")
+                                    else:
+                                        print("No podes construir fuera de tu territorio")
+                        
                     if event.key == pygame.K_4:
                         if self.mundo.getConstruccion(self.visualInicioY, self.visualInicioX) != True: 
                             if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
                                 and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
-                                    if self.mundo.getMadera() >= 5 and self.mundo.getPiedra() >= 3:
-                                        self.mundo.ponerCultivo(self.visualInicioY, self.visualInicioX)
-                                        self.mundo.hacerCultivo()
-                                    else: 
-                                        print("te faltan recursos panflin")
+                                    if self.mundo.getCivilizacion(self.visualInicioY, self.visualInicioX) == 1:
+                                        if self.mundo.getMadera() >= 5 and self.mundo.getPiedra() >= 3:
+                                            self.mundo.ponerCultivo(self.visualInicioY, self.visualInicioX)
+                                            self.mundo.hacerCultivo()
+                                        else: 
+                                            print("te faltan recursos panflin")
+                                    else:
+                                        print("No podes construir fuera de tu territorio")
                     
                     if event.key == pygame.K_j:
                         self.inicioCeldaY = ((self.visualInicioY * - self.escalaY) +
@@ -918,4 +929,5 @@ class Eventos:
     
     def getCerrarRect(self):
         return self.pantallaFinal.getCerrarRect()
+    
     

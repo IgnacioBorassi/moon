@@ -9,7 +9,6 @@ class main:
         self.visual.cargar()
 
 
-
 if __name__ == '__main__':
     import pygame
     pygame.init()

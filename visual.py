@@ -129,13 +129,15 @@ class Visual:
                     inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
                     eventos.sacarValoresMapas()
 
-            if eventos.getCantTurno() == 200:
+            if eventos.getCantTurno() == 2:
+                
                 eventos.activarFinal()
                 eventos.repetidor(visualInicioY, visualInicioX, inicioCeldaY, inicioCeldaX)
                 if eventos.getActivoFinal() == True:
                     pantalla.blit(eventos.getFondoFinal(),(0,0))
                     pantalla.blit(eventos.getReiniciarsup(), eventos.getReiniciarRect())
                     pantalla.blit(eventos.getCerrarSup(), eventos.getCerrarRect())
+                    
             else:
                 eventos.repetidor(visualInicioY, visualInicioX, inicioCeldaY, inicioCeldaX)
                 

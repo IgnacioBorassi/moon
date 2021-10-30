@@ -240,7 +240,7 @@ class Mundo():
 
     def crearMundo(self):
         '''Crea el mundo'''
-
+        self.coordenadas = []
         self.modificarMundo(self.generarTerreno())
         self.agregarNaturaleza()
 
@@ -291,6 +291,13 @@ class Mundo():
         return self.coordenadas[y][x].getPeludoCasa()
 
     def ponerCasa(self, y, x):
+        pelado = random.randrange(1, 4)
+        if pelado == 1:
+            self.coordenadas[y][x].ponerPelado(Obrero())
+        elif pelado == 2:
+            self.coordenadas[y][x].ponerPelado(Guerrero())
+        elif pelado == 3:
+            self.coordenadas[y][x].ponerPelado(Arquero())
         return self.coordenadas[y][x].ponerCasa()
 
     def ponerPeludoCasa(self, y, x):
@@ -701,3 +708,8 @@ class Mundo():
     
     def reiniciarTurnos(self):
         self.jugador.reiniciarTurno()
+    
+    def getCivilizacion(self, y, x):
+        return self.coordenadas[y][x].getCivilizacion()
+    
+    
