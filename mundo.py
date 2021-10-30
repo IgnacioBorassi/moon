@@ -240,7 +240,7 @@ class Mundo():
 
     def crearMundo(self):
         '''Crea el mundo'''
-        self.coordenadas = []
+        self.coordenadas = [ ]
         self.modificarMundo(self.generarTerreno())
         self.agregarNaturaleza()
 
@@ -712,4 +712,23 @@ class Mundo():
     def getCivilizacion(self, y, x):
         return self.coordenadas[y][x].getCivilizacion()
     
-    
+    def ganador(self):
+        ter1 = 0
+        ter2 = 0
+        ter3 = 0
+        for i in range(0, self.cantCeldasY):
+            for x in range(0, self.cantCeldasX):
+                if self.coordenadas[i][x].getCivilizacion() == 1:
+                    ter1 += 1
+                elif self.coordenadas[i][x].getCivilizacion() == 2:
+                    ter2 += 1
+                elif self.coordenadas[i][x].getCivilizacion() == 3:
+                    ter3 += 1
+        if ter1 < ter2 or ter1 < ter2:
+            return "PERDISTE MALO"
+        else:
+            return "GANASTE PELADAMENTE"
+        
+    def destruirMundo(self):
+        self.coordenadas = []
+        self.crearMundo()

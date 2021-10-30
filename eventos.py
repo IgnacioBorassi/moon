@@ -206,6 +206,7 @@ class Eventos:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if self.pantallaFinal.getActivo() == True:
                     if self.pantallaFinal.getReiniciarRect().collidepoint(event.pos):
+                        self.mundo.destruirMundo()
                         self.mundo.reiniciarTurnos()
                         self.modo.activarModo()
                         self.pantallaFinal.apagarFinal()
@@ -930,4 +931,5 @@ class Eventos:
     def getCerrarRect(self):
         return self.pantallaFinal.getCerrarRect()
     
-    
+    def ganador(self):
+        return self.mundo.ganador()
