@@ -9,7 +9,7 @@ class civilizacion:
     def __init__(self):
         self.cantMadera = 0
         self.cantPiedra = 0
-        self.cantComida = 0
+        
         self.barco = Barco()
         self.fundador = Fundador()
         self.obreros = Obrero()
@@ -40,13 +40,7 @@ class civilizacion:
     def agregarPiedra(self, cant):
         self.cantPiedra += cant
 
-    def agregarComida(self, cant):
-        self.cantComida += cant
-
-    def restarComida(self, cant):
-        self.cantPiedra -= cant
-        print(self.cantComida)
-    
+   
     def CrearBarco(self):
         print(self.cantMadera)
         if self.cantMadera >= 20:

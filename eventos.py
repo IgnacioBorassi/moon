@@ -114,7 +114,7 @@ class Eventos:
                 self.mundo.setTurno()
                 self.mundo.restarComida(self.mundo.contarPelados()*3)
             else:
-                self.energiaMaxima = 500 - self.mundo.getEnergia()
+                self.energiaMaxima = self.mundo.getEnergia()
                 print(self.energiaMaxima)
             if self.mundo.getComida() == 0:
                 self.mundo.setComida(30)
@@ -132,7 +132,7 @@ class Eventos:
                             
                             self.cantNoMarcados -= 1
                             if self.getPelado(i, x) == True:
-                                if (repr(self.getClase(i, x))) == "Fundador":
+                                if (repr(self.getClase(i, x))) == "Fundador" or (repr(self.getClase(i, x))) == "Peludo":
                                     
                                     self.energiaGastada = 0
                                     print("Error: Se necesita haber seleccionado un pelado")
