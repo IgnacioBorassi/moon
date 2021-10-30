@@ -59,6 +59,30 @@ class Mundo():
         if self.coordenadas[i][x] == "Casa":
             self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerCasa()
+        if self.coordenadas[i][x] == "CasaPeludo":
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
+            self.coordenadas[i][x].ponerPeludoCasa()
+        if self.coordenadas[i][x] == "Puerto":
+            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, False, 0))
+            self.coordenadas[i][x].ponerPuerto()
+        if self.coordenadas[i][x] == "VPuerto":
+            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, True, 0))
+            self.coordenadas[i][x].ponerPuerto()
+        if self.coordenadas[i][x] == "VCasaPeludo":
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
+            self.coordenadas[i][x].ponerPeludoCasa()
+        if self.coordenadas[i][x] == "Cultivo":
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, False, 0))
+            self.coordenadas[i][x].ponerCultivo()
+        if self.coordenadas[i][x] == "VCultivo":
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
+            self.coordenadas[i][x].ponerCultivo()
+        if self.coordenadas[i][x] == "Corral":
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, False, 0))
+            self.coordenadas[i][x].ponerCorral()
+        if self.coordenadas[i][x] == "VCorral":
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
+            self.coordenadas[i][x].ponerCorral()
         if self.coordenadas[i][x] == "GPersona":
             self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerPelado(Guerrero())
@@ -77,6 +101,7 @@ class Mundo():
         if self.coordenadas[i][x] == "AGPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
+            print("yoagpersona")
             self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerPelado(Guerrero())
         if self.coordenadas[i][x] == "AOPersona":
@@ -88,6 +113,7 @@ class Mundo():
         if self.coordenadas[i][x] == "AFPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
+            print("yoafpersona")
             self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerPelado(Fundador())
         if self.coordenadas[i][x] == "VTierra":
@@ -104,6 +130,9 @@ class Mundo():
         if self.coordenadas[i][x] == "VGPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
+            print("yoaaa vg persona")
+            print (self.inicioCeldaY)
+            print (self.inicioCeldaX)
             self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Guerrero())
         if self.coordenadas[i][x] == "VOPersona":
@@ -115,25 +144,43 @@ class Mundo():
         if self.coordenadas[i][x] == "VFPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
+            print("yoaa a vf persona")
+            print (self.inicioCeldaY)
+            print (self.inicioCeldaX)
             self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Fundador())
         if self.coordenadas[i][x] == "VAGPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
+            print("yo persona agpersona")
             self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Guerrero())
         if self.coordenadas[i][x] == "VAOPersona":
             self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Obrero())
+        if self.coordenadas[i][x] == "Peludo":
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, False, 0))
+            self.coordenadas[i][x].ponerPelado(Peludo())
+        if self.coordenadas[i][x] == "VPeludo":
+            self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
+            self.coordenadas[i][x].ponerPelado(Peludo())
+        if self.coordenadas[i][x] == "VAPeludo":
+            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, True, 0))
+            self.coordenadas[i][x].ponerPelado(Peludo())
+        if self.coordenadas[i][x] == "APeludo":
+            self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, False, 0))
+            self.coordenadas[i][x].ponerPelado(Peludo())
         if self.coordenadas[i][x] == "VAAPersona":
             self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Arquero())
         if self.coordenadas[i][x] == "VAFPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
+            print("yoaaa vafpersona")
+            print (self.inicioCeldaY)
+            print (self.inicioCeldaX)
             self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Fundador())
-        
             
     
     def cargarMapaG(self): 
