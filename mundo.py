@@ -23,6 +23,7 @@ class Mundo():
     def __init__(self, cantCeldasX, cantCeldasY):
         self.coordenadas = []
         self.materiales = []
+        self.territorio = []
         self.cantCeldasX = cantCeldasX
         self.cantCeldasY = cantCeldasY
         self.inicioCeldaX = None
@@ -182,6 +183,7 @@ class Mundo():
             self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Fundador())
             
+            
     
     def cargarMapaG(self): 
 
@@ -211,6 +213,30 @@ class Mundo():
         self.jugador.agregarPiedra(int(self.materialesLista[0][3]))
         self.jugador.agregarBarco(int(self.materialesLista[0][4]))
 
+        territorio = open("territorio.txt")
+        self.territorio = []
+        for position, line in enumerate (territorio):
+            line = line.split(',')
+            line.pop()
+            self.territorio.append(line)
+
+        for i in range(0, (self.cantCeldasY)):
+            for x in range(0, (self.cantCeldasX)):
+                if self.territorio[i][x] == "1":
+                    self.ponerCivJugador(i,x)
+
+                elif self.territorio[i][x] == "2":
+                    self.ponerCivPeludo(i, x, 2)
+
+                elif self.territorio[i][x] == "3":
+                    self.ponerCivPeludo(i, x, 3)
+                
+                elif self.territorio[i][x] == "4":
+                    self.ponerCivPeludo(i, x, 4)
+                else:
+                    self.ponerCivPeludo(i, x, 0)
+
+
     def cargarMapa1(self):
         archivo = open("mapa1.txt")
         self.coordenadas = []
@@ -222,7 +248,28 @@ class Mundo():
         for i in range(0, (self.cantCeldasY)):
             for x in range(0, (self.cantCeldasX)):
                 self.cargadoMapa(i,x)
+        territorio = open("territorio1.txt")
+        self.territorio = []
+        for position, line in enumerate (territorio):
+            line = line.split(',')
+            line.pop()
+            self.territorio.append(line)
 
+        for i in range(0, (self.cantCeldasY)):
+            for x in range(0, (self.cantCeldasX)):
+                if self.territorio[i][x] == "1":
+                    self.ponerCivJugador(i,x)
+
+                elif self.territorio[i][x] == "2":
+                    self.ponerCivPeludo(i, x, 2)
+
+                elif self.territorio[i][x] == "3":
+                    self.ponerCivPeludo(i, x, 3)
+                
+                elif self.territorio[i][x] == "4":
+                    self.ponerCivPeludo(i, x, 4)
+                else:
+                    self.ponerCivPeludo(i, x, 0)
     def cargarMapa2(self):
         archivo = open("mapa2.txt")
         self.coordenadas = []
@@ -234,6 +281,29 @@ class Mundo():
         for i in range(0, (self.cantCeldasY)):
             for x in range(0, (self.cantCeldasX)):
                 self.cargadoMapa(i,x)
+                
+        territorio = open("territorio2.txt")
+        self.territorio = []
+        for position, line in enumerate (territorio):
+            line = line.split(',')
+            line.pop()
+            self.territorio.append(line)
+
+        for i in range(0, (self.cantCeldasY)):
+            for x in range(0, (self.cantCeldasX)):
+                if self.territorio[i][x] == "1":
+                    self.ponerCivJugador(i,x)
+
+                elif self.territorio[i][x] == "2":
+                    self.ponerCivPeludo(i, x, 2)
+
+                elif self.territorio[i][x] == "3":
+                    self.ponerCivPeludo(i, x, 3)
+                
+                elif self.territorio[i][x] == "4":
+                    self.ponerCivPeludo(i, x, 4)
+                else:
+                    self.ponerCivPeludo(i, x, 0)
 
     def modificarMundo(self, listacopada):
         '''Modifica pedazos de agua y tierra'''
@@ -304,6 +374,8 @@ class Mundo():
     def cambiarVisual(self, y, x, nuevoVisual):
         return self.coordenadas[y][x].cambiarVisual(nuevoVisual)
     
+    def cambiarVisualX(self, y,x, nuevoVisual):
+        self.coordenadas[y][x].cambiarVisual(nuevoVisual)
     def ponerPelado(self, y, x, clase):
         return self.coordenadas[y][x].ponerPelado(clase)
 

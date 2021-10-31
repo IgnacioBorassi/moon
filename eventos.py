@@ -140,9 +140,9 @@ class Eventos:
                                     return
                                 elif (repr(self.getClase(i, x))) == "Guerrero":
                                     self.ponerPelado(i, x, self.clase)
-                                    self.restarEnergia(self.energiaGastada-100)
-                                    
-                                    return
+                                    self.energiaGastada -= 100
+                                    self.restarEnergia(self.energiaGastada)
+                                    return 
                                 else:
                                     self.ponerPelado(i, x, self.clase)
                                     self.restarEnergia(self.energiaGastada)
@@ -392,38 +392,7 @@ class Eventos:
                                                 archivo.write('Montana,')
 
                                         elif ((repr(self.getNaturaleza(i, x)))) == "Aire":  
-                                            
-                                            if (self.mundo.getCasa(i, x)) == True:
-                                                if x == self.celdasX:
-                                                    archivo.write('Casa')
-                                                else:
-                                                    archivo.write('Casa,')
-
-                                            if (self.mundo.getCorral(i, x)) == True:
-                                                if x == self.celdasX:
-                                                    archivo.write('Corral')
-                                                else:
-                                                    archivo.write('Corral,') 
-                                            
-                                            if (self.mundo.getMina(i, x)) == True:
-                                                if x == self.celdasX:
-                                                    archivo.write('Mina')
-                                                else:
-                                                    archivo.write('Mina,')  
-
-                                            if (self.mundo.getCultivo(i, x)) == True:
-                                                if x == self.celdasX:
-                                                    archivo.write('Cultivo')
-                                                else:
-                                                    archivo.write('Cultivo,') 
-                                            
-                                            if (self.mundo.getPeludoCasa(i, x)) == True:
-                                                if x == self.celdasX:
-                                                    archivo.write('CasaPeludo')
-                                                else:
-                                                    archivo.write('CasaPeludo,')   
-
-                                            elif (self.mundo.getPelado(i, x)) == True:
+                                            if (self.mundo.getPelado(i, x)) == True:
                                                 if (repr(self.getClase(i, x))) == "Guerrero":
                                                     if x == self.celdasX:
                                                         archivo.write('GPersona')
@@ -441,22 +410,48 @@ class Eventos:
                                                         archivo.write('OPersona')
                                                     else:
                                                         archivo.write('OPersona,')
+                                                elif (repr(self.mundo.getClasePersona(i, x))) == "Peludo":
+                                                    if x == self.celdasX:
+                                                        archivo.write('Peludo')
+                                                    else:
+                                                        archivo.write('Peludo,') 
+                                                
 
                                                 else:
                                                     if x == self.celdasX:
                                                         archivo.write('FPersona')
                                                     else:
                                                         archivo.write('FPersona,')
+                                            elif (self.mundo.getCasa(i, x)) == True:
+                                                if x == self.celdasX:
+                                                    archivo.write('Casa')
+                                                else:
+                                                    archivo.write('Casa,')
 
+                                            elif (self.mundo.getCorral(i, x)) == True:
+                                                if x == self.celdasX:
+                                                    archivo.write('Corral')
+                                                else:
+                                                    archivo.write('Corral,') 
+                                            
+                                            elif (self.mundo.getMina(i, x)) == True:
+                                                if x == self.celdasX:
+                                                    archivo.write('Mina')
+                                                else:
+                                                    archivo.write('Mina,')  
 
-                                    # if ((repr(self.getTerreno(i, x)))) == "Agua":
-                                    #     if ((repr(self.getNaturaleza(i, x)))) == "Aire":
-                                    #         if (self.mundo.getPuerto(i, x)) == True:
-                                    #             if x == self.celdasX:
-                                    #                 archivo.write('Puerto')
-                                    #             else:
-                                    #                 archivo.write('Puerto,')  
-                                                 
+                                            elif (self.mundo.getCultivo(i, x)) == True:
+                                                if x == self.celdasX:
+                                                    archivo.write('Cultivo')
+                                                else:
+                                                    archivo.write('Cultivo,') 
+                                            
+                                            elif (self.mundo.getPeludoCasa(i, x)) == True:
+                                                if x == self.celdasX:
+                                                    archivo.write('CasaPeludo')
+                                                else:
+                                                    archivo.write('CasaPeludo,')   
+    
                                             else:
                                                 if x == self.celdasX:
                                                     archivo.write('Tierra')
@@ -481,11 +476,7 @@ class Eventos:
                                                     archivo.write('AOPersona')
                                                 else:
                                                     archivo.write('AOPersona,')
-                                            elif (repr(self.mundo.getClasePersona(i, x))) == "Peludo":
-                                                    if x == self.celdasX:
-                                                        archivo.write('Peludo')
-                                                    else:
-                                                        archivo.write('Peludo,') 
+                                            
                                             else:
                                                 if x == self.celdasX:
                                                     archivo.write('AFPersona')
@@ -512,6 +503,36 @@ class Eventos:
                             materiales.write(madera + ',')
                             materiales.write(piedra + ',')
                             materiales.write(barcos)
+                        
+                        with open("territorio.txt", "w") as territorio:
+                            for i in range(0, self.celdasY):
+                                for x in range(0, self.celdasX):
+                                    if self.mundo.getCivilizacion(i,x) == 1:
+                                        if x == self.celdasX:
+                                            territorio.write('1')
+                                        else:
+                                            territorio.write('1,')
+                                    elif self.mundo.getCivilizacion(i,x) == 2:
+                                        if x == self.celdasX:
+                                            territorio.write('2')
+                                        else:
+                                            territorio.write('2,')
+                                    elif self.mundo.getCivilizacion(i,x) == 3:
+                                        if x == self.celdasX:
+                                            territorio.write('3')
+                                        else:
+                                            territorio.write('3,')
+                                    elif self.mundo.getCivilizacion(i,x) == 4:
+                                        if x == self.celdasX:
+                                            territorio.write('4')
+                                        else:
+                                            territorio.write('4,')
+                                    else:
+                                        if x == self.celdasX:
+                                            territorio.write('0')
+                                        else:
+                                            territorio.write('0,')
+                                territorio.write("\n")
 
                     
                     if event.key == pygame.K_w:
