@@ -1,5 +1,6 @@
 class Peludo:
     def __init__(self):
+        """Representa a los enemigos que tienen pelo"""
         self.activo = None
 
     def activar(self):

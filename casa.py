@@ -1,5 +1,6 @@
 class Casa:
     def __init__(self, activo):
+        '''Representa la casa de los pelados'''
         self.activo = activo
         
     

@@ -1,7 +1,7 @@
 import pygame
 
 class Marcador:
-    '''Proximamente en algun dia'''
+    '''Representa el marcador que posee un orden'''
     
     def __init__(self, marcador):
         self.marcador = marcador

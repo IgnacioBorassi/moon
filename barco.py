@@ -1,5 +1,6 @@
 class Barco:
     def __init__(self):
+        """Es un objeto barco que tiene los usos solo si es creado"""
         self.creado = False
         self.usos = 0
 

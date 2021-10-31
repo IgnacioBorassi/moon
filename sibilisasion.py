@@ -7,6 +7,8 @@ from obrero import Obrero
 
 class civilizacion:
     def __init__(self):
+        '''Representa todo lo que tiene la civilizacion como la cant de madera, piedra, si tiene barco y 
+        si tienen fundador, obrero, guerrero o arqueros'''
         self.cantMadera = 0
         self.cantPiedra = 0
         

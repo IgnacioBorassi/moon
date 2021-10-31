@@ -1,6 +1,7 @@
 import random
 class Mina:
     def __init__(self, mina):
+        """Representa una mina"""
         self.mina = mina
     
 

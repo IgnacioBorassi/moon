@@ -1,9 +1,9 @@
 from sibilisasion import civilizacion
 class Jugador:
     def __init__(self):
+        '''Representa las cosas que tiene el jugador por fuera de la civilizacion como la energia, comida, turno'''
         self.energia = 0
         self.comida = 0
-        self.usosBarcos = 0
         self.turno = True
         self.cantTurno = 0
         self.civilizacion = civilizacion()

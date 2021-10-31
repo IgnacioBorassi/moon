@@ -1,5 +1,6 @@
 class Fundador:
     def __init__(self):
+        '''Es el fundador que solo aparece al principio del juego'''
         self.activo = None
        
     

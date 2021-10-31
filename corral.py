@@ -1,6 +1,7 @@
 import random
 class Corral:
     def __init__(self, activo):
+        """Representa un corral que te da comida"""
         self.activo = activo
     
 

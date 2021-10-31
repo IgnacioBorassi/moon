@@ -1,6 +1,7 @@
 import random
 class Cultivo:
     def __init__(self, activo):
+        """Representa un cultivo que te da comida"""
         self.activo = activo
     
 
