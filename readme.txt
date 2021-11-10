@@ -33,7 +33,7 @@ Si lo pierde, puede apretar la tecla "J" y esta centrará la cámara donde sea q
 La tecla "V" permite alternar en si apropiarse o no de los terrenos, meremente estetico para que vea los bordes rojos de su terreno.
 
 Existen otras civilizaciones, 3 para ser el caso, que aparecen siempre en las mismas coordenadas, las cuales con el pasar de los turnos se van expandiendo aleatoriamente.
-Si bien puede visitarlas, no podrá combatir contra ellas. Esto debido a que para ganar el juego debe haber conquistado la mayor cantidad posible de territorio.
+Si bien puede visitarlas, no podrá combatir contra ellas, pero si conquistar a sus ciudadanos, haciendo que luego de esto, esas personas conquistan territorio propio, aumentando tu terreno a favor. Esto debido a que para ganar el juego debe haber conquistado la mayor cantidad posible de territorio.
 
 Hay un límite de X cantidad de turnos, en el cúal deberá expandirse y sobrevivir lo máximo posible, deberá mantener su comida alta ya que cada personaje propio consume comida por turno.
 

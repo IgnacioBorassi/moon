@@ -619,8 +619,8 @@ class Mundo():
         ejeXDistancia = int(random.randrange(0, 5))
         ejeYDistancia = int(random.randrange(0, 5))
 
-        while ((y + (ejeYDistancia * ejeY)) < 1 or (y + (ejeYDistancia * ejeY)) > 103 or 
-            (x + (ejeXDistancia * ejeX)) < 1 or (x + (ejeXDistancia * ejeX) > 215) or 
+        while ((y + (ejeYDistancia * ejeY)) < 2 or (y + (ejeYDistancia * ejeY)) > 102 or 
+            (x + (ejeXDistancia * ejeX)) < 2 or (x + (ejeXDistancia * ejeX) > 214) or 
             self.getPelado(y + (ejeYDistancia * ejeY), x + (ejeXDistancia * ejeX)) != None):
             
             ejeX = int(random.randrange(1, 3))
@@ -640,8 +640,8 @@ class Mundo():
             ejeXDistancia = int(random.randrange(0, 13))
             ejeYDistancia = int(random.randrange(0, 13))
 
-        for h in range(0, ejeYDistancia):
-            for l in range(0, ejeXDistancia):
+        for h in range(0, ejeYDistancia + 1):
+            for l in range(0, ejeXDistancia + 1):
                 self.movimientoCivPeludo(y + (h * ejeY), x + (l * ejeX), civ)
 
         self.ponerPelado(y + (ejeYDistancia * ejeY), x + (ejeXDistancia * ejeX), Peludo())
