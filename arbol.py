@@ -8,6 +8,7 @@ class Arbol:
 
 
     def randomMaterial(self):
+        '''Otorga una cantidad aleatoria del material correspondiente'''
         num = random.randrange(10, 100)
         return num
 

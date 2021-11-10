@@ -1,9 +1,9 @@
 class Casa:
+    '''Representa la casa de los pelados'''
+
     def __init__(self, activo):
-        '''Representa la casa de los pelados'''
         self.activo = activo
-        
-    
+
 
     def ponerCasa(self):
         self.activo = True

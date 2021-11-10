@@ -25,6 +25,7 @@ class Sprites:
         self.corral_sup = None
         self.cultivo_sup = None
 
+
     def getNegro_fond(self):
         self.negro_fond = pygame.image.load('Fotuchas/negro.png').convert_alpha()
         self.negro_fond = pygame.transform.scale(self.negro_fond, (self.escalaX, self.escalaY))
@@ -34,7 +35,6 @@ class Sprites:
         self.marcador_sup = pygame.image.load('Fotuchas/marcador_sup.png').convert_alpha()
         self.marcador_sup = pygame.transform.scale(self.marcador_sup, (self.escalaX, self.escalaY))
         return self.marcador_sup
-
 
     def getMontana_sup(self):
         self.montana_sup = pygame.image.load('Fotuchas/montana.png').convert_alpha()
@@ -66,7 +66,6 @@ class Sprites:
         self.pasto_fond = pygame.image.load('Fotuchas/pasto.png').convert_alpha()
         self.pasto_fond = pygame.transform.scale(self.pasto_fond, (self.escalaX, self.escalaY))
         return self.pasto_fond
-    
 
     def getArbol_sup(self):
         self.arbol_sup = pygame.image.load('Fotuchas/arbol.png').convert_alpha()
@@ -218,4 +217,3 @@ class Sprites:
         self.cultivo_sup = pygame.image.load('Fotuchas/cultivo_sup.png').convert_alpha()
         self.cultivo_sup = pygame.transform.scale(self.cultivo_sup, (self.escalaX, self.escalaY))
         return self.cultivo_sup
-    

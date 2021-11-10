@@ -7,6 +7,7 @@ class Marcador:
         self.marcador = marcador
         self.orden = -1
     
+    
     def cambiarMarcador(self, marcador):
         self.marcador = marcador 
     

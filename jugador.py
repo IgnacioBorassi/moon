@@ -1,13 +1,15 @@
 from sibilisasion import civilizacion
 class Jugador:
+    '''Representa las cosas que tiene el jugador por fuera de la civilizacion como la energia, comida, turno'''
+    
     def __init__(self):
-        '''Representa las cosas que tiene el jugador por fuera de la civilizacion como la energia, comida, turno'''
         self.energia = 0
         self.comida = 0
         self.turno = True
         self.cantTurno = 0
         self.civilizacion = civilizacion()
     
+
     def getMadera(self):
         return self.civilizacion.getMadera()
     
@@ -30,19 +32,19 @@ class Jugador:
         self.civilizacion.restarMadera(cant)
 
     def restarEnergia(self, cant):
+        '''Resta la energia total'''
         self.energia -= cant
         if self.energia < 0:
             self.energia = 0
         
-    
     def restarComida(self, cant):
+        '''Resta la comida total'''
         self.comida -= cant
         if self.comida < 0:
             self.comida = 0
             
     def setEnergia(self, cant):
         self.energia = cant
-
 
     def setComida(self, cant):
         self.comida = cant
@@ -120,13 +122,12 @@ class Jugador:
         self.civilizacion.hacerMina()
 
     def setTurno(self):
+        '''Lleva la cuenta de todos los turnos'''
         if self.energia > 0:
             self.turno = True
         else:
             self.turno = False
             self.cantTurno += 1
-        print(self.turno)
-        print(self.cantTurno)
     
     def getTurno(self):
         return self.turno

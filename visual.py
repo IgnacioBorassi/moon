@@ -86,7 +86,6 @@ class Visual:
             if eventos.getMapa1() == True:
                 eventos.cargarMapa1()
                 visualInicioX = eventos.getMundoVisualX()
-                print (visualInicioX)
                 visualInicioY = eventos.getMundoVisualY()
                 
                 eventos.ponerMarcador(visualInicioY, visualInicioX, -1)
@@ -132,13 +131,12 @@ class Visual:
             if eventos.getCantTurno() == 200:
                 font = pygame.font.Font('Font/AmongUs-Regular.ttf', 50)
                 ganador = eventos.ganador()
-                print(ganador)
 
                 img5 = font.render(eventos.ganador(), True, (138, 0, 104))
                 eventos.activarFinal()
                 eventos.repetidor(visualInicioY, visualInicioX, inicioCeldaY, inicioCeldaX)
                 if eventos.getActivoFinal() == True:
-                    pantalla.blit(eventos.getFondoFinal(),(0,0))
+                    pantalla.blit(eventos.getFondoFinal(),(0, 0))
                     pantalla.blit(eventos.getReiniciarsup(), eventos.getReiniciarRect())
                     pantalla.blit(eventos.getCerrarSup(), eventos.getCerrarRect())
                     pantalla.blit(img5, (200, 100))
@@ -147,12 +145,12 @@ class Visual:
                 eventos.repetidor(visualInicioY, visualInicioX, inicioCeldaY, inicioCeldaX)
                 
                 if eventos.getMenuActivo() == True:
-                    pantalla.blit(eventos.getFondo(),(0,0))
+                    pantalla.blit(eventos.getFondo(),(0, 0))
                     pantalla.blit(eventos.getStartSup(), eventos.getStartRect())
                     pantalla.blit(eventos.getExitSup(), eventos.getExitRect())
                 
                 elif eventos.getModoActivo() == True:
-                    pantalla.blit(eventos.getFondoModo(),(0,0))
+                    pantalla.blit(eventos.getFondoModo(),(0, 0))
                     pantalla.blit(eventos.getBotonMapa1Sup(), eventos.getBotonMapa1Rect())
                     pantalla.blit(eventos.getBotonMapa2Sup(), eventos.getBotonMapa2Rect())
                     pantalla.blit(eventos.getBotonMapaGSup(), eventos.getBotonMapaGRect())
@@ -260,7 +258,6 @@ class Visual:
                                 elif borde == "pel_borde_abajo":
                                     pantalla.blit(pel_bordeAbajo_sup, (pos_x, pos_y))
                             
-
                             else:
                                 pantalla.blit(negro_fond, (pos_x, pos_y))
                             
@@ -291,8 +288,8 @@ class Visual:
                             pantalla.blit(negro_fond, (pos_x, pos_y))
                         if eventos.getMarcador(i, x) == True:
                             pantalla.blit(marcador_sup, (pos_x, pos_y))
+                            
                         pos_x += escalaX
-                    
                         pos_x = inicioCeldaX
                         pos_y += escalaY
 

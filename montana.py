@@ -7,6 +7,7 @@ class Montana:
         self.material = self.randomMaterial()
 
     def randomMaterial(self):
+        '''Otorga una cantidad aleatoria del material correspondiente'''
         num = random.randrange(10, 100)
         return num
 

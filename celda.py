@@ -31,6 +31,7 @@ class Celda():
         self.visual = visual
 
     def cambiarCivilizacion(self, nuevaCiv):
+        '''Permite cambiar la propiedad de una celda'''
         self.propiedad = nuevaCiv
 
     def ponerPeludoCiv(self, nuevaCiv):
@@ -95,6 +96,7 @@ class Celda():
         self.casa.ponerCasa()
 
     def ponerPeludoCasa(self):
+        '''Pone la casa del Peludo y marca la celda como construida'''
         self.terreno.setConstruccion()
         self.peludoCasa.ponerPeludoCasa()
     
@@ -114,14 +116,17 @@ class Celda():
         return self.cultivo.getCultivo()
         
     def ponerPuerto(self):
+        '''Pone un puerto y marca la celda como construida'''
         self.terreno.setConstruccion()
         self.puerto.ponerPuerto()
 
     def ponerCorral(self):
+        '''Pone un corral y marca la celda como construida'''
         self.terreno.setConstruccion()
         self.corral.ponerCorral()
 
     def ponerCultivo(self):
+        '''Pone un cultivo y marca la celda como construida'''
         self.terreno.setConstruccion()
         self.cultivo.ponerCultivo()
 
@@ -129,6 +134,7 @@ class Celda():
         return self.mina.getMina()
     
     def ponerMina(self):
+        '''Pone una mina y marca la celda como construida'''
         self.terreno.setConstruccion()
         self.mina.ponerMina()
 

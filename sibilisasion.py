@@ -6,12 +6,12 @@ from obrero import Obrero
 
 
 class civilizacion:
+    '''Representa todo lo que tiene la civilizacion como la cant de madera, piedra, si tiene barco y 
+    si tienen fundador, obrero, guerrero o arqueros'''
+
     def __init__(self):
-        '''Representa todo lo que tiene la civilizacion como la cant de madera, piedra, si tiene barco y 
-        si tienen fundador, obrero, guerrero o arqueros'''
         self.cantMadera = 0
         self.cantPiedra = 0
-        
         self.barco = Barco()
         self.fundador = Fundador()
         self.obreros = Obrero()
@@ -23,16 +23,13 @@ class civilizacion:
 
     def restarMadera(self, cant):
         self.cantMadera -= cant
-        print(self.cantMadera)
 
     def restarPiedra(self, cant):
         self.cantPiedra -= cant
-        print(self.cantPiedra)
     
     def agregarMadera(self, cant):
         self.cantMadera += cant
-        print(self.cantMadera)
-    
+
     def getPiedra(self):
         return self.cantPiedra
 
@@ -42,15 +39,12 @@ class civilizacion:
     def agregarPiedra(self, cant):
         self.cantPiedra += cant
 
-   
     def CrearBarco(self):
-        print(self.cantMadera)
         if self.cantMadera >= 20:
             self.barco.Crear()
             self.restarMadera(20)
         else:
-            print("agarra madera")
-            
+            print("Agarra madera")
         
     def agregarUsoBarco(self, cant):
         self.barco.agregarUsos(cant)
@@ -69,7 +63,7 @@ class civilizacion:
             self.restarMadera(40)
             self.restarPiedra(20)
         else:
-            print("te faltan recursos panflin")
+            print("Te faltan recursos para hacer una casa, panflin")
     
     def getFundadorActivo(self):
         return self.fundador.getActivo()
@@ -99,24 +93,24 @@ class civilizacion:
         if self.cantMadera >= 100:
             self.restarMadera(100)
         else:
-            print("te faltan recursos panflin")
+            print("Te faltan recursos para hacer un puerto,  panflin")
 
     def hacerCorral(self):
         if self.cantMadera >= 20:
             self.restarMadera(20)
         else:
-            print("te faltan recursos panflin")
+            print("Te faltan recursos para hacer un corral, panflin")
 
     def hacerCultivo(self):
         if self.cantMadera >= 5 and self.cantPiedra >= 3:
             self.restarMadera(5)
             self.restarPiedra(5)
         else:
-            print("te faltan recursos panflin")
+            print("Te faltan recursos para hacer un cultivo, panflin")
 
     def hacerMina(self):
         if self.cantMadera >= 40:
             self.restarMadera(40)
         else:
-            print("te faltan recursos panflin")
+            print("Te faltan recursos para hacer una mina, panflin")
     

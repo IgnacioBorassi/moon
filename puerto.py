@@ -1,6 +1,7 @@
 class Puerto:
+    '''Representa un puerto que va en el agua'''
+    
     def __init__(self, activo):
-        """Representa un puerto que va en el agua"""
         self.activo = activo
     
 

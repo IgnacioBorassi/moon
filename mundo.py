@@ -32,6 +32,7 @@ class Mundo():
         self.jugador = Jugador()
         self.barco = Barco()
 
+
     def generarTerreno(self):
         '''Completa toda la matriz con agua o tierra'''
 
@@ -49,6 +50,7 @@ class Mundo():
         return milistaCopada
     
     def cargadoMapa(self, i, x):
+        '''Carga el mapa de un archivo .txt'''
         if self.coordenadas[i][x] == "Tierra":
             self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, False, 0))
         if self.coordenadas[i][x] == "Agua":
@@ -102,7 +104,6 @@ class Mundo():
         if self.coordenadas[i][x] == "AGPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
-            print("yoagpersona")
             self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerPelado(Guerrero())
         if self.coordenadas[i][x] == "AOPersona":
@@ -114,7 +115,6 @@ class Mundo():
         if self.coordenadas[i][x] == "AFPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
-            print("yoafpersona")
             self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, False, 0))
             self.coordenadas[i][x].ponerPelado(Fundador())
         if self.coordenadas[i][x] == "VTierra":
@@ -131,9 +131,6 @@ class Mundo():
         if self.coordenadas[i][x] == "VGPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
-            print("yoaaa vg persona")
-            print (self.inicioCeldaY)
-            print (self.inicioCeldaX)
             self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Guerrero())
         if self.coordenadas[i][x] == "VOPersona":
@@ -145,15 +142,11 @@ class Mundo():
         if self.coordenadas[i][x] == "VFPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
-            print("yoaa a vf persona")
-            print (self.inicioCeldaY)
-            print (self.inicioCeldaX)
             self.coordenadas[i][x] = (Celda(Tierra(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Fundador())
         if self.coordenadas[i][x] == "VAGPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
-            print("yo persona agpersona")
             self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Guerrero())
         if self.coordenadas[i][x] == "VAOPersona":
@@ -177,16 +170,11 @@ class Mundo():
         if self.coordenadas[i][x] == "VAFPersona":
             self.inicioCeldaX = x
             self.inicioCeldaY = i
-            print("yoaaa vafpersona")
-            print (self.inicioCeldaY)
-            print (self.inicioCeldaX)
             self.coordenadas[i][x] = (Celda(Agua(Aire(), None), 0, True, 0))
             self.coordenadas[i][x].ponerPelado(Fundador())
             
-            
-    
     def cargarMapaG(self): 
-
+        '''Carga el mapa guardado de una partida anterior'''
         archivo = open("guardado.txt")
         self.coordenadas = []
 
@@ -215,6 +203,7 @@ class Mundo():
 
         territorio = open("territorio.txt")
         self.territorio = []
+
         for position, line in enumerate (territorio):
             line = line.split(',')
             line.pop()
@@ -238,6 +227,7 @@ class Mundo():
 
 
     def cargarMapa1(self):
+        '''Carga el mapa prediseñado numero 1'''
         archivo = open("mapa1.txt")
         self.coordenadas = []
         for position, line in enumerate(archivo):
@@ -247,9 +237,11 @@ class Mundo():
         
         for i in range(0, (self.cantCeldasY)):
             for x in range(0, (self.cantCeldasX)):
-                self.cargadoMapa(i,x)
+                self.cargadoMapa(i, x)
+
         territorio = open("territorio1.txt")
         self.territorio = []
+
         for position, line in enumerate (territorio):
             line = line.split(',')
             line.pop()
@@ -258,7 +250,7 @@ class Mundo():
         for i in range(0, (self.cantCeldasY)):
             for x in range(0, (self.cantCeldasX)):
                 if self.territorio[i][x] == "1":
-                    self.ponerCivJugador(i,x)
+                    self.ponerCivJugador(i, x)
 
                 elif self.territorio[i][x] == "2":
                     self.ponerCivPeludo(i, x, 2)
@@ -270,9 +262,12 @@ class Mundo():
                     self.ponerCivPeludo(i, x, 4)
                 else:
                     self.ponerCivPeludo(i, x, 0)
+
     def cargarMapa2(self):
+        '''Carga el mapa prediseñado numero 2'''
         archivo = open("mapa2.txt")
         self.coordenadas = []
+        
         for position, line in enumerate(archivo):
             line = line.split(',')
             line.pop()
@@ -280,10 +275,11 @@ class Mundo():
         
         for i in range(0, (self.cantCeldasY)):
             for x in range(0, (self.cantCeldasX)):
-                self.cargadoMapa(i,x)
+                self.cargadoMapa(i, x)
                 
         territorio = open("territorio2.txt")
         self.territorio = []
+
         for position, line in enumerate (territorio):
             line = line.split(',')
             line.pop()
@@ -292,7 +288,7 @@ class Mundo():
         for i in range(0, (self.cantCeldasY)):
             for x in range(0, (self.cantCeldasX)):
                 if self.territorio[i][x] == "1":
-                    self.ponerCivJugador(i,x)
+                    self.ponerCivJugador(i, x)
 
                 elif self.territorio[i][x] == "2":
                     self.ponerCivPeludo(i, x, 2)
@@ -347,20 +343,21 @@ class Mundo():
 
 
     def contarPelados(self):
+        '''Cuenta la cantidad de pelados que hay en el mapa'''
         cont = 0
         for i in range(0, self.cantCeldasY):
             for x in range(0, self.cantCeldasX):
-                if (self.coordenadas[i][x].getPelado()) == True and (repr(self.getClasePersona(i, x))) != "Peludo":
+                if ((self.coordenadas[i][x].getPelado()) == True and 
+                (repr(self.getClasePersona(i, x))) != "Peludo"):
                     cont += 1
-        return cont
 
+        return cont
 
     def crearMundo(self):
         '''Crea el mundo'''
         self.coordenadas = [ ]
         self.modificarMundo(self.generarTerreno())
         self.agregarNaturaleza()
-
 
     def getTerreno(self, y, x):
         return self.coordenadas[y][x].getTerreno()
@@ -376,6 +373,7 @@ class Mundo():
     
     def cambiarVisualX(self, y,x, nuevoVisual):
         self.coordenadas[y][x].cambiarVisual(nuevoVisual)
+
     def ponerPelado(self, y, x, clase):
         return self.coordenadas[y][x].ponerPelado(clase)
 
@@ -410,13 +408,16 @@ class Mundo():
         return self.coordenadas[y][x].getPeludoCasa()
 
     def ponerCasa(self, y, x):
+        '''Coloca una casa y un pelado de clase aleatoria'''
         pelado = random.randrange(1, 4)
+
         if pelado == 1:
             self.coordenadas[y][x].ponerPelado(Obrero())
         elif pelado == 2:
             self.coordenadas[y][x].ponerPelado(Guerrero())
         elif pelado == 3:
             self.coordenadas[y][x].ponerPelado(Arquero())
+            
         return self.coordenadas[y][x].ponerCasa()
 
     def ponerPeludoCasa(self, y, x):
@@ -479,43 +480,52 @@ class Mundo():
                 
                 
     def zonaInicialPeludo(self):
+        '''Crea la zona donde se incian los peludos'''
         civPrimera = [10, 170]
         civSegunda = [90, 70]
         civTercera = [90, 170]
-        for i in range(1,4):
+        for i in range(1, 4):
             if i == 1:
                 y = civPrimera[0]
                 x = civPrimera[1]
+
             elif i == 2:
                 y = civSegunda[0]
                 x = civSegunda[1]
+
             else:
                 y = civTercera[0]
                 x = civTercera[1]
+
             self.ponerCivPeludo(y, x, i + 1)
+
             for l in range(1, 6):
                 self.ponerCivPeludo(y + l, x, i + 1)
                 self.ponerCivPeludo(y - l, x, i + 1)
                 self.ponerCivPeludo(y, x + l, i + 1)
                 self.ponerCivPeludo(y, x - l, i + 1)
+
                 for h in range(1, 6):
+
                     self.ponerCivPeludo(y + l, x + h, i + 1)
                     self.ponerCivPeludo(y + l, x - h, i + 1)
                     self.ponerCivPeludo(y - l, x + h, i + 1)
                     self.ponerCivPeludo(y - l, x - h, i + 1)
+
             for z in range(1, 4):
+
                 self.coordenadas[y][x + z].cambiarTerreno(Tierra(Aire(), None))
                 self.ponerPeludoCasa(y, x + z)
                 self.ponerPelado(y, x + z, Peludo())
             
-
-
     def colocarCivilizacion(self, y, x):
+        '''Coloca la civilizacion de los pelados cuando desaparece el fundador'''
         self.sacarPelado(y, x)
+
         for i in range(1,4):
-            
             casaX = int(random.randrange(1, 4))
             casaY = int(random.randrange(1, 4))
+
             if i == 1:
                 while casaX != 999:
                     if (repr(self.getTerreno(y + casaY, x + casaX)) == "Tierra" and
@@ -524,12 +534,12 @@ class Mundo():
 
                         self.ponerCasa(y + casaY, x + casaX)
                         self.ponerPelado(y + casaY, x + casaX, Guerrero())
-                        
-                        
                         casaX = 999
+
                     else:
                         casaX = int(random.randrange(1, 4))
                         casaY = int(random.randrange(1, 4))
+
             elif i == 2:
                 while casaX != 999:
                     if (repr(self.getTerreno(y - casaY, x - casaX)) == "Tierra" and
@@ -537,11 +547,12 @@ class Mundo():
                     self.getCasa(y - casaY, x - casaX) == None):
                         self.ponerCasa(y - casaY, x - casaX)
                         self.ponerPelado(y - casaY, x - casaX, Obrero())
-                        
                         casaX = 999
+
                     else:
                         casaX = int(random.randrange(1, 4))
                         casaY = int(random.randrange(1, 4))
+
             else:
                 while casaX != 999:
                     if (repr(self.getTerreno(y - casaY, x + casaX)) == "Tierra" and
@@ -549,14 +560,14 @@ class Mundo():
                     self.getCasa(y - casaY, x + casaX) == None):
                         self.ponerCasa(y - casaY, x + casaX)
                         self.ponerPelado(y - casaY, x + casaX, Arquero())
-                        
                         casaX = 999
+
                     else:
                         casaX = int(random.randrange(1, 4))
                         casaY = int(random.randrange(1, 4))
                 
-
     def cambiarVisualMov(self, visualInicioY, visualInicioX, visualMov):
+        '''Revela la zona a nuestro al rededor al movernos'''
         self.cambiarVisual(visualInicioY, visualInicioX, True)
         self.cambiarVisual(visualInicioY, (visualInicioX + 1), True)
         self.cambiarVisual(visualInicioY, (visualInicioX - 1), True)
@@ -578,8 +589,8 @@ class Mundo():
             self.ponerCivJugador(visualInicioY + 1, (visualInicioX))
             self.ponerCivJugador(visualInicioY - 1, (visualInicioX))
 
-
     def movimientoCivPeludo(self, y, x, civ):
+        '''Conquista de los Peludos'''
         self.ponerCivPeludo(y, x + 1, civ)
         self.ponerCivPeludo(y, x - 1, civ)
         self.ponerCivPeludo(y + 1, x, civ)
@@ -590,44 +601,54 @@ class Mundo():
         self.ponerCivPeludo(y - 1, x - 1, civ)
         self.ponerCivPeludo(y, x, civ)
 
-
     def movimientoPeludo(self, y, x, civ):
+        '''Genera el movimiento de los Peludos aleatoriamente'''
         ejeX = int(random.randrange(1, 3))
+
         if ejeX == 1:
             ejeX = -1
         else:
             ejeX = 1
         ejeY = int(random.randrange(1, 3))
+
         if ejeY == 1:
             ejeY = -1
         else:
             ejeY = 1
+
         ejeXDistancia = int(random.randrange(0, 5))
         ejeYDistancia = int(random.randrange(0, 5))
+
         while ((y + (ejeYDistancia * ejeY)) < 1 or (y + (ejeYDistancia * ejeY)) > 103 or 
             (x + (ejeXDistancia * ejeX)) < 1 or (x + (ejeXDistancia * ejeX) > 215) or 
             self.getPelado(y + (ejeYDistancia * ejeY), x + (ejeXDistancia * ejeX)) != None):
             
             ejeX = int(random.randrange(1, 3))
+            
             if ejeX == 1:
                 ejeX = -1
             else:
                 ejeX = 1
+
             ejeY = int(random.randrange(1, 3))
+
             if ejeY == 1:
                 ejeY = -1
             else:
                 ejeY = 1
+
             ejeXDistancia = int(random.randrange(0, 13))
             ejeYDistancia = int(random.randrange(0, 13))
 
         for h in range(0, ejeYDistancia):
             for l in range(0, ejeXDistancia):
                 self.movimientoCivPeludo(y + (h * ejeY), x + (l * ejeX), civ)
+
         self.ponerPelado(y + (ejeYDistancia * ejeY), x + (ejeXDistancia * ejeX), Peludo())
         self.sacarPelado(y, x)
         
     def turnoPeludo(self):
+        '''Agarra las posiciones de los Peludos para que puedan moverse'''
         listaPeludos = []
         cant = 0
         for i in range(0, self.cantCeldasY):
@@ -637,6 +658,7 @@ class Mundo():
                     listaPeludos[cant].append(i)
                     listaPeludos[cant].append(x)
                     cant += 1
+
         for i in range(0, 9):
             civ = self.coordenadas[(listaPeludos[i][0])][(listaPeludos[i][1])].getCivilizacion()
             self.movimientoPeludo((listaPeludos[i][0]), (listaPeludos[i][1]), civ)
@@ -648,6 +670,7 @@ class Mundo():
         return self.coordenadas[y][x].randomMaterial()
 
     def tipoBorde(self, y, x):
+        '''Devuelve que tipo de borde tiene la celda (Azul/Rojo)'''
         if self.coordenadas[y][x].getCivilizacion() != 0:
             if self.coordenadas[y][x].getCivilizacion() == 1:
                 if (self.coordenadas[y-1][x].getCivilizacion() != 1 and self.coordenadas[y][x+1].getCivilizacion() != 1 and 
@@ -701,7 +724,6 @@ class Mundo():
                     self.coordenadas[y-1][x].getCivilizacion() == civPeludo and self.coordenadas[y][x-1].getCivilizacion() != civPeludo):
                     return "pel_borde_izquierda"
         
-
     def cantidadMaterialCultivo(self, y, x):
         return self.coordenadas[y][x].randomMaterialCultivo()
 
@@ -790,6 +812,7 @@ class Mundo():
         self.jugador.matarFundador()
     
     def chequearClase(self, y, x):
+        '''Chequea que tipo de clase de pelado se nos entrega'''
         if (repr(self.getClasePersona(y, x))) == "Guerrero":                          
             clase = "Guerrero"
 
@@ -832,6 +855,7 @@ class Mundo():
         return self.coordenadas[y][x].getCivilizacion()
     
     def ganador(self):
+        '''Define el ganador'''
         ter1 = 0
         ter2 = 0
         ter3 = 0
@@ -852,5 +876,6 @@ class Mundo():
             return "GANASTE PELADAMENTE"
         
     def destruirMundo(self):
+        '''Destruye el mundo'''
         self.coordenadas = []
         self.crearMundo()

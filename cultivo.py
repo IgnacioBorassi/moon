@@ -1,5 +1,7 @@
 import random
 class Cultivo:
+    '''El cultivo como construccion, otorga comida'''
+
     def __init__(self, activo):
         """Representa un cultivo que te da comida"""
         self.activo = activo
@@ -12,6 +14,7 @@ class Cultivo:
         return self.activo
 
     def randomMaterial(self):
+        '''Otorga una cantidad aleatoria del material correspondiente'''
         num = random.randrange(5, 10)
         return num
 

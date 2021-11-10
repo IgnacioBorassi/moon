@@ -13,7 +13,6 @@ class Persona:
     def cambiarPelado(self, persona):
         '''Cambia el atributo persona'''
         self.persona = persona
-    
 
     def ponerPelado(self, nuevaClase):
         self.cambiarPelado(True)
@@ -24,9 +23,9 @@ class Persona:
         self.clase = None
     
     def cambiarClase(self, nuevaClase):
+        '''Cambia el atributo clase'''
         self.clase = nuevaClase
         
-
     def getPersona(self):
         return self.persona
     

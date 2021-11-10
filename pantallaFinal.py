@@ -2,6 +2,8 @@ import pygame
 import os
 
 class PantallaFinal:
+    '''Pantalla final de cuando termina el juego'''
+
     def __init__(self):
         self.activo = None
         self.fondo_Final = None
@@ -10,6 +12,7 @@ class PantallaFinal:
         self.boton_Reiniciar_sup = None
         self.boton_Cerrar_sup = None
     
+
     def apagarFinal(self):
         self.activo = False
     
@@ -51,5 +54,3 @@ class PantallaFinal:
     
     def getCerrarRect(self):
         return self.boton_Cerrar_rect
-    
-

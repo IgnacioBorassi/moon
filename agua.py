@@ -20,5 +20,6 @@ class Agua:
         return "Agua"
     
     def randomMaterial(self):
+        '''Otorga una cantidad aleatoria del material correspondiente'''
         num = random.randrange(1, 10)
         return num
