@@ -213,7 +213,7 @@ class Eventos:
                 exit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if self.pantallaFinal.getActivo() == True:
+                if self.pantallaFinal.getActivo() == True and self.menu.getActivo() == False:
                     if self.pantallaFinal.getReiniciarRect().collidepoint(event.pos):
                         
                         self.mundo.destruirMundo()
@@ -226,9 +226,9 @@ class Eventos:
                         pygame.quit()
                         exit()
 
-                elif self.modo.getActivo() == None and self.menu.getActivo() == True:
+                elif self.modo.getActivo() == False and self.menu.getActivo() == True and self.pantallaFinal.getActivo() == False:
                     if self.menu.getStartRect().collidepoint(event.pos):
-                        if self.modo.getActivo() == None:
+                        if self.modo.getActivo() == False:
                             self.menu.apagarMenu()
                             self.modo.activarModo()
                         else:

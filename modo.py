@@ -4,7 +4,7 @@ class Modo:
     '''Un menu con botones que te dejan elegir el modo de mapa(mapa1, mapa2, mapaG/random)'''
 
     def __init__(self):
-        self.activo = None
+        self.activo = False
         self.boton_mapa1_sup = None
         self.boton_mapa2_sup = None
         self.boton_mapaG_sup = None

@@ -355,7 +355,7 @@ class Mundo():
 
     def crearMundo(self):
         '''Crea el mundo'''
-        self.coordenadas = [ ]
+        self.coordenadas = []
         self.modificarMundo(self.generarTerreno())
         self.agregarNaturaleza()
 

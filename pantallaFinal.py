@@ -5,7 +5,7 @@ class PantallaFinal:
     '''Pantalla final de cuando termina el juego'''
 
     def __init__(self):
-        self.activo = None
+        self.activo = False
         self.fondo_Final = None
         self.boton_Reiniciar_rect = None
         self.boton_Cerrar_rect = None

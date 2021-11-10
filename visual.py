@@ -114,6 +114,7 @@ class Visual:
                     eventos.ponerMarcador(visualInicioY, visualInicioX, -1)
                     eventos.sacarValoresMapas()
                 else:
+                    eventos.mundo.crearMundo()
                     eventos.generacionPelado(visualInicioY, visualInicioX)
                     visualInicioX = eventos.getvisualInicioX()
                     visualInicioY = eventos.getVisualInicioY()
@@ -128,7 +129,7 @@ class Visual:
                     inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
                     eventos.sacarValoresMapas()
 
-            if eventos.getCantTurno() == 200:
+            if eventos.getCantTurno() == 15:
                 font = pygame.font.Font('Font/AmongUs-Regular.ttf', 50)
                 ganador = eventos.ganador()
 
