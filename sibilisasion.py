@@ -113,4 +113,9 @@ class civilizacion:
             self.restarMadera(40)
         else:
             print("Te faltan recursos para hacer una mina, panflin")
+
+    def reiniciarRecursos(self):
+        self.barco.usos = 0
+        self.cantPiedra = 0
+        self.cantMadera = 0
     

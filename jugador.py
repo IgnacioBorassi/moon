@@ -138,3 +138,10 @@ class Jugador:
     def reiniciarTurno(self):
         self.cantTurno = 0
         self.turno = True
+
+    def reiniciar(self):
+        self.cantTurno = 0
+        self.turno = True
+        self.energia = 500
+        self.comida = 30
+        self.civilizacion.reiniciarRecursos()

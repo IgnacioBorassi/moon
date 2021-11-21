@@ -984,3 +984,6 @@ class Eventos:
         '''Resta energia acumulada en los turnos'''
         self.energiaGastada -= cant
         self.mundo.restarEnergia(cant)
+
+    def reiniciar(self):
+        self.mundo.reiniciar()

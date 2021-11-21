@@ -879,3 +879,6 @@ class Mundo():
         '''Destruye el mundo'''
         self.coordenadas = []
         self.crearMundo()
+
+    def reiniciar(self):
+        self.jugador.reiniciar()
