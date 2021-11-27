@@ -130,8 +130,18 @@ class Visual:
                     inicioCeldaX = eventos.inicioCeldaXOP(visualInicioX)
                     eventos.reiniciar()
                     eventos.sacarValoresMapas()
+            if eventos.getMuerte() == True:
+                font = pygame.font.Font('Font/AmongUs-Regular.ttf', 50)
 
-            if eventos.getCantTurno() == 15:
+                img5 = font.render("DEJASTE MORIR A TUS HIJOS", True, (138, 0, 104))
+                eventos.activarFinal()
+                eventos.repetidor(visualInicioY, visualInicioX, inicioCeldaY, inicioCeldaX)
+                if eventos.getActivoFinal() == True:
+                    pantalla.blit(eventos.getFondoFinal(),(0, 0))
+                    pantalla.blit(eventos.getCerrarSup(), eventos.getCerrarRect())
+                    pantalla.blit(img5, (200, 100))
+
+            elif eventos.getCantTurno() == 2:
                 font = pygame.font.Font('Font/AmongUs-Regular.ttf', 50)
                 ganador = eventos.ganador()
 

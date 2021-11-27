@@ -745,9 +745,6 @@ class Mundo():
     def restarPiedra(self, cant):
         self.jugador.restarPiedra(cant)
     
-    def getMadera(self):
-        self.jugador.getMadera()
-    
     def getEnergia(self):
         return self.jugador.getEnergia()
     
@@ -882,3 +879,6 @@ class Mundo():
 
     def reiniciar(self):
         self.jugador.reiniciar()
+    
+    def getMuerte(self):
+        return self.jugador.getMuerte()

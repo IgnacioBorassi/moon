@@ -213,9 +213,10 @@ class Eventos:
                 exit()
             
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if self.pantallaFinal.getActivo() == True and self.menu.getActivo() == False:
+                if self.pantallaFinal.getActivo() == True and self.menu.getActivo() == False and self.modo.getActivo() == False:
+                    print("toy")
                     if self.pantallaFinal.getReiniciarRect().collidepoint(event.pos):
-                        
+                        print("nashe")
                         self.mundo.destruirMundo()
                         self.mundo.reiniciarTurnos()
                         self.modo.activarModo()
@@ -238,7 +239,8 @@ class Eventos:
                         pygame.quit()
                         exit()              
 
-                elif self.modo.getActivo() == True:
+                elif self.modo.getActivo() == True and self.menu.getActivo() == False and self.pantallaFinal.getActivo() == False:
+                    print("entre")
                     if self.modo.getBotonMapa1Rect().collidepoint(event.pos):
                         self.mapa1 = True
                         self.modo.apagarModo()
@@ -269,8 +271,7 @@ class Eventos:
                                 if ((repr(self.getTerreno(self.visualInicioY, self.visualInicioX))) == "Tierra"
                                 and (repr(self.getNaturaleza(self.visualInicioY, self.visualInicioX))) == "Aire"):
                                     if self.mundo.getCivilizacion(self.visualInicioY, self.visualInicioX) == 1:
-                                        if self.mundo.getMadera() >= 20 and self.mundo.getPiedra() >= 10:
-
+                                        if self.mundo.getMadera() >= 40 and self.mundo.getPiedra() >= 20:
                                             self.mundo.ponerCasa(self.visualInicioY, self.visualInicioX)
                                             self.mundo.hacerCasa()
                                             self.mundo.restarEnergia(20)
@@ -987,3 +988,6 @@ class Eventos:
 
     def reiniciar(self):
         self.mundo.reiniciar()
+    
+    def getMuerte(self):
+        return self.mundo.getMuerte()

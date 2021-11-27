@@ -33,8 +33,6 @@ class civilizacion:
     def getPiedra(self):
         return self.cantPiedra
 
-    def getComida(self):
-        return self.cantComida
     
     def agregarPiedra(self, cant):
         self.cantPiedra += cant

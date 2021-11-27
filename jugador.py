@@ -8,10 +8,8 @@ class Jugador:
         self.turno = True
         self.cantTurno = 0
         self.civilizacion = civilizacion()
+        self.muerte = False
     
-
-    def getMadera(self):
-        return self.civilizacion.getMadera()
     
     def getPiedra(self):
         return self.civilizacion.getPiedra()
@@ -41,7 +39,7 @@ class Jugador:
         '''Resta la comida total'''
         self.comida -= cant
         if self.comida < 0:
-            self.comida = 0
+            self.muerte = True
             
     def setEnergia(self, cant):
         self.energia = cant
@@ -145,3 +143,6 @@ class Jugador:
         self.energia = 500
         self.comida = 30
         self.civilizacion.reiniciarRecursos()
+
+    def getMuerte(self):
+        return self.muerte
