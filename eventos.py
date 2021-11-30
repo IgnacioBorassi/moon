@@ -214,9 +214,8 @@ class Eventos:
             
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if self.pantallaFinal.getActivo() == True and self.menu.getActivo() == False and self.modo.getActivo() == False:
-                    print("toy")
                     if self.pantallaFinal.getReiniciarRect().collidepoint(event.pos):
-                        print("nashe")
+                       
                         self.mundo.destruirMundo()
                         self.mundo.reiniciarTurnos()
                         self.modo.activarModo()
@@ -240,7 +239,6 @@ class Eventos:
                         exit()              
 
                 elif self.modo.getActivo() == True and self.menu.getActivo() == False and self.pantallaFinal.getActivo() == False:
-                    print("entre")
                     if self.modo.getBotonMapa1Rect().collidepoint(event.pos):
                         self.mapa1 = True
                         self.modo.apagarModo()
