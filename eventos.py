@@ -97,31 +97,34 @@ class Eventos:
         return self.mundo.tipoBorde(y, x)
                 
     def realizarAcciones(self):
+        salir = -1000
         '''Realiza el movimiento del pelado elegido'''
         if (self.cantMarcadores - self.cantNoMarcados) == (self.cantMarcadores + 1):
 
             self.activar == False
-            self.cantMarcadores = -1000
-            self.cantNoMarcados = -1000
+            self.cantMarcadores = salir
+            self.cantNoMarcados = salir
             self.ponerMarcador(self.visualInicioY, self.visualInicioX, self.ordenSeleccion)
             self.ordenSeleccion = -1
             self.seleccion = False
             self.sacarMarcadores()
-
+            
+            if self.mundo.getComida() == 0:
+                self.mundo.setComida(30) 
             if self.mundo.getEnergia() == 0:
-                self.mundo.setTurno()
+                self.mundo.setTurno(self.mundo.contarPelados()*3)
                 if (self.mundo.getCantTurno() % 2) == 0:
                     self.mundo.turnoPeludo()
 
                 self.mundo.setEnergia(500)
                 self.energiaGastada = 0
                 self.energiaMaxima = 500
-                self.mundo.setTurno()
-                self.mundo.restarComida(self.mundo.contarPelados()*3)
+                self.mundo.setTurno(self.mundo.contarPelados()*3)
+             
             else:
                 self.energiaMaxima = self.mundo.getEnergia()
-            if self.mundo.getComida() == 0:
-                self.mundo.setComida(30)
+            
+            
 
         if self.activar == True:
             for i in range(1, (self.celdasY - 1)):

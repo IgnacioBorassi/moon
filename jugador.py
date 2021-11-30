@@ -38,7 +38,7 @@ class Jugador:
     def restarComida(self, cant):
         '''Resta la comida total'''
         self.comida -= cant
-        if self.comida < 0:
+        if self.comida <= 0:
             self.muerte = True
             
     def setEnergia(self, cant):
@@ -119,13 +119,15 @@ class Jugador:
     def hacerMina(self):
         self.civilizacion.hacerMina()
 
-    def setTurno(self):
+    def setTurno(self, cantComida):
         '''Lleva la cuenta de todos los turnos'''
         if self.energia > 0:
             self.turno = True
         else:
             self.turno = False
+            self.restarComida(cantComida)
             self.cantTurno += 1
+
     
     def getTurno(self):
         return self.turno

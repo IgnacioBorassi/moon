@@ -141,7 +141,7 @@ class Visual:
                     pantalla.blit(eventos.getCerrarSup(), eventos.getCerrarRect())
                     pantalla.blit(img5, (200, 100))
 
-            elif eventos.getCantTurno() == 2:
+            elif eventos.getCantTurno() == 15:
                 font = pygame.font.Font('Font/AmongUs-Regular.ttf', 50)
                 ganador = eventos.ganador()
 
@@ -284,19 +284,19 @@ class Visual:
                         pantalla.blit(pez_sup, (904, 150))
 
                         font = pygame.font.SysFont(None, 24)
-                        img = font.render(eventos.getEnergia(), True, (255, 255, 0))
-                        pantalla.blit(img, (950, 35))
-                        img2 = font.render(eventos.getPiedra(), True, (128, 128, 128))
-                        pantalla.blit(img2, (950, 70))
-                        img3 = font.render(eventos.getMadera(), True, (128, 0, 0))
-                        pantalla.blit(img3, (950, 110))
-                        img4 = font.render(eventos.getComida(), True, (128, 128, 128))
-                        pantalla.blit(img4, (950, 160))
+                        imgEnergia = font.render(eventos.getEnergia(), True, (255, 255, 0))
+                        pantalla.blit(imgEnergia, (950, 35))
+                        imgPiedra = font.render(eventos.getPiedra(), True, (128, 128, 128))
+                        pantalla.blit(imgPiedra, (950, 70))
+                        imgMadera = font.render(eventos.getMadera(), True, (128, 0, 0))
+                        pantalla.blit(imgMadera, (950, 110))
+                        imgMadera = font.render(eventos.getComida(), True, (128, 128, 128))
+                        pantalla.blit(imgMadera, (950, 160))
 
                         if eventos.getBarco()== True:
                             pantalla.blit(barco_sup, (904, 190))
-                            img4 = font.render(eventos.getUsoBarco(), True, (128, 0, 0))
-                            pantalla.blit(img4, (950, 200))
+                            imgBarco = font.render(eventos.getUsoBarco(), True, (128, 0, 0))
+                            pantalla.blit(imgBarco, (950, 200))
                         else:
                             pantalla.blit(negro_fond, (pos_x, pos_y))
                         if eventos.getMarcador(i, x) == True:

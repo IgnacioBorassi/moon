@@ -521,46 +521,47 @@ class Mundo():
     def colocarCivilizacion(self, y, x):
         '''Coloca la civilizacion de los pelados cuando desaparece el fundador'''
         self.sacarPelado(y, x)
-
+        salir = 0
         for i in range(1,4):
             casaX = int(random.randrange(1, 4))
             casaY = int(random.randrange(1, 4))
 
             if i == 1:
-                while casaX != 999:
+                while casaX != salir:
                     if (repr(self.getTerreno(y + casaY, x + casaX)) == "Tierra" and
                     repr(self.getNaturaleza(y + casaY, x + casaX)) == "Aire" and 
                     self.getCasa(y + casaY, x + casaX) == None):
 
                         self.ponerCasa(y + casaY, x + casaX)
                         self.ponerPelado(y + casaY, x + casaX, Guerrero())
-                        casaX = 999
+
+                        casaX = salir
 
                     else:
                         casaX = int(random.randrange(1, 4))
                         casaY = int(random.randrange(1, 4))
 
             elif i == 2:
-                while casaX != 999:
+                while casaX != salir:
                     if (repr(self.getTerreno(y - casaY, x - casaX)) == "Tierra" and
                     repr(self.getNaturaleza(y - casaY, x - casaX)) == "Aire" and 
                     self.getCasa(y - casaY, x - casaX) == None):
                         self.ponerCasa(y - casaY, x - casaX)
                         self.ponerPelado(y - casaY, x - casaX, Obrero())
-                        casaX = 999
+                        casaX = salir
 
                     else:
                         casaX = int(random.randrange(1, 4))
                         casaY = int(random.randrange(1, 4))
 
             else:
-                while casaX != 999:
+                while casaX != salir:
                     if (repr(self.getTerreno(y - casaY, x + casaX)) == "Tierra" and
                     repr(self.getNaturaleza(y - casaY, x + casaX)) == "Aire" and 
                     self.getCasa(y - casaY, x + casaX) == None):
                         self.ponerCasa(y - casaY, x + casaX)
                         self.ponerPelado(y - casaY, x + casaX, Arquero())
-                        casaX = 999
+                        casaX = salir
 
                     else:
                         casaX = int(random.randrange(1, 4))
@@ -839,8 +840,8 @@ class Mundo():
     def getTurno(self):
         return self.jugador.getTurno()
 
-    def setTurno(self):
-        self.jugador.setTurno()
+    def setTurno(self, cantComida):
+        self.jugador.setTurno(cantComida)
     
     def getCantTurno(self):
         return self.jugador.getCantTurno()
